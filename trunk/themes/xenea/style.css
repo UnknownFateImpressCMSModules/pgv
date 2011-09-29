@@ -1,0 +1,905 @@
+/**
+ * Style for Xenea theme
+ *
+ * Use this stylesheet to customize the display of your site.
+ * To learn more about CSS visit http://www.w3.org/TR/REC-CSS2/
+ *
+ * phpGedView: Genealogy Viewer
+ * Copyright (C) 2002 to 2003 John Finlay and Others
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ * @package PhpGedView
+ * @subpackage Themes
+ * @version $Id: style.css,v 1.1 2005/10/07 18:12:49 skenow Exp $
+ */
+
+.something {
+	/*empty style to make sure that the BODY style is not ignored */
+}
+
+BODY #pgvheader, #pgvcontent, #pgvfooter {
+	COLOR: #000066;
+	background-color: #FFFFFF;
+	font-family: arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 1px;}
+#pgvheader A.link:link          {COLOR: #FFFFFF; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: bold}
+#pgvheader A.link:active        {COLOR: #FFFFFF; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: bold}
+#pgvheader A.link:visited       {COLOR: #FFFFFF; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: bold}
+#pgvheader A.link:hover         {COLOR: #333366; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: bold}
+#pgvcontent A, #pgvfooter A { COLOR: #0000FF;
+	text-decoration: none;
+	font-family: Verdana, Helvetica, sans-serif;
+	}
+
+#pgvcontent A:hover, #pgvfooter A:hover	{
+	COLOR: #FF0000;
+	text-decoration: underline;
+}
+#pgvcontent ul{
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 8px;
+}
+.center { text-align: center; }
+.center table{
+ 	margin-left: auto;
+ 	margin-right: auto;
+}
+.rtl {text-align: right;}
+.ltr {text-align: left;}
+
+#pgvcontent TH {
+	font-weight: 100; }
+.button {
+	width: 60px
+}
+.gedcom_table {
+border: 1px solid #84beff;
+margin:0;
+width:99%;
+ }
+.person_box {
+	background-color: #f0F9FF;
+	border: 1px solid #84beff;
+/*	background-color: #FFFFFF;
+	border: solid #84beff 1px;  */
+	 }
+.person_boxF {
+	background-color: #fff0f0;
+	border: 1px solid #ff2080;
+/*	background-color: #FFFFFF;
+	border: solid #993366 1px;  */
+	}
+.person_boxNN {
+	background-color: #FFFFFF;
+	border: solid #008080 1px;
+	}
+.list_table {
+}
+.list_label {
+	COLOR: #000066;
+	background-color: #C3DFFF;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+}
+.list_label_wrap {
+	COLOR: #000066;
+	background-color: #C3DFFF;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+}
+.list_value {
+	background-color: #ECF5FF;
+	border: solid #C3DFFF 1px;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	vertical-align: top;
+	white-space: nowrap;
+}
+.list_value_wrap {
+	background-color: #ECF5FF;
+	border: solid #C3DFFF 1px;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	vertical-align: top;
+}
+.list_value_wrap_red {
+	background-color: #ECF5FF;
+	border: solid #C3DFFF 1px;
+	COLOR: red;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	vertical-align: top;
+}
+
+.list_item {
+	font-size:10px;
+	/*white-space: nowrap;*/
+}
+.facts_table {
+	width: 99%;
+	 }
+.facts_label {
+	COLOR: #000066;
+	background-color: #C3DFFF;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	width: 20%;
+	text-align: center; }
+.facts_label02 {
+	COLOR: #FFFFFF;
+	background-color: #84beff;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/* width: 20%; */
+	text-align: center;
+	font-weight: bold; }
+.facts_label03 {
+	COLOR: #FFFFFF;
+	background-color: #84beff;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/* width: 20%; */
+	text-align: center;
+	font-weight: bold; }
+.facts_value {
+	background-color: #ECF5FF;
+	border: solid #C3DFFF 1px;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/*text-align: left;*/ }
+.facts_value02 {
+	background-color: #F2F5F9;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/*text-align: left;*/ }
+.facts_labelred {
+	COLOR: #000066;
+	border: solid red 2px;
+	background-color: #9DD8FF;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	width: 20%;
+	text-align: center; }
+.facts_valuered {
+	background-color: #FBFDFF;
+	border: solid red 2px;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/*text-align: left;*/ }
+.facts_labelblue {
+	COLOR: #000066;
+	border: solid blue 2px;
+	background-color: #9DD8FF;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	width: 20%;
+	text-align: center; }
+.facts_valueblue {
+	background-color: #FBFDFF;
+	border: solid blue 2px;
+	COLOR: #000066;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	padding: 4px 4px 4px 4px;
+	/*text-align: left;*/ }
+.tabs_table {
+	width: 99%;
+	}
+.tab_cell_active {
+    COLOR: #000066;
+	background-color: #FFFFFF;
+	border-color: #FF6633;
+	border-width: 1px;
+	border-bottom-style: none;
+	border-top-style: solid;
+	border-right-style: solid;
+	text-align: center;
+	font-weight: bold; }
+.tab_cell_inactive {
+    COLOR: #000066;
+	background-color: #ECF5FF;
+	border-color: #FF6633;
+	border-width: 1px;
+	border-right-style: solid;
+	text-align: center;
+	font-weight: bold; }
+.tab_cell_inactive_empty {
+    COLOR: #000066;
+	background-color: #dCe5eF;
+	border-color: #FF6633;
+	border-width: 1px;
+	border-right-style: solid;
+	text-align: center;
+	font-weight: bold; }
+.tab_cell_inactive_empty A {
+	color: #5555ff;
+}
+.tab_active_bottom {
+    background-color: #FFFFFF;
+	border-top: none;
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+	height: 5px; }
+.tab_inactive_bottom {
+    background-color: #FFFFFF;
+	border-left: none;
+	border-right: none;
+	border-top: solid #FF6633 1px;
+	height: 5px; }
+.tab_inactive_bottom_right {
+    background-color: #FFFFFF;
+	border-left: none;
+	border-right: none;
+	border-top: solid #FF6633 1px;
+	width: 35%;
+	height: 5px; }
+.name1 {
+	COLOR: #000066;
+	FONT: bold 10px verdana, helvetica, arial, sans-serif; }
+.namered {
+  border: solid red 1px;
+}
+.nameblue {
+  border: solid blue 1px;
+}
+.details1 {
+    COLOR: #000066;
+	FONT: 9px arial, helvetica, sans-serif;
+	text-decoration: none; }
+.name2 {
+	COLOR: #000066;
+	FONT: bold 11px verdana, helvetica, arial, sans-serif; }
+.details2 {
+    COLOR: #000066;
+	FONT: 9px arial, helvetica, sans-serif;
+	text-decoration: none; }
+.nameZoom {
+	COLOR: #000066;
+	FONT: bold 16px verdana, helvetica, arial, sans-serif; }
+.detailsZoom {
+	FONT: 13px arial, helvetica, sans-serif;
+	text-decoration: none; }
+
+.name_head {
+	COLOR: #000066;
+	FONT: bold 16px verdana, helvetica, arial, sans-serif;
+	letter-spacing: .2px; }
+.date {
+	font-weight: bold; }
+.label {
+    COLOR: #000066;
+	FONT: bold 11px verdana, helvetica, arial, sans-serif;
+	}
+.field {
+        COLOR: #000066;
+	FONT: 11px verdana, helvetica, arial, sans-serif;
+	}
+.error {
+	COLOR: #DD0000;
+	font-family: verdana, helvetica, arial, sans-serif;}
+.warning {
+	COLOR: red;
+	font-family: verdana, helvetica, arial, sans-serif;
+	font-weight: bold; }
+.indent {
+	padding-left: 7px;}
+.indent_rtl {
+	padding-right: 7px;}
+.image {
+	height: 150px;
+	padding: 5px;
+	border: solid black 1px; }
+.sex_image {
+	height: 9px;
+	width: 9px;
+	margin: 0px 3px;
+	border: none;
+	vertical-align: middle;
+}
+.pedigree_image_portrait {
+	float: left;
+	height: 50px;
+	border: solid black 1px;
+	margin-right: 3px;
+}
+.pedigree_image_portrait_rtl {
+         float: right;
+         height: 50px;
+         border: solid black 1px;
+         margin-left: 3px;
+}
+.pedigree_image_landscape {
+	float: left;
+	width: 50px;
+	border: solid black 1px;
+	margin-right: 3px;
+}
+.pedigree_image_landscape_rtl {
+         float: right;
+         width: 50px;
+         border: solid black 1px;
+         margin-left: 3px;
+}
+.pedigree_form {
+	width: 60px;
+}
+.thumbnail {
+	height: auto;
+	padding: 5px;
+}
+.icon {
+	border: none;
+}
+.link {
+	font-size: 11px;
+	text-align: center;
+}
+.sublinks_table {
+	border: solid #84beff 1px; }
+.sublinks_cell {
+	font-size: 11px;
+	background-color: #ECF5FF; }
+.sublinks_table .icon {
+	width: 25px;
+	height: 25px;
+	}
+.menuitem .icon {
+	width: 32px;
+	height: 32px;
+	}
+.submenu .icon {
+	width: 25px;
+	height: 25px;
+	}
+.subheaders {
+	font-size: 16px;
+	font-weight: bold;
+	text-indent: 20px;
+	margin-top: 15px;
+	vertical-align: bottom;
+	font-family: Arial, sans-serif; }
+.age {
+	font-size: 9px;
+}
+.source_citations {
+	display: none;
+}
+
+.contact_links {
+	text-align: center;
+}
+.theme_form {
+	margin-top: 0px;
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	color: white;
+}
+.flag {
+	width: 15px;
+	border: solid black 1px;
+}
+.header_select {
+	font-size: 9pt;
+}
+.lang_form {
+	margin-top: 3px;
+}
+
+.selected-option {
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+}
+.favorites_form {
+	margin-top: 0px;
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	color: white;
+}
+.thememenuitem {
+	COLOR: white;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	padding: 1px;
+	}
+.thememenuitem A {
+	COLOR: white;
+	}
+.thememenuitem_hover {
+	COLOR: #FF0000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	padding: 1px;
+	}
+.themesubmenu {
+	COLOR: #000000;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	text-align: left;
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+	white-space: nowrap;
+	width: 100px;
+	}
+.favmenuitem {
+	COLOR: white;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	padding: 1px;
+	}
+.favmenuitem A {
+	COLOR: white;
+	}
+.favmenuitem_hover	{
+	COLOR: #FF0000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	padding: 1px;
+	}
+.favsubmenu {
+	COLOR: #000000;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	text-align: center;
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+	white-space: nowrap;
+	}
+.favsubmenuitem A {
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ECF5FF;
+	white-space: nowrap;
+	text-align: left;
+	}
+.favsubmenuitem_hover A {
+	COLOR: #ff0000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ffffff;
+	white-space: nowrap;
+	text-align: left;
+	}
+.help {
+	font-weight: bold;
+	cursor: help;
+}
+.menuitem {
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	text-align: center;
+	padding: 1px;
+	}
+.menuitem_hover	{
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	text-align: center;
+	padding: 1px;
+	}
+.submenu {
+	COLOR: #000000;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	text-align: center;
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+	white-space: nowrap;
+	position: absolute;
+	z-index: 100;
+}
+.submenu_rtl {
+	COLOR: #000000;
+	text-decoration: none;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	text-align: center;
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+	white-space: nowrap;
+	}
+.submenuitem {
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ECF5FF;
+	white-space: nowrap;
+	text-align: left;
+	padding: 1px;
+}
+.submenuitem_rtl {
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ECF5FF;
+	white-space: nowrap;
+	text-align: right;
+	padding: 1px;
+}
+.submenuitem_hover	{
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ffffff;
+	white-space: nowrap;
+	text-align: left;
+	padding: 1px;
+	}
+.submenuitem_hover_rtl	{
+	COLOR: #000000;
+	FONT-SIZE: 11px;
+	FONT-FAMILY: Verdana, Helvetica, sans-serif;
+	FONT-WEIGHT: normal;
+	text-decoration: none;
+	background-color: #ffffff;
+	white-space: nowrap;
+	text-align: right;
+	padding: 1px;
+	}
+	.news_title {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+.news_date {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 12px;
+}
+.menuitem A { COLOR: #000000;	}
+
+.current_day {
+	font-weight: bold;
+	font-size: 16px;
+}
+.cal_day {
+	float: left;
+	font-weight: bold;
+}
+.rtl_cal_day {
+	direction: rtl;
+	float: right;
+	color: blue;
+	font-weight: bold;
+}
+.helpheader {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+}
+.helpstart0 {
+	font-family: Arial, sans-serif;
+	color: Blue;
+	font-size: 14px;
+	font-weight : bold;
+	text-decoration : none;
+}
+.helpstart1 {
+	font-family: Arial, sans-serif;
+	color: Blue;
+	font-size: 14px;
+	font-weight : bold;
+	text-decoration : none;
+}
+.helpstart2 {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	font-weight : bold;
+	text-decoration : none;
+}
+.helptext {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 12px;
+}
+
+#pgvcontent {
+	margin-left: 1px;
+}
+#pgvcontent table {
+	width: auto;
+}
+#pgvcontent table table {
+	width: 100%
+}
+#pgvcontent td {
+	vertical-align: middle;
+}
+#pgvfooter {
+	clear: both;
+	COLOR: #000066;
+	font-family: arial, Helvetica, sans-serif;
+	font-size: 12px;
+	width: 99%;
+}
+
+/*-- index.php specific style sheets -- */
+.small_inner_block {
+	max-height: 180px;
+/*	height: auto; */
+	overflow: auto;
+	FONT: 10px times, times new roman, serif;
+	text-decoration: none;
+}
+
+.block {
+	background-color: #ECF5FF;
+	border: solid #84beff 1px;
+	COLOR: #000000;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	vertical-align: top;
+	margin: 1px;
+	padding: 1px;
+}
+
+#index_main_blocks {
+	clear: none;
+	width: 73%;
+	float: left;
+}
+
+#index_small_blocks {
+	clear: none;
+	width: 25%;
+	float: right;
+}
+
+#index_full_blocks {
+	clear: none;
+	width: 100%;
+	float: center;
+}
+
+#random_picture {
+	text-align: center;
+}
+
+.news_title {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+}
+.news_date {
+	font-family: Arial, sans-serif;
+	color: black;
+	font-size: 12px;
+}
+
+/*-- pedigree chart specific stylesheets --*/
+#pedigree_chart {
+	position: relative;
+	top: -240px;
+	left: 0px;
+	width: 99%;
+}
+/*-- pedigree chart rtl specific stylesheets --*/
+#pedigree_chart_rtl {
+	position: relative;
+	float: right;
+	top: -240px;
+	right: 0px;
+	width: 99%;
+}
+
+/*-- descendancy chart specific stylesheets --*/
+#descendancy_chart ul {
+	background-image: url(images/vline.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+	list-style: none;
+	margin: 0px 0px 5px 15px; /* top right bottom left */
+	padding: 0px 0px 0px auto; /* top right bottom left */
+}
+#descendancy_chart li {
+	list-style: none;
+	margin: 0px 0px 0px -15px; /* top right bottom left */
+	padding: 0px 0px 0px; /* top right bottom left */
+}
+/*-- descendancy chart rtl specific stylesheets --*/
+#descendancy_chart_rtl ul {
+	background-image: url(images/vline.gif);
+	background-repeat: repeat-y;
+	background-position: right top;
+	list-style: none;
+	margin: 0px 15px 5px 0px; /* top right bottom left */
+	padding: 0px auto 0px 0px; /* top right bottom left */
+}
+#descendancy_chart_rtl li {
+	list-style: none;
+	margin: 0px -15px 0px 0px; /* top right bottom left */
+	padding: 0px 2px 0px 0px; /* top right bottom left */
+}
+
+/*-- relationship chart specific stylesheets --*/
+#relationship_chart {
+	position: relative;
+	top: -40px;
+	left: 0px;
+}
+#relationship_chart_rtl {
+	position: relative;
+	top: -40px;
+	right: 10px;
+}
+
+/*-- ancestry chart specific stylesheets --*/
+#ancestry_chart ul {
+	background-image: url(images/vline.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+	list-style: none;
+	margin: 0px 0px 0px 15px; /* top right bottom left */
+	padding: 0px 0px 0px auto; /* top right bottom left */
+}
+#ancestry_chart li {
+	list-style: none;
+	margin: 0px 0px 2px -15px; /* top right bottom left */
+	padding: 0px 0px 0px auto; /* top right bottom left */
+}
+/*-- ancestry chart rtl specific stylesheets --*/
+#ancestry_chart_rtl ul {
+	background-image: url(images/vline.gif);
+	background-repeat: repeat-y;
+	background-position: right top;
+	list-style: none;
+	margin: 0px 15px 0px 0px; /* top right bottom left */
+	padding: 0px auto 0px 0px; /* top right bottom left */
+}
+#ancestry_chart_rtl li {
+	list-style: none;
+	margin: 0px -15px 2px 0px; /* top right bottom left */
+	padding: 0px 2px 0px 0px; /* top right bottom left */
+}
+
+/*-- timeline chart specific styles --*/
+#timeline_chart {
+	position: relative;
+	top: 0px;
+}
+.timeline_table {
+}
+.person0	{
+	background-color: #ECF5FF;
+	border: outset #84beff 1px;
+	vertical-align: top;
+	}
+.person1	{
+	background-color: #AAFFAA;
+	border: outset #AAFFAA 1px;
+	vertical-align: top;
+	}
+.person2	{
+	background-color: #FFAAAA;
+	border: outset #FFAAAA 1px;
+	vertical-align: top;
+	}
+.person3	{
+	background-color: #AAAADD;
+	border: outset #5555FF 1px;
+	vertical-align: top;
+	}
+.person4	{
+	background-color: #FF5555;
+	border: outset #FF5555 1px;
+	vertical-align: top;
+	}
+.person5	{
+	background-color: #55FF55;
+	border: outset #55FF55 1px;
+	vertical-align: top;
+	}
+
+.listlog	{
+	line-height: 20pt;
+	color: #555555;
+	font-family: Arial, sans-serif;
+	}
+.barra  	{COLOR: #000000; FONT-SIZE: 11px; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: normal}
+.blanco		{COLOR: #FFFFFF; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Helvetica, sans-serif; FONT-WEIGHT: bold}
+INPUT 		{BORDER-TOP-COLOR: #ffffff; BORDER-LEFT-COLOR: #ffffff; BORDER-RIGHT-COLOR: #000066; BORDER-BOTTOM-COLOR: #000066; BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 10px; BORDER-BOTTOM-WIDTH: 1px; FONT-FAMILY: Verdana,Helvetica; BORDER-RIGHT-WIDTH: 1px}
+TEXTAREA	{BORDER-TOP-COLOR: #ffffff; BORDER-LEFT-COLOR: #ffffff; BORDER-RIGHT-COLOR: #000066; BORDER-BOTTOM-COLOR: #000066; BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 10px; BORDER-BOTTOM-WIDTH: 1px; FONT-FAMILY: Verdana,Helvetica; BORDER-RIGHT-WIDTH: 1px}
+SELECT 		{
+	BORDER-TOP-COLOR: #84beff;
+	BORDER-LEFT-COLOR: #84beff;
+	BORDER-RIGHT-COLOR: #84beff;
+	BORDER-BOTTOM-COLOR: #84beff;
+	BORDER-TOP-WIDTH: 1px;
+	BORDER-LEFT-WIDTH: 1px;
+	FONT-SIZE: 10px;
+	BORDER-BOTTOM-WIDTH: 1px;
+	FONT-FAMILY: Verdana,Helvetica;
+	BORDER-RIGHT-WIDTH: 1px;
+	position: relative;
+	z-index: 1;
+}
+FORM 		{FONT-FAMILY: Verdana, Helvetica, san-serif; FONT-SIZE: 10px}
+H2       {COLOR: #000066; FONT-FAMILY: arial, Helvetica, sans-serif; FONT-SIZE: 18px; FONT-WEIGHT: normal}
+.formField {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+}
+
+/*-- pseudo-class for fanchart : used on server-side to draw image --*/
+.fan_chart {
+	/*-- font-family must contain a server TTF file --*/
+	font-family: url(./fonts/LucidaSansRegular.ttf);
+	font-size: 7px;
+	color: #000000;
+	background-color : #EEEEEE;
+}
+.fan_chart_box {
+	background-color : #D0D0AC;
+}
+.fan_chart_boxF {
+	background-color : #AAFFAA;
+}
+
+.starredname {
+	text-decoration: underline;
+}
+.search_hit {
+	background-color: yellow;
+}

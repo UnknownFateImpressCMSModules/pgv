@@ -1,0 +1,7 @@
+<!-- THIS FILE MUST BE SAVED IN UTF-8 ENCODING (or some special characters will be lost) -->
+<!-- @version $Id: ITA_Calabria.txt,v 1.1 2005/10/07 18:11:02 skenow Exp $ -->
+Catanzaro
+Cosenza
+Crotone
+Reggio di Calabria
+Vibo Valentia

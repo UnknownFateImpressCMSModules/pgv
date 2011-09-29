@@ -1,0 +1,16 @@
+<!-- $Id: DNK.txt,v 1.1 2005/10/07 18:10:22 skenow Exp $ -->
+Bornholm
+Frederiksborg
+Fyn
+København
+Nordjylland
+Ribe
+Roskilde
+Ringkøbing
+Storstrøm
+Sønderjylland
+Vejle
+Vestsjælland
+Viborg
+Århus
+				

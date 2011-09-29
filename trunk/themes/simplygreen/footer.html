@@ -1,0 +1,21 @@
+<?php
+print "</div> <!-- closing div id=\"pgvcontent\" -->\n";//FIXME uncomment as soon as ready
+print "<div id=\"pgvfooter\" class=\"$TEXT_DIRECTION\">";
+print "\n\t<br /><div align=\"center\" style=\"width:99%;\">";
+print_contact_links();
+print "\n\t<br /><a href=\"http://www.phpgedview.net\" target=\"_blank\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["gedview"]["other"]."\" width=\"100\" height=\"45\" border=\"0\" alt=\"PhpGedView Version $VERSION $VERSION_RELEASE - $PGV_DATABASE\" title=\"PhpGedView Version $VERSION $VERSION_RELEASE - $PGV_DATABASE $DBTYPE\" /></a><br />";
+print "\n\t<br /><a href=\"$PHP_SELF?view=preview&amp;$QUERY_STRING\">".$pgv_lang["print_preview"]."</a>";
+print_help_link("preview_help", "qm");
+print "<br />";
+if ($SHOW_STATS) print_execution_stats();
+if ($buildindex) print " ".$pgv_lang["build_error"]."  <a href=\"editgedcoms.php\">".$pgv_lang["rebuild_indexes"]."</a>\n";
+if ((count($pgv_changes) > 0) and (userCanAccept(getUserName())))
+{
+print "<br />".$pgv_lang["changes_exist"].
+" <a href=\"#\" onclick=\"window.open('edit_changes.php','','width=600,height=600,resizable=1,scrollbars=1'); return false;\">".
+$pgv_lang["accept_changes"]."</a>\n";
+}
+print "</div>";
+?><!-- <a href="http://validator.w3.org/check/referer">Validate</a> --><?php
+print "</div> <!-- close div id=\"pgvfooter\" -->\n";
+?>

@@ -1,0 +1,6 @@
+<!-- THIS FILE MUST BE SAVED IN UTF-8 ENCODING (or some special characters will be lost) -->
+<!-- $Id: FRA_Champagne-Ardenne.txt,v 1.1 2005/10/07 18:10:49 skenow Exp $ -->
+Ardennes
+Aube
+Haute-Marne
+Marne

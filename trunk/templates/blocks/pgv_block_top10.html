@@ -1,0 +1,43 @@
+	<{if count($surnames)>0 }>
+		<div id="top10surnames" class="block">\n
+		<table class="blockheader" cellspacing="0" cellpadding="0" style="direction:ltr;"><tr>
+		<td class="blockh1" >&nbsp;</td>
+		<td class="blockh2" ><div class="blockhc">
+		<b>".str_replace("10", $config["num"], $pgv_lang["block_top10_title"])."</b>
+		print_help_link("index_common_names_help", "qm")
+		<{if $PGV_BLOCKS["print_block_name_top10"]["canconfig"] }>
+			$username = getUserName();
+			<{if (($command=="gedcom")&&(userGedcomAdmin($username))) || (($command=="user")&&(!empty($username))) }>
+				<{if $command=="gedcom" }> $name = preg_replace("/'/", "\'", $GEDCOM)
+				<{elseif $name = $username}>
+				<a href="javascript: configure block" onclick="window.open('index_edit.php?name=$name&amp;command=$command&amp;action=configure&amp;side=$side&amp;index=$index', '', 'top=50,left=50,width=600,height=550,scrollbars=1,resizable=1'); return false;">
+				<img class="adminicon" src="$PGV_IMAGE_DIR/".$PGV_IMAGES["admin"]["small"]."" width="15" height="15" border="0" alt="".$pgv_lang["config_block"]."" /></a>\n
+			<{/if}>
+		<{/if}>
+		</div></td>
+		<td class="blockh3">&nbsp;</td></tr>\n
+		</table>
+		<div class="blockcontent">\n
+		<{if ($block) }> <div class="small_inner_block">\n <{/if}>
+		<table>
+		$i=0;
+		<{foreach item=$surname from=$surnames }>
+			<{if stristr(<{$surname["name"]}>, "@N.N")===false) }>
+				<tr valign="top">
+				<td dir="ltr" align="right">
+				<{if $TEXT_DIRECTION=="rtl" }> &nbsp;&nbsp; <{/if}>
+				[<{$surname["match"]}>]
+				<{if $TEXT_DIRECTION=="ltr" }> &nbsp;&nbsp; <{/if}>
+				</td>
+				<td class="name2"><a href="indilist.php?surname=".urlencode(<{$surname["name"]}>)."">".PrintReady(<{$surname["name"]}>)."</a></td>
+				</tr>
+				$i++;
+				<{if $i>=$config["num"]) }> break <{/if}>
+            <{/if}>
+        <{/foreach}>
+		</table>
+		<{if $block }> </div>\n <{/if}>
+		</div>
+		</div>
+    <{/if}>
+

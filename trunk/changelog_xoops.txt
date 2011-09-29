@@ -1,0 +1,30 @@
+Change log
+Module Name: PGVXoops
+
+===============================================
+Jan - Mar 2006
+- Removed trailing white space from PHP files
+- Removed version information from theme files and function_print.php::print_header()
+- Changed config.php to remove PGV login/registration use (use Xoops to add new users)
+- Fixed menu alignment in Cloudy theme (bug #3398)
+- Fixed pedigree box alignment
+- Fixed Welcome page block header width in Cloudy theme and Firefox (bug#3489)
+- Fixed Welcome page block resizing on hover in Cloudy theme and Firefox (bug#3489)
+- Fixed Xoops footer not printing (bug #3444)
+- Corrected field size on pgv_individuals.i_isdead in mysql.sql
+- Changed login redirect to Xoops login
+- Fixed center area expansion in Cloudy theme (bug #3399 and #3565) (toplinks.html)
+- Lowered timeline chart top in Cloudy theme
+- Fixed homepage icon class in toplinks.html for Xenea theme
+- Changed div box width (theme.php) in Xenea theme to fix ancestry chart expanding center area
+- Changed div box width (theme.php) in Minimal theme to fix ancestry chart expanding center area
+- Changed div box width (theme.php) in Ocean theme to fix ancestry chart expanding center area
+
+Dec 2005
+- Added this file (changelog_xoops.txt)
+- Corrected readme_xoops.txt (missing information about added files)
+- SunTzu worm patches uploaded to CVS and patch added to files area (patch#3390)
+--- help_text_vars.php
+--- login_register.php
+--- useradmin.php
+--- includes/authentication_index.php

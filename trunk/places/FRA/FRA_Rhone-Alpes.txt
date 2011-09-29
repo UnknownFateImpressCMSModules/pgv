@@ -1,0 +1,10 @@
+<!-- THIS FILE MUST BE SAVED IN UTF-8 ENCODING (or some special characters will be lost) -->
+<!-- $Id: FRA_Rhone-Alpes.txt,v 1.1 2005/10/07 18:10:49 skenow Exp $ -->
+Ain
+Ardèche
+Drôme
+Haute-Savoie
+Isère
+Loire
+Rhône
+Savoie

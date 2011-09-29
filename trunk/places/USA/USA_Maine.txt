@@ -1,0 +1,18 @@
+<!-- @version $Id: USA_Maine.txt,v 1.1 2005/10/07 18:12:18 skenow Exp $ -->
+<!-- @see http://countyhunter.com/counties.htm -->
+Androscoggin
+Aroostook
+Cumberland
+Franklin
+Hancock
+Kennebec
+Knox
+Lincoln
+Oxford
+Penobscot
+Piscataquis
+Sagadahoc
+Somerset
+Waldo
+Washington
+York

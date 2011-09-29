@@ -1,0 +1,11 @@
+.small_inner_block {
+	height: 200px;
+	overflow: auto;
+	FONT: 10px times, times new roman, serif;
+	text-decoration: none;
+}
+#descendancy_chart ul {
+	margin: 0px 0px 5px 30px;
+	padding: 0px 0px 0px 0px;
+}
+

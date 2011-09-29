@@ -1,0 +1,46 @@
+<div id="pgvheader" class="<?php print $TEXT_DIRECTION; ?>">
+<table class="header_table" width="100%" cellpadding="0" cellspacing="0"><tr><td>
+<table width="100%">
+	<tr>
+		<td><img src="<?php print $THEME_DIR;?>header.jpg" width="484" height="86" alt="" /></td>
+		<td>
+			<table width="100%">
+
+				<tr>
+				<td>
+					<a href="<?php print $HOME_SITE_URL; ?>"><?php print $HOME_SITE_TEXT; ?></a>
+				</td>
+				<td align="center">
+					<?php  print_gedcom_title_link(TRUE); ?>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				</td>
+				<td align="center" valign="center" rowspan=2>
+					<?php //print_user_links(); ?>
+				</td>
+				</tr>
+				<tr>
+				<td>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<form action="search.php" method="get">
+						<input type="hidden" name="action" value="general" />
+						<input type="hidden" name="topsearch" value="yes" />
+						<input type="text" name="query" size="12" value="<?php print $pgv_lang['search']?>" onfocus="if (this.value == '<?php print $pgv_lang['search']?>') this.value=''; focusHandler();" onblur="if (this.value == '') this.value='<?php print $pgv_lang['search']?>';" />
+						<input type="submit" name="search" value="&gt;" />
+					</form>
+				</td>
+				<td align="center" valign="top">
+					<?php print_favorite_selector(); ?>
+				</td>
+				</tr>
+   </table>
+		</td>
+	</tr>
+</table>
+</td>
+</tr>

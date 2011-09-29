@@ -1,0 +1,40 @@
+<div id="pgvheader" class="<?php print $TEXT_DIRECTION; ?>">
+<div class="headerimg" style="margin: 3px; background: url(<?php print $PGV_IMAGE_DIR; ?>/treeroad.jpg) no-repeat top <?php print $TEXT_DIRECTION=="ltr"?"left":"right" ?>;">
+	<table width="99%" height="186" class="headerimg" cellpadding="3" cellspacing="0">
+		<tr>
+			<td width="760">&#160;</td>
+			<td><?php print_lang_form(1); ?></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+			  <a href="<?php print $HOME_SITE_URL; ?>"><?php print $HOME_SITE_TEXT; ?></a>
+				<form action="search.php" method="get">
+					<input type="hidden" name="action" value="general" />
+					<input type="hidden" name="topsearch" value="yes" />
+					<input type="text" name="query" size="15" value="<?php print $pgv_lang['search']?>"
+							onfocus="if (this.value == '<?php print $pgv_lang['search']?>') this.value=''; focusHandler();"
+							onblur="if (this.value == '') this.value='<?php print $pgv_lang['search']?>';" />
+					<input type="submit" name="search" value="<?php print $pgv_lang['search']?>" />
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a class="title" href="<?php print $HOME_SITE_URL; ?>"><?php global $GEDCOMS, $GEDCOM; print PrintReady($GEDCOMS[$GEDCOM]["title"], TRUE); ?></a>
+			</td>
+			<td>
+				<?php print_theme_dropdown(); ?>
+				<?php print_favorite_selector(); ?>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php //print_user_links(); ?>
+			</td>
+			<td class="date" valign="bottom">
+				<?php print get_changed_date(date("j", time()-(isset($_SESSION["timediff"])?$_SESSION["timediff"]:0))." ".date("M", time()-(isset($_SESSION["timediff"])?$_SESSION["timediff"]:0))." ".date("Y", time()-(isset($_SESSION["timediff"])?$_SESSION["timediff"]:0))); ?>
+			</td>
+		</tr>
+	</table>
+</div>

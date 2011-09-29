@@ -1,0 +1,18 @@
+<!-- THIS FILE MUST BE SAVED IN UTF-8 ENCODING (or some special characters will be lost) -->
+<!-- $Id: FIN_Southern-Finland_Tavastia-Proper.txt,v 1.1 2005/10/07 18:10:22 skenow Exp $ -->
+Forssa
+Hämeenlinna
+Riihimäki
+Hattula
+Hauho
+Hausjärvi
+Humppila
+Janakkala
+Jokioinen
+Kalvola
+Lammi
+Loppi
+Renko
+Tammela
+Tuulos
+Ypäjä

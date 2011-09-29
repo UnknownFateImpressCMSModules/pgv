@@ -1,0 +1,16 @@
+<!-- $Id: NOR_Aust-Agder.txt,v 1.1 2005/10/07 18:11:08 skenow Exp $ -->
+Arendal
+Birkenes
+Bygland
+Bykle
+Evje og Hornnes
+Froland
+Gjerstad
+Grimstad
+Iveland
+Lillesand
+Risør
+Tvedestrand
+Valle
+Vegårshei
+Åmli

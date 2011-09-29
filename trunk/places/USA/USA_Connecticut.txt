@@ -1,0 +1,10 @@
+<!-- @version $Id: USA_Connecticut.txt,v 1.1 2005/10/07 18:12:18 skenow Exp $ -->
+<!-- @see http://countyhunter.com/counties.htm -->
+Fairfield
+Hartford
+Litchfield
+Middlesex
+New Haven
+New London
+Tolland
+Windham

@@ -1,0 +1,31 @@
+<!-- @version $Id: USA_Utah.txt,v 1.1 2005/10/07 18:12:18 skenow Exp $ -->
+<!-- @see http://countyhunter.com/counties.htm -->
+Beaver
+Box Elder
+Cache
+Carbon
+Daggett
+Davis
+Duchesne
+Emery
+Garfield
+Grand
+Iron
+Juab
+Kane
+Millard
+Morgan
+Piute
+Rich
+Salt Lake
+San Juan
+Sanpete
+Sevier
+Summit
+Tooele
+Uintah
+Utah
+Wasatch
+Washington
+Wayne
+Weber

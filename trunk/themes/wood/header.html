@@ -1,0 +1,21 @@
+<div id="pgvheader" class="<?php print $TEXT_DIRECTION; ?>">
+<table class="<?php print $TEXT_DIRECTION; ?>" style="width: 100%;"><tr><td>
+<span style="font-family: Arial; font-size: 18pt; font-weight: bold;"><?php print PrintReady($GEDCOMS[$GEDCOM]["title"], TRUE); ?></span></td>
+<td valign="bottom">
+<?php print_theme_dropdown(); ?>
+</td><td>
+                        <form action="search.php" method="get">
+                                <input type="hidden" name="action" value="general" />
+                                <input type="hidden" name="topsearch" value="yes" />
+                                <a href="<?php print $HOME_SITE_URL; ?>" class="link"><?php print $HOME_SITE_TEXT; ?></a><br />
+                                <input type="text" name="query" size="15" value="<?php print $pgv_lang['search']?>" onfocus="if (this.value == '<?php print $pgv_lang['search']?>') this.value=''; focusHandler();" onblur="if (this.value == '') this.value='<?php print $pgv_lang['search']?>';" />
+                                <input type="submit" name="search" value=" &gt; " style="{font-size: 8pt; }" />
+                        </form>
+</td>
+</tr>
+</table>
+</div>
+<div id="header2">
+<table cellpadding="3">
+	<tr>
+		<td valign="top">			

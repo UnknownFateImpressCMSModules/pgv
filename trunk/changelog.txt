@@ -1,0 +1,1427 @@
+=====================================================================
+	Change Log
+	phpGedView
+
+	This and other information can be found online at
+	http://www.phpgedview.net
+
+	# $Id: changelog.txt,v 1.1 2005/10/07 18:08:01 skenow Exp $
+=====================================================================
+
+Version 3.3.5
+ - Fixed [ 1211435 ] Patriarchlist Undefined index error (yalnifj)
+ - Fixed find_record_in_file bug where a block landing in 0 @XREF@ line resulted in the record not being found (yalnifj)
+ - Fixed RESN privacy error for NOTEs and SOURces on the notes and sources tabs (yalnifj)
+ - Fixed privacy error for birth/death in global facts area of indivdiual page (yalnifj)
+ - Fixed [ 1219665 ] Unclosed <SPAN> tag in accept/reject-changes form (yalnifj)
+ - Fixed [ 1235445 ] Edit Note = Deleted Note (yalnifj)
+ - Fixed [ 1212511 ] Missing function in editlang.php (yalnifj)
+ - Fixed [ 1221461 ] Source link to records "No Results Found" v.3.3.4 SQLite (yalnifj)
+ - Fixed long run time for editgedcoms.php page in some server configurations (yalnifj)
+ - Force DOS file downloads for greatest compatibility with other programs (yalnifj)
+ - Fixed [ 1230245 ] pdf report - page header error (yalnifj)
+ - Disabled caching the recent changes block (yalnifj)
+ - Fixed pass by reference bug in pdf report generation in PHP 5.1 (yalnifj)
+ - Fixed [ 1212456 ] PLAC tag for LdS Ordinances (yalnifj)
+ - Fixed [ 1117667 ] Private Person - Public Family (yalnifj)
+ - RSI prevention: fixed tab order in edit interface (sjouke)
+ - Fixed [ 1212943 ] Alive in year list missing some people (yalnifj)
+ - Fixed [ 1212280 ] Married names are always shown in lists in index mode (yalnifj)
+ - Fixed [ 1208577 ] Error in "edit_interface.php" (sjouke)
+ - Fixed error in help menu when setting contact and webmaster links to none (yalnifj)
+ - Fixed printhelp_text undefined function call in login_register (yalnifj)
+ - Fixed SQLite login error (yalnifj)
+ - Fixed [ 1199595 ] Research Log (yalnifj)
+ - Fixed [ 1206547 ] Undefined var. on line 220 in uploadgedcom.php (canajun2eh)
+ - Fixed [ 1204929 ] Zoomed Tree Boxes Display Burial Before Death (yalnifj)
+ - Fixed corrupt images create black thumbnails. Now no thumbs are created (yalnifj)
+ - Added Patch [ 1200173 ] Patch to repair US style (November 11, 1998) dates (yalnifj)
+ - Fixed [ 1199683 ] Privacy not respected in blocks (sjouke)
+
+Version 3.3.4
+ - Fixed [ 1199508 ] 3.3.3final ... undefined index in initial setup screen (yalnifj)
+ - Fixed [ 1199511 ] 3.3.3final ... editconfig_gedcom form field labels (yalnifj)
+
+Version 3.3.3
+ - Fixed () in RTL pdf reports (yalnifj)
+ - Added [ 1199198 ] Random picture thumbnails (yalnifj)
+ - Fixed [ 1063963 ] Width of Help dropdown (yalnifj on behalf of kartoon)
+ - Applied patch [ 1197675 ] It repairs 1063963 bug. (yalnifj on behalf of kartoon)
+ - Added Austrlian flag (roland-d)
+ - Fixed [ 1197578 ] error when sending a message (yalnifj)
+ - Fixed [ 1197423 ] 3.3.2final famlist.php call to undef function (yalnifj)
+ - Fixed [ 1197371 ] Version 3.3.2 Find ID does not work (roland-d)
+ - Fixed [ 1196878 ] 3.3.2 v1.93 (later than final) placelist.php (yalnifj)
+ - Fixed [ 1196847 ] 3.3.2f Block configuration not complying with user settings (yalnifj)
+ - Fixed [ 1193812 ] PGV_LANG[TRANSLATOR_TOOLS] not exist (yalnifj)
+ - Fixed [ 1192292 ] Privacy not picking up Events (EVEN) (yalnifj)
+ - Fixed [ 1192123 ] 3.3.2final source.php not adding spaces (yalnifj)
+ - Updated PEAR:DB files with latest version (yalnifj)
+ - Fixed "*" as alpha letter generates regular expression errors (yalnifj)
+ - Fixed [ 1192368 ] Underlining of given name with * (yalnifj)
+ - Fixed [ 1192977 ] client.php does not restrict variable names (yalnifj)
+ - Fixed [ 1192304 ] Error on line 123 of search.php (canajun2eh)
+ - Fixed [ 1192360 ] Incorrect </br> in individual.php (canajun2eh)
+ - Fixed [ 1192365 ] Missing </tr> in calendar.php when no families print (canajun2eh)
+ - Fixed [ 1192371 ] 3.3.2final too many \" on line 224 of patriachlist.php (canajun2eh)
+ - Fixed [ 1192120 ] 3.3.2final alive in year (yalnifj)
+ - Fixed [ 1192128 ] 3.3.2final ? appears in the Most Common Surnames (yalnifj)
+
+Version 3.3.2
+ - Fixed [ 1188965 ] 3.3.1f: PNG thumbnail generation errors (yalnifj)
+ - Fixed [ 1187775 ] Special Character table broken (canajun2eh)
+ - Fixed [ 1188065 ] space in filename breaks default_gedcom (yalnifj)
+ - Moved hebrew date conversion functions to functions_date_hebrew (yalnifj)
+ - Added better editing support for _HEB and ROMN name subtags (yalnifj)
+ - Adjusted SQL Injection detection (yalnifj)
+ - Fixed [ 1181982 ] v3.4 Edit_Interface. Name Bug (yalnifj)
+ - Fixed repeatedly jumping imageviewer (yalnifj)
+ - Fixed [ 1185246 ] Remove AKA inserts AKA Y (yalnifj)
+ - Fixed [ 1184452 ] 3.3.1 individual.php Census source not on new line (yalnifj)
+ - Fixed ALL and A links in firstname menu and adjusted layout for indilist (eikland)
+ - Fixed ALL and A links in firstname menu and adjusted layout for famlist (eikland)
+ - Cleaned up codes and "synchronized" layout with indi-/famlist for patriarchlist (eikland)
+ - Fixed [ 1176109 ] 3.3final ... patriarchlist ... only showing some people (eikland)
+ - Fixed highlight of seach words with special letters (eikland)
+ - Fixed search of words with special letters of any case in index mode (eikland)
+ - Fixed [ 1184051 ] Disabled languages show up when adding a new user (roland-d)
+ - Fixed [ 1061471 ] editgedcoms.php XHTML (yalnifj)
+ - Fixed [ 1182681 ] Source not attached to new child (yalnifj)
+ - Fixed [ 1182688 ] Fam reorder adds fam (yalnifj)
+ - Fixed [ 1183258 ] v3.3.1 Error when selecting family list (? as surname) (yalnifj)
+ - Fixed [ 1183308 ] Empty Name error in get common surname (yalnifj)
+
+Version 3.3.1
+ - Fixed [ 1176687 ] Dates entered as "Unknown" do not display (yalnifj)
+ - Fixed [ 1175624 ] View Family GEDCOM Record Displays a Blank Page (yalnifj)
+ - Fixed [ 1177970 ] Cause of Death - redundant printing (yalnifj)
+ - Fixed [ 1180675 ] 3.3Final: Addind New Name - garbage (yalnifj)
+ - Fixed [ 1180129 ] Clipping Cart Text - RtL (sjouke)
+ - Fixed print_text function added error handling for non-existing variables (roland-d)
+ - Fixed [ 1180072 ] Highlighting is not consistent (roland-d)
+ - Fixed [ 1179065 ] Crash on login with capital/non capital letters in username (roland-d)
+ - Added image viewer resize patch suggested in help forum "v3.3 Mod: Image viewer auto resize" (yalnifj)
+ - Fixed names of the form /Surname/ Given are shown with unknown (yalnifj)
+ - Fixed [ 1177417 ] Private decesed Names displayed (yalnifj)
+ - Setting default contact users to the active user adding the gedcom (yalnifj)
+ - Fixed show gedcom record = blank screen for families (yalnifj)
+ - Fixed [ 1178501 ] Ancestry Chart List - RtL relationship texts (meliza)
+ - Fixed Fanchart errors in PHP 4.3.11 (yalnifj)
+ - Fixed [ 1169138 ] GEDCOM Favorites privacy (yalnifj)
+ - Added welcome page events blocks are cached in files in index directory (yalnifj)
+ - Fixed incorrect sorting of todays events (yalnifj)
+ - Fixed DBTYPE incorrectly reported in index mode (yalnifj)
+ - Fixed [ 1171823 ] Gender "Titles" before Admin Approval (yalnifj)
+ - Fixed [ 1172553 ] Undefined index error after adding parents (yalnifj)
+ - adding better support for images/media URLs (yalnifj)
+ - Fixed [ 1173393 ] Admin log - activity report type (sjouke)
+ - Fixed [ 1173240 ] Top 10 Surnames block appearance problems (canajun2eh)
+ - Fixed [ 1171392 ] Most Viewed Items block appearance problems (canajun2eh)
+ - Fixed [ 1173372 ] Hebrew Index page appearance in IE in Wood theme (canajun2eh)
+ - Fixed [ 1172886 ] Sort list of flag files in editlang_edit_settings.php (canajun2eh)
+ - Fixed [ 1172657 ] Limit list of languages in editconfig_gedcom.php (canajun2eh)
+ - Added uploading and adding existing GEDCOMS preserves GEDCOM settings (sjouke)
+ - Fixed [ 1172537 ] PHPInfo (sjouke)
+ - Fixed [ 1172254 ] Cosmetic errors in PGV icon at bottom of all pages (canajun2eh)
+ - Fixed [ 1171389 ] Incorrect rendering of Index/Portal config page in Hebrew (canajun2eh)
+ - Added Edit user, print name for own and start-ID (sjouke)
+ - Added link to users own gedcom-id on admin page, display rights on all gedcoms (sjouke)
+ - Fixed Search done on pgv_lang["search"] when no param entered in search headerfield (sjouke)
+ - Fixed [ 1171151 ] Misplaced links at bottom of Index/Portal pages (canajun2eh)
+ - Fixed [ 1161718 ] MM objects show as changed (sjouke)
+ - Fixed [ 1169806 ] Don't attempt media upload when media folder rights wrong (canajun2eh)
+ - Fixed [ 1170392 ] 3.3 final False privacy status (sjouke)
+
+Version 3.3
+ - Fixed [ 1166650 ] No spaces between some words in long notes (yalnifj)
+ - Fixed [ 1167338 ] Minor cosmetic problem in Compare Languages utility (canajun2eh)
+ - Fixed [ 1113141 ] Allow user new password request only if self-reg. allowed (canajun2eh)
+ - Fixed [ 1113179 ] get_relationship miscomputes paths under some conditions (yalnifj)
+ - Fixed [ 1113594 ] image viewer problems (yalnifj)
+ - Fixed [ 1162948 ] 3.3b2: few AKA('s) = mess (yalnifj)
+ - Fixed [ 1166858 ] Add mother/change name doesn't work (yalnifj)
+ - Fixed various editing bugs filed for beta 4 such as empty NAME fields and NaN dates (yalnifj)
+ - Added/Fixed [ 1122326 ] 3.3alpha2: RFC on special character keyboard (yalnifj)
+ - Fixed [ 1167521 ] Various block height problems on Index & Portal pages (canajun2eh)
+ - Fixed [ 1166924 ] Individual/source error (sjouke)
+ - Fixed [ 1166754 ] Top-10 block too high (canajun2eh)
+ - Fixed [ 1166189 ] Top-10 block too high (canajun2eh)
+ - Fixed [ 1166907 ] Error in editgedcoms.php (sjouke)
+ - Fixed [ 1166478 ] Incorrect reference to $VERSION var. in lang.en.php (canajun2eh)
+ - Fixed [ 1152392 ] Deleting Messages (yalnifj)
+ - Fixed Other than .php files included from blocks directory (sjouke)
+ - Fixed [ 1165742 ] Undefined offset in functions_date.php (opus27)
+ - Fixed [ 1165184 ] Edit Date (yalnifj)
+ - Fixed [ 1165176 ] Age 3819 (yalnifj)
+ - Fixed Repositories not showing in recent changes and top-10 views blocks (sjouke)
+ - Fixed [ 1166053 ] Appearance of page headers in Ocean theme (canajun2eh)
+ - Fixed [ 1165913 ] Appearance of page headers in Standard theme (canajun2eh)
+ - Fixed set source privacy also for repositories, clippings, blocks and reports (sjouke)
+ - Fixed [ 1165444 ] No Admin button in Login block (canajun2eh)
+ - Fixed [ 1165332 ] Incorrect advisory msgs to self-registered users (canajun2eh)
+ - Fixed [ 1165330 ] Minor cosmetic problem on Login page and Login block (canajun2eh)
+ - Fixed [ 1161637 ] Appearance of login_register page (canajun2eh)
+ - Fixed [ 1164772 ] Lost visibleonline and editaccount settings after PW reset (canajun2eh)
+ - Fixed [ 1164182 ] Downloading backup from non-web directory (sjouke)
+ - Fixed [ 1161634 ] No limit on list of languages in login_register.php (canajun2eh)
+ - Fixed [ 1164398 ] Text block in edit_changes.php (canajun2eh)
+ - Fixed [ 1164147 ] Make "Unable to authenticate" msg bold (canajun2eh)
+ - Changed [ no tracker ] LANG_CHANGELOG.txt frozen, new one started (canajun2eh)
+ - Fixed [ 1163016 ] Quick Update both Spouse and Child (yalnifj)
+ - Fixed [ 1163264 ] some words behind the media file (yalnifj)
+ - Fixed [ 1163769 ] v3.3b3, Skip Surnames from INDI Listing (yalnifj)
+ - Added/Fixed [ 1092889 ] Timeline Showing Dates In Wrong Years - Date Validation (yalnifj)
+ - Added Changelog link to admin page (yalnifj)
+ - Fixed [ 1162424 ] Edit fact: display pb with IE (opus27)
+ - Fixed [ 1153772 ] RESI.NOTE partially obscures display of address (opus27)
+ - Fixed [ 1162402 ] Xenea theme small Pedigree icon incorrect (canajun2eh)
+ - Fixed Problems when gedcom records contain heading spaces (sjouke)
+ - Fixed [ 1161421 ] Loop in function print_help_text when unpaired ~ in text (canajun2eh)
+ - Fixed [ 1161323 ] Use of @Rnnn@ (opus27)
+ - Fixed Bug [ 1157849 ] DB error when linking image (yalnifj)
+ - Fixed Bug [ 1159144 ] Undefined index in 3.3beta2 (yalnifj)
+ - Fixed Bug [ 1158041 ] Quick Update Address (yalnifj)
+ - Added patch [ 1160677 ] Fixed bug #1160671 (yalnifj)
+ - Fixed rtl issue on editconfig_gedcom.php (sjouke)
+ - Fixed [ 1161307 ] Undefined $factarray in review_changes.php (canajun2eh)
+ - Fixed [ 1161077 ] Output already started error from aliveinyear.php (canajun2eh)
+ - Fixed [ 1160926 ] Cosmetic problem in uploadgedcom.php (canajun2eh)
+ - Fixed [ 1160799 ] Incorrect page heading on editconfig_gedcom.php (canajun2eh)
+ - Fixed [ 1048173 ] descendancy.php ... not validating (opus27)
+ - Fixed [ 1003682 ] descendancy.php spurious </head> <body> tags (opus27)
+ - Added [ 1160269 ] Added "Definitions" topic to main Help page (canajun2eh)
+ - Added backup options for other PGV data (sjouke)
+ - Re-do [ 1157232 ] No #xxx# substitution in some text on Configure pages (canajun2eh)
+ - Fixed [ 1159015 ] FATAL errors from PEAR.php when editconfig.php launched (canajun2eh)
+ - Added backup for user information to downloadable ZIP file (sjouke)
+ - Added [ 1088564 ] Global Source Privacy Setting (yalnifj)
+ - Fixed [ 1158847 ] Fan Chart "focus" INDI - v3.3b2 (opus27)
+ - Fixed [ 1158388 ] Marriage Info Missing on Individual Page (opus27)
+ - Fixed [ 1158219 ] Problem with Index page in Minimal theme (canajun2eh)
+ - Fixed [ 1158229 ] Ordered lists in Cloudy theme (canajun2eh)
+ - Fixed complete redesign of Usermigrate to support all databases (sjouke)
+ - Changed [ no tracker ] Action bar in editgedcoms only appears at top (canajun2eh)
+ - Fixed [ 1157232 ] No #xxx# substitution in some text on Configure pages (canajun2eh)
+ - Fixed [ 1157224 ] No #xxx# substitutions in Export of Configure_help (canajun2eh)
+ - Fixed [ 1143842 ] imbalance in sourcelist (sjouke)
+ - Fixed [ 1156817 ] editgedcoms colums at wrong place (sjouke)
+ - Fixed [ 1151886 ] Undefined variable 3.3 Beta 1 (yalnifj)
+ - Fixed [ 1121413 ] "Exact" search doesn't find accented names (yalnifj)
+ - Added RFE [ 916324 ] Admin message bock (yalnifj)
+ - Fixed [ 1154823 ] Adding parents v3.3b1 (opus27)
+ - Added clickable country map on placelist (opus27)
+ - Added option to open special characters window by pressing F7 (yalnifj)
+ - Fixed Appearance of menu in editgedcoms.php (canajun2eh)
+ - Added configuration options to blocks (yalnifj)
+ - Changed Language selectors in editlang.php are now sorted (canajun2eh)
+ - Pdf reports : no more necessary to embed the font for french language (opus27)
+ - Changed In findspecialchar.php, copied "close window" near top for easier access (canajun2eh)
+ - Fixed Soundex search results table now displays accented names correctly (canajun2eh)
+ - Fixed single Soundex search hit now correctly opens Individual page (canajun2eh)
+ - Fixed page title on Search page (canajun2eh)
+ - Added [ 1119811 ] Enable Single Module and HTML / JavaScript RSS Feed (kosherjava)
+ - Changed "Up-in-Page" link icon now defined in theme.php.  Affected all help_text.xx files (canajun2eh)
+ - Fixed [ 1152231 ] Error in my favorites block (roland-d)
+ - Added sorting to on this day, recent changes, and upcoming events blocks (yalnifj)
+ - Fixed Fields already input while editing Lang. settings now survive flag change (canajun2eh)
+ - Added Sort Language table in editlang.php into localized language name order (canajun2eh)
+ - Added On 1st language config., activate language according to Browser pref. (canajun2eh)
+ - Added Highlight "not-active" languages in Edit-Languages page (canajun2eh)
+ - Changed Login page: minor appearance improvements (canajun2eh)
+ - Changed GEDCOM Stats block: no common surnames if Top-10 block present (canajun2eh)
+ - Changed Index and Portal pages: main or right block columns can be empty (canajun2eh)
+ - Fixed [ 1146170 ] safe mode -- 1001 php errors! (opus27)
+ - Added search hit highlighting to search page (yalnifj)
+ - Changed all languages except English to "inactive" during initial install (canajun2eh)
+ - Corrected two Temple descriptions in Germany (canajun2eh)
+ - Added Make Top-10 block sensitive to Add/Remove Surnames list (canajun2eh)
+ - Added [ 1054317 ] Auto approve after verify (yalnifj)
+ - Added [ 1122277 ] New user - registration (yalnifj)
+ - Added option to merge records across gedcoms by selecting the gedcom file (yalnifj)
+ - Added Completion of link consistency code for MULTI_MEDIA_DB items only (pbdys)
+ - Added improved blank note detection to add media (pbdys)
+ - Fixed minor appearance problems in several Themes (canajun2eh)
+ - Changed GEDCOM News block by removing extra blank lines (canajun2eh)
+ - Added many special symbols to special characters table (canajun2eh)
+ - Added all Western European characters to English special characters table (canajun2eh)
+ - Added icon for "up in this page" links on Help pages (canajun2eh)
+ - Fixed [ 1145008 ] 3.2.2a (release) help_text.php when called directly (canajun2eh)
+ - Fixed: All Language files now display "GEDCOM" and "PhpGedView" consistently (canajun2eh)
+ - Fixed : Missing age at family event (opus27)
+ - Added Linked OBJE record no longer edits these fields FORM FILE TITL (pbdys)
+ - FIXED [ 1106896 ] _PRIM and _THUM now display field values from gedcom record in editing (pbdys)
+ - Added restructure of GEDCOM configuration page (sjouke)
+ - Added [ 1050463 ] Birth Date Report Enhancement (yalnifj)
+ - Added $SHOW_FAM_ID_NUMBERS configuration (yalnifj)
+ - Fixed a surname counting problem (yalnifj)
+ - Updated alive in year script to be faster (yalnifj)
+ - added [ 1104679 ] Gedcom Download and Clippings cart downloads (yalnifj)
+ - Fixed [ 1046971 ] Sources The not recomended way to add sources in gedcom. (opus27)
+ - Fixed [ 961860 ] Enhanced PAF Support (opus27)
+ - Added [ 975381 ] place AND country input (opus27)
+ - Added restructure of admin menu, limit access of gedcom admins (sjouke)
+ - Added [ 1016179 ] add a persistant "Always remember me" login cookie (yalnifj)
+ - Added [ 888535 ] Global search (sjouke)
+ - Added PGV Supported languages to special characters popup (yalnifj)
+ - Added [ 1093878 ] Source/Notes/Media fields in Add New Person window (yalnifj)
+ - Added [ 1105309 ] Add Unlinked Individual (yalnifj)
+ - Added time limit progress bar to importgedcom.php (yalnifj)
+ - Added option for double quotes in names to be underlined (yalnifj)
+ - Added PGV-style PHPInfo to admin menu (roland-d)
+ - Added patch [ 1112523 ] edituser.php & useradmin.php remove unsupported languages (opus27)
+ - Fixed [ 1106896 ] PGV tags on linked individuals (opus27)
+ - Fixed [ 1116421 ] Name Structure on Individual Page (opus27)
+ - Fixed [ 1101083 ] Connection between Fan Chart and Indi's Page (opus27)
+ - Added Final media_db functionality (pbdys)
+ - Added Access checks to addmedia (pbdys)
+ - Fixed [ 1117040 ] Incorrectly Parsed GEDCOM Tags (opus27)
+ - Allow NCHI tag in FAM record (opus27)
+ - Added automatic import of SQL files for user migration (sjouke)
+ - Added support for PostgreSQL database (yalnifj)
+ - Added * in names translates to underlined name (yalnifj)
+ - Added support for Aldfaer marriage types (sjouke)
+ - Fixed path disclosures posted in bug [ 1113909 ] Multiple full path disclosure in phpGedview 3.2 and prior (yalnifj)
+ - Added support for SQLite database (yalnifj)
+ - Fixed Bug [ 1047356 ] Missing Place Hierarchy Values (yalnifj)
+ - Added full support for RESN tag and data on indi and famfacts (sjouke)
+ - Fixed [ 1109903 ] Statistics Block - Surnames (sjouke)
+ - Added hiding of already used unique facts in add fact menu (sjouke)
+ - Added list & details page, adding, changing and deletion of repositories (sjouke)
+ - Fixed [ 1100308 ] Login Block Help (yalnifj)
+ - Added [ 1109417 ] Allow index mode to accept changes without reimporting (yalnifj)
+ - Added online UI for PRVIACY_BY_RESN setting (yalnifj)
+ - Added selection of repository for a source (sjouke)
+ - Fixed [ 1083770 ] Hebrew Date Calculation for no Year (KosherJava)
+ - Added [ 909390 ] LDS Ordinances at-a-glance (yalnifj)
+ - Added [ 1075444 ] Default Tab setting for Users (yalnifj)
+ - Finished [ 782406 ] Hourglass chart (yalnifj)
+ - Added Geir's individual menu interface changes for better translation (yalnifj)
+ - Added [ 1057774 ] Sort order of brothers and sisters (yalnifj)
+ - Fixed Logic bug in media db upgrade code. (pbdys)
+ - Fixed Removed duplicate index creatation on mapping table  (pbdys)
+ - Fixed filter button doesn't work in findmedia.php (sjouke)
+ - Fixed wrong determination of thumbsdir in findmedia.php (sjouke)
+ - Added [ 1106339 ] Split long surname lists by first letter of first name (yalnifj)
+ - Added [ 918335 ] List Alternate Names in Lists (yalnifj)
+ - Added [ 1042696 ] Female married name search (yalnifj)
+ - Added Media database upgrade code for 3.x (x<3) to 3.3 (pbdys)
+ - Change Aligned all inputs with a table per filegroup.in upload media (pbdys)
+ - Added Config sensitive nagivation among media management screens (pbdys)
+ - Fixed [ 1103230 ] DEAT Y displays (opus27)
+ - Fixed Find Media, thumbnail checkbox state now keeps after thumbnail generation. (pbdys)
+ - Added Manage media files and add media records as part of media_db changes (pbdys)
+ - Added link consistency when moving files (db only atm, hooks in code for index mode) (pbdys)
+ - Added find media can manage file system for admin users with security checks. Works with index files as well as db. (pbdys)
+ - Added Simple filter in find media (pbdys)
+ - Added Show thumbnails on find media, with create thumbnail if missing. (pbdys)
+ - Added Image dimensions in find media. (pbdys)
+ - Added Find media can act as non popup from admin pages (Manage Media) (pbdys)
+ - Added Check for media already added to a gedcom, warn and abort (pbdys)
+ - Changed Add media records (admin) replaces Add Media (validate) (pbdys)
+ - Added Add media records conforms to look and feel of gdbi_interface (pbdys)
+ - Added Config item MULTI_MEDIA_DB controls behavior of
+ - Added (admin) Add media records, adds media to db as 0 level records with a note. (pbdys)
+ - Added Help for find/manage media.
+ - Added Alive in Year page, helps in census searches (pbdys)
+ - Fixed [ 1103476 ] wrong dates from function parse_date (opus27)
+ - Added [ 996473 ] GEDCOM dates : show day of week (opus27)
+ - Fixed [ 1097448 ] Add nickname also inserts NAME (opus27)
+ - Fixed [ 934865 ] Submenu Texts Right-Justified on RTL Pages (meliza)
+ - Added [ 1027442 ] Ancestry Chart : link icons in the namebox (opus27)
+ - Added option 'Show cousins' to Ancestry Chart (opus27)
+ - Added [ 1101425 ] Same-sex marriage (opus27)
+ - Added [ 1036592 ] Married or Partners (opus27)
+ - Enhanced NAME input form (NPFX GIVN /SPFX SURN/ NSFX) (opus27)
+ - Added [ 1092953 ] Enter Unknown Places (opus27)
+ - Added logging for search actions (sjouke)
+ - Added [ 1078660 ] table of special characters to GDBI interface (aggaire)
+ - Fixed [ 1083174 ] Surname list and persons don't match (sjouke)
+ - Added [ 1039972 ] ROMN Place in the ZoomBox (opus27)
+ - Added [ 979339 ] checking DEAT for CENS (opus27)
+ - Added [1050245 ] All Indi-List CHR-Date if no BIRT-Date (opus27)
+ - Added [951532 ] Death Info in indilist if Birth Info Missing (opus27)
+ - Added [ 993706 ] Child birth : add age of parents (opus27)
+ - Added [ 1082535 ] Enhanced ASSOciates > RELAtionship (opus27)
+ - Added [ 1082525 ] BURIal > CEMEtery (opus27)
+ - Fixed erroneous adding of multimedia while editing record (sjouke)
+ - Fixed not returning to family.php after editing raw gedcom (sjouke)
+ - Added option for admins to generate thumbnails on media list (yalnifj)
+ - Added option to upload media to the gdbi_interface.php (yalnifj)
+ - Added option to generate thumbnails to upload media page (yalnifj)
+ - Added [ 1082330 ] Help Text for Editing Interface (yalnifj)
+ - Added [ 1083843 ] Individual Page Changes (yalnifj)
+ - Added [ 1053445 ] Warning before importing GedCom (sjouke)
+ - Added Unaccepted Changes Block [ 1082327 ] Pending Approval Block (yalnifj)
+ - Added config option to enable/disable privacy RESN field on quick update form (yalnifj)
+ - Added config option to enable/disable Quick Update form (yalnifj)
+ - Added Common Surnames in Meta Keywords config option (yalnifj)
+ - Added [ 1064168 ] Quick Update Form (yalnifj)
+ - Added RFE [ 1068162 ] Most Viewed People Block (yalnifj)
+ - Added default tab user setting (yalnifj)
+ - Changed name storage method from Surname, Given to Given /Surname/ (yalnifj)
+ - Reorganized files, especially functions files (yalnifj)
+ - Added RFE [ 864649 ] Title in Pedigree Tree (yalnifj)
+ - Added RFE [ 831896 ] Half Siblings on Close Relatives tab (yalnifj)
+ - Added new action menus to family.php page (yalnifj)
+ - Added option to reorder children in a family (yalnifj)
+ - Added Post/phpNuke interface code from Jim Cary (yalnifj)
+ - Changed layout of individual page to be cleaner by using menus and filling up the white space (yalnifj)
+ - Added options to copy and paste facts (yalnifj)
+---------------------------------------------------------------------
+
+ Version 3.2.3
+ - Fixed [ 1117401 ] Source On Name Parse Issue (opus27)
+ - Fixed [ 1121418 ] Entering dates into GEDCOM Facts (opus27)
+ - Fixed parse_date bug mentioned in help forum (yalnifj)
+ - Fixed down database allows user to access editconfig.php page (yalnifj)
+ - Fixed search with extended letters in db mode (eikland)
+
+---------------------------------------------------------------------
+Version 3.2.2 2004-01-31
+ - Fixed [ 1095847 ] GEDCOM clippings link to incorrect URL (yalnifj)
+ - Fixed [ 1104852 ] Bad URL formatting for media files (yalnifj)
+ - Fixed [ 1095302 ] line #71 in edituser.php bug (yalnifj)
+ - Fixed [ 1093746 ] Adding son/daughter displays as brother/sister (yalnifj)
+ - Fixed [ 1097998 ] Bug displaying name record sources (stripped '/') (yalnifj)
+ - Fixed [ 1101589 ] Privacy data shown in timeline.php (yalnifj)
+ - Fixed [ 1098802 ] Performance Killers (yalnifj)
+ - Fixed bug [ 1092902 ] Difference between "i15" and "I15" (yalnifj)
+ - Added patch [ 1109794 ] Edited news items get fresh time stamp (yalnifj)
+ - Added patch [ 1109255 ] Fix Uninit String error on line 404 in placelist.php (yalnifj)
+ - Added selection of repository for a source (sjouke)
+ - Fixed [ 1091447 ] Total Privacy Checks Value (yalnifj)
+ - Fixed [ 1090465 ] No link "Accept all changes" in gdbi_changes.php (yalnifj)
+ - Fixed [ 1090456 ] "Accept All Changes" Link fails in index mode (yalnifj)
+ - Fixed [ 913055 ] Individual Details (yalnifj)
+ - Added patch [ 1109127 ] Fix description for two Canadian temple codes (yalnifj)
+ - Added Patch [ 1109110 ] Fix bad URL formatting in NOTE (yalnifj)
+ - Fanchart print-preview warning for IE users (opus27)
+ - Fixed [ 1106581 ] Dates show with time? (opus27)
+ - Fixed [ 1083458 ] Switch to non-default GEDCOM after login failure (yalnifj)
+ - Fixed [ 1083897 ] recent changes block not showing up (yalnifj)
+ - Fixed [ 1099135 ] php Error -editgedcoms.php - fread()fclose() (opus27)
+ - Fixed error on GEDCOM not downloadable (sjouke)
+ - Fixed [ 1069629 ] GEDCOM ID Prefix in Lower Case Error (yalnifj)
+ - Fixed [ 1075422 ] invalid e-mail address causes loss of input (yalnifj)
+ - Replaced Vera font by LucidaSansRegular (opus27)
+ - Added debug option to gdbi.php that will print all output to the pgv log files (yalnifj)
+ - Added "Sanity" worm check to the session.php file to prevent it from using large amounts of bandwidth (yalnifj)
+ - Fixed sources not downloaded in clippings cart (yalnifj)
+ - Fixed [ 1086951 ] Relationship Privacy (yalnifj)
+ - Fixed show multiple spouses in gedcom order on ancestry chart (opus27)
+ - Fixed [ 1091822 ] Upcoming Events Year Change Aniversary Calculation (eikland)
+ - Fixed age approx. when birthdate approx. (opus27)
+ - Fixed do not show famlinks in print-preview mode on relationship chart (opus27)
+ - Fixed sorting of nonalphabetic combination of letters in Hungarian (eikland)
+ - Fixed [ 1088208 ] 3.2.1 - Adding GEDCOMS (yalnifj)
+ - Fixed [ 1088496 ] Extra spaces in long source names (yalnifj)
+ - Fixed translation of "today" in calendar popups (sjouke)
+
+--------------------------------------------------------
+Version 3.2.1 2004-12-09
+ - Fixed [ 1081436 ] Cannot delete message #0 (yalnifj)
+ - Fixed [ 1078074 ] Hebrew Gregorian Date Issue (yalnifj)
+ - Fixed [ 1077485 ] my mistake in lang_settings_std - czech... (yalnifj)
+
+ - Added [ 1076196 ] Nationality (yalnifj)
+
+ - Added .htaccess to prevent data files from being downloaded (opus27)
+ - Display a warning when gedcom file is downloadable (opus27)
+ - Set ancestry booklet as default option (opus27)
+ - Fixed multiple spouses not shown on ancestry chart (opus27)
+ - Fixed name privacy on fanchart (opus27)
+ - Fixing RTL popup position (opus27)
+ - Fixed bug [ 1070386 ] Search Result Privacy (yalnifj)
+ - Fixed bug [ 1078767 ] Problem with upgrade 3.0 to 3.2 (yalnifj)
+ - Fixed security problem with import gedcom process (yalnifj)
+ - Fixed Bug [ 1078995 ] Invalid ID not detected (yalnifj)
+ - Fixed sorting of "oe" in Da/No for just first letter (eikland)
+ - Fixed double use of form input name "action" in editlang_edit_settings (eikland)
+ - Fixed wrong sorting of extended letters in placelist (eikland)
+ - Fixed handling of separation of added/removed common surnames (sjouke)
+ - Fixed [ 1078765 ] Delete from common surnames doesnt work (sjouke)
+ - Added Hijri and Arabic calendar support (yalnifj)
+ - Fixed [ 1077809 ] Individual Close Relatives - Link this ... (eikland)
+ - Fixed [ 1073455 ] Arabic support (meliza)
+ - Fixed [ 1074417 ] Tech support email form problem (yalnifj)
+ - Updated Portuguese lang files Patch [ 1075762 ] PGV 3.2Final - Brasilian Portuguese language files (yalnifj)
+ - Updated Danish language files Patch [ 1070682 ] Da_Lang (yalnifj)
+ - Fixed [ 1073037 ] 3.2F: Bad Field Titles when editing images (yalnifj)
+ - Fixed [ 1072980 ] Family group report photos overlap (yalnifj)
+ - Fixed [ 1071432 ] v3.2_Final Bug in Lists (yalnifj)
+ - Fixed [ 1071410 ] 3.2Final: Clipping Service off - offered anyway?!? (yalnifj)
+ - Fixed errors with apostraphe in gedcom name BUG [1071216] (yalnifj)
+ - Fixed some undefined variable errors in RSS feed (yalnifj)
+ - Removed user manual link from admin page (yalnifj)
+ - Fixed Czech date settings (yalnifj)
+ - Updated Polish Language files - Dubiel (meliza)
+ - Updated Greek and Polish Language name - Antimisiaris and Dubiel (meliza)
+ - Added user input validitation function clean_input() (yalnifj)
+ - Fixed [ 1069926 ] 3.2-release ... calendar.php (eikland)
+ - Added function str2lower (eikland)
+ - Fixed sorting for Danish and Norwegian db mode (eikland)
+ - Fixed [ 1070251 ] v3.2 - Error Messages in Fan Chart (opus27)
+ - Fixed [ 1070328 ] pgv3.2final - block alignment error (yalnifj)
+ - Fixed [ 1069921 ] 3.2-release ... timeline.php (yalnifj)
+ - Fixed 1069629 GEDCOM ID Prefix in Lower Case Error (yalnifj)
+ - Fixed /surname/ givenname name display (yalnifj)
+ - Fixed parse error in upgrade.php (yalnifj)
+ - Fixed language settings editor is not working (yalnifj)
+ - Fixed surnames in statistics block not getting updated (yalnifj)
+ - Fixed non sorting of lower oe,ae,aa in danish/norwegian (eikland)
+ - Made sure appropriate addslashes() calles were made on every SQL query (yalnifj)
+ - Fixed wrong langvar in edituser.php (sjouke)
+
+--------------------------------------------------------
+Version 3.2 2004-11-20
+ - Fixed [ 1022747 ] runtime error: Object expected when not using Cloudy theme (yalnifj)
+ - Fixed [ 1021349 ] Updating of lang files (sjouke)
+ - Fixed [ 1015915 ] [View Family] link in zoomed individual.php fails (yalnifj)
+ - Fixed [ 1015599 ] Session problems on importing gedcoms (yalnifj)
+ - Fixed [ 988928 ] Names of living is shown; $SHOW_LIVING_NAMES = $PRIV_USER (yalnifj)
+ - Fixed [ 988596 ] Missing value in Cloud theme in 3.1 (roland-d)
+ - Fixed [ 988512 ] MySQL error on placlist.php (yalnifj)
+ - Fixed [ 988442 ] Online PGV Data Updating (yalnifj)
+ - Fixed [ 988115 ] Bug in PGV 3.1 using Mozilla Firefox (yalnifj)
+ - Fixed [ 973042 ] Pressing a seach link (yalnifj)
+ - Fixed [ 948426 ] is_dead calulation (yalnifj)
+
+ - Added [ 1018568 ] Indicator on Individual view tabs when data exists (yalnifj)
+ - Added [ 1010453 ] LDS ordinance status field (yalnifj)
+ - Added [ 960981 ] functions.extra.php (opus27)
+ - Added [ 940284 ] See_living flag per user (yalnifj)
+ - Added [ 937985 ] Place List in Addition to Place Hierarchy (yalnifj)
+ - Added [ 932001 ] RSS for PhpGedView home page (kosherjava)
+ - Added [ 899033 ] Collapsable descendancy chart (opus27)
+
+ - Fixed lettersort and alpha if not exist in indi-/famlist (eikland)
+ - Added sorting for Danish and Norwegian (roland-d)
+ - Fixed the corrupted sorting of Hungarian (roland-d)
+ - Fixed [ 1067086 ] calendar.php Admin can't see all details (eikland)
+ - Fixed [ 1066078 ] pgv3.2b6 - missing TRANSMISSION_DATE (yalnifj)
+ - Added [ 1067219 ] Theme Selection Menu List (roland-d)
+ - Fixed [ 1066901 ] General Search with multiple words no longer works (roland-d)
+ - Fixed [ 1066132 ] no output on calendar (roland-d)
+ - Fixed [ 1064668 ] Surname Suffixes (Jr, Sr. etc) missing from Search list (roland-d)
+ - Fixed [ 1053087 ] Most Common Surnames (roland-d)
+ - Fixed [ 1054887 ] FindFamilyID (roland-d)
+ - Fixed RESN tag is not printed for facts (sjouke)
+ - Fixed [ 1065142 ] Most Common Surnames .. ? entry and conseq indilist page lnk (roland-d)
+ - Fixed Slash added before search query in form field (roland-d)
+ - Fixed DB error when searching on ?, [ or | (roland-d)
+ - Added BOM check to the translators tool (roland-d)
+ - Fixed [ 1064464 ] Wrong style for Indi numbers (sjouke)
+ - Fixed bug EVEN not being check for fact privacy [ 1064437 ] Global Fact Privacy settings (yalnifj)
+ - Added Greek language files (roland-d)
+ - Fixed crashing pedigree tree when no valid ID can be found in index mode (roland-d)
+ - Fixed Hide unused links for gedcomadmins in gedcom menu (sjouke)
+ - Fixed [ 1061281 ] pgv3.2b5 - installation problem (roland-d)
+ - Added Enabled access to admin menu for gedcom admins (sjouke)
+ - Fixed wrongly displayed (empty) line in admin.php (sjouke)
+ - Fixed [ 1061512 ] Wrong rights for gedcom admins (sjouke)
+ - Fixed [ 1061460 ] Admin.php ... XHTML <a> tags not ended (sjouke)
+ - Fixed Handling of text ( ) in opposite page and text orientation across PGV (meliza)
+ - Fixed Printing source total value into the Place Hierarchy Source-list (meliza)
+ - Fixed Removal of Hebrew undefined from the Top10 list (meliza)
+ - Fixed Removing of name suffix from the Top10 handling. (meliza)
+ - Fixed Show the Place Hierarchy Top Level top place text after the highest level (meliza)
+ - Fixed Show Additional Source texts in Find Source (meliza)
+ - Fixed Individual-, Family and Sourcelist alignement depending on text alignement (meliza)
+ - Moved the change theme option for a gedcom to Basic menu (roland-d)
+ - Fixed Wrong display of cells in admin menu when no text is displayed (sjouke)
+ - Fixed Usermigrate not in admin menu (sjouke)
+ - Fixed duplicated "von von" in names [ 1057753 ] Problems with Pedigree Report (PDF) (yalnifj)
+ - Improved speed performance of the str2upper function (yalnifj)
+ - Fixed [ 1057123 ] BugB4 - MultiMedia Mishandling (eikland)
+ - Fixed statistics, layout and functionality in search.php (eikland)
+ - Fixed [ 1053105 ] Zoom in favorites zooms 2 indi's (roland-d)
+ - Fixed undefined errors on family list (roland-d)
+ - Improved Chinese support (roland-d)
+ - Fixed [ 1052644 ] Indilist error if only unknown surnames (roland-d)
+ - Fixed [ 1051017 ] Disappearing flags after editing (eikland)
+ - Fixed description of migration tool (sjouke)
+ - Fixed [ 1050459 ] Unknown name '@' problem in lists (eikland)
+ - Fixed the ALL link not working when already chosen (roland-d)
+ - Fixed problems with multi-byte characters in the lists alphabet (roland-d)
+ - Added "Skip Cleanup" option (yalnifj)
+ - Fixed [ 1029699 ] default authentication header (sjouke)
+ - Fixed [ 1048171 ] source.php ... TITL then CONC doesn't add needed space (sjouke)
+ - Fixed [ 1047518 ] Title of Source with extra space (sjouke)
+ - Fixed [ 1044142 ] 3.2 b2 hotlinked images show as icon (eikland)
+ - Removed Researchlog code (roland-d)
+ - Fixed [ 983749 ] 3.1rc2 imageview.php JS and XHTML Issues (KosherJava)
+ - Fixed [ 1044895 ] Print Preview Footer Problem (KosherJava)
+ - Fixed [ 1002191 ] Search function leaks private data (yalnifj)
+ - Fixed [ 1036782 ] Ancestry Chart : unable to use RIN (opus27)
+ - Fixed [ 1016950 ] Preferred Contact Method not working (sjouke)
+ - adding [ 994330 ] Individual Page Sex (yalnifj)
+ - 1 TITL 2 ROMN or 1 TITL 2 _HEB - prints 2 Source Titles (meliza)
+ - Rewrote the timeline chart (yalnifj)
+ - Moved header, footer, and content divs to the themes (yalnifj)
+ - Fixed [ 1032942 ] Indi- and Family-list (eikland)
+ - Fixed [ 963010 ] Between dates in calendar (last part) (eikland)
+ - Fixed [ 1034992 ] usermigrate.php has to be updated (sjouke)
+ - Fixed [ 1039624 ] placelist headline - senseless lang-var combination (sjouke)
+ - Added [ 937324 ] Add Statistics to Lists (eikland)
+ - Added complex PLAC support RFE [ 1008756 ] (yalnifj)
+ - Fixed [ 1034998 ] timelinechart : age marker (opus27)
+ - Fixed [ 1035176 ] Ancestry Charts Find ID (opus27)
+ - Fixed [ 1033287 ] RtL Ancestry Booklet - Sosa-numbers (opus27)
+ - Added i_letter field to db table to improve speed of lists (yalnifj)
+ - Added RFE [ 886281 ] Pedigree Interface - Abbreviations (yalnifj)
+ - Added RFE [ 862951 ] log on screen after logon as a user (yalnifj)
+ - Added RFE [ 857447 ] Change in TITLE meta tag (yalnifj)
+ - Added first stage of RFE [ 816078 ] Super user and multiple &quot;site&quot; hosting (yalnifj)
+ - Added RFE [ 856747 ] More Privacy (yalnifj)
+ - Added RFE [ 849708 ] Read Only access for GDBI client (yalnifj)
+ - Added RFE [ 1032172 ] Images on individual screen (yalnifj)
+ - Added Event block session caching to improve portal performance (yalnifj)
+ - Added option to set default user block configuration (yalnifj)
+ - Added basic RSS feed (KosherJava)
+ - Added $META configuration parameters (yalnifj)
+ - Added $LOGIN_URL configuration parameter (yalnifj)
+ - Added Clipping cart privacy setting (yalnifj)
+ - Fixed [ 1024656 ] Calendar - Last Update Date (eikland)
+ - Added RFE [ 1020298 ] Fan chart (opus27)
+ - Fixed [ 1022816 ] CVS - indilist times out when not logged in (eikland)
+ - Fixed [ 1014216 ] SPFX Gedcom tag erroneously ignored (eikland)
+ - Fixed [ 1018740 ] all person signed as "living" (eikland)
+ - Added RFE [ 1010516 ] Accept Changes as Pop-up (yalnifj)
+ - Added list display on Place Hierarchy (yalnifj)
+ - Added "sorting" of names in "skip surname lists" (eikland)
+ - Fixed speed & privacy in indilist and famlist (eikland)
+ - Added user option form when uploading a duplicate gedcom (yalnifj)
+ - Added PEAR:DB support to support multiple databases (yalnifj)
+ - Added support for multimedia links containting http://, ftp://, mms:// etc.
+ - Changed layout of Edit Gedcoms screen (roland-d)
+ - Improved gedcom sorting (roland-d)
+ - Changed report screen layout of importgedcom (eikland)
+ - Added unlimited generation naming in sosabook for danish,english,finnish,french,german,hebrew,norwegian,swedish (eikland)
+ - Fixed [ 1005701 ] mozilla.css 404 errors (roland-d)
+ - Added option to select your own flag for a language (eikland)
+ - Fixed [ 1005428 ] useradmin.php why US flag for "English" (eikland)
+ - Fixed [ 999179 ] New User Approval Mail (sjouke)
+ - Added report engine RFE [ 802677 ] (yalnifj)
+ - Added Excel SLK export (dick_kaas)
+ - Added statistics list (dick_kaas)
+ - Added patriarch list (dick_kaas)
+ - Added Patch [ 941294 ] Printing pedigree chart as a book (opus27)
+ - Fixed [ 1009139 ] Undefined index in Random Media block (roland-d)
+ - Added [ 965795 ] Anniversary Calendar Issues -> Preview gedcom/filter (eikland)
+ - Fixed [ 995313 ] Individual Close (Adoptive) Relatives (eikland)
+ - Added new classes: list_label_wrap and list_value_wrap and updated files (eikland)
+ - Fixed [ 1005261 ] Cross gedcom user favs don't work (sjouke)
+ - Fixed [ 1004835 ] Family List error (roland-d)
+ - Fixed [ 995281 ] @N.N. in Top 10 Surnames (roland-d)
+ - Fixed deletion of correct user favorite and adding favorite in index mode (sjouke)
+ - Fixed [ 1005326 ] editlang.php unescaped &'s (roland-d)
+ - Fixed partially [ 1005261 ] Cross gedcom user favs don't work (sjouke)
+ - Fixed errors in display user rights on user admin page (sjouke)
+ - Fixed [ 1005334 ] useradmin.php missing </a> tags etc (roland-d)
+ - Fixed [ 1005319 ] admin.php 1.61 spurious " (roland-d)
+ - Fixed [ 990400 ] Name suffix added twice to ged_index entry (roland-d)
+ - Fixed [ 992843 ] medialist.php 1.61 XHTML 2nd item (roland-d)
+ - Fixed [ 994468 ] Php Error - Invalid argument in Cloudy (wab73)
+ - Fixed [ 972370 ] 3.1b1 medialist.php (roland-d)
+ - Added timeline goes to default charts person if there is not person already selected (yalnifj)
+ - Added user gedcom access levels (yalnifj)
+ - Added tool for usermigration between index and sql mode (sjouke)
+ - Added support for dynamic language specific ancestor naming in ahnentafel (sjouke)
+ - Added get_all_subrecords() function (yalnifj)
+ - Added privatize_gedcom() function (yalnifj)
+ - Fixed [ 1003677 ] indilist.php use of <nobr> tags (eikland)
+ - Fixed [ 1003682 ] descendancy.php spurious </head> <body> tags
+ - Fixed [ 1003669 ] functions_charts.php XHTML (opus27)
+ - Added [ 1000111 ] Reverse the Relationship chart (opus27)
+ - Fixed [ 992849 ] functions_charts.php CVS 1.3
+ - Fixed [ 980797 ] Odd Relationship Chart Connections
+ - Added event selector to calendar (eikland)
+ - Fixed [ 993969 ] 3.1 Calendarpage sex selection filters marriages (eikland)
+ - Fixed execution time for famlist (index mode) - decreased with over 80% !!! (eikland)
+ - Added icons in list table headers (eikland)
+ - 1 NAME 2 ROMN or 1 NAME 2 _HEB - prints 2 names in charts and name-boxes (roland & meliza)
+ - Fixed [ 979413 ] Non Living Private Person Marked as Living (yalnifj)
+ - Fixed [ 994469 ] Undefined variable: PGV_IMAGES in functions_blocks.php
+ - Added $rtl_stylesheet theme variable so that stylesheets can be overridden for RTL languages (yalnifj)
+ - Fixed [ 964169 ] Wood Theme - Navigator (yalnifj)
+ - Fixed [ 958792 ] PAF Contact Address data (yalnifj)
+ - Fixed [ 939659 ] Inaccurate Age calculation (yalnifj
+ - Added option to add new names (yalnifj)
+ - Added RFE [ 987534 ] DEAT before BURI (opus27))
+ - Added RFE [ 965777 ] Relationship Chart Issues (opus27)
+ - Fixed [ 990314 ] Errors when linking from "Most common surnames" (roland-d)
+ - Fixed [ 988920 ] $HOME_SITE_URL has / appended to url (roland-d)
+ - Fixed most non XHTML tags in the lang files. (kosherjava)
+ - Fixed [ 989847 ] 3.1 source.php XHTML (kosherjava)
+ - Fixed [ 983800 ] 3.1rc2 message.php XHTML (kosherjava)
+ - Fixed [ 983100 ] 3.1rc2 source.php XHTML (kosherjava)
+ - Fixed [ 983103 ] 3.1rc2 index.php?command=user XHTML (kosherjava)
+ - Fixed [ 972373 ] pgv3.1b1 medialist.php xhtml (not complete) (kosherjava)
+ - Fixed [ 988598 ] Calendar ignores privacy settings - and filter Recent years (eikland)
+ - Fixed [ 986035 ] pedigree.php : indi box moving left (opus27)
+ - Added [ 964422 ] Color display based upon record content (opus27)
+ - Fixed [ 987983 ] Validate Gedcom (roland-d)
+ - Added result counters to search (roland-d)
+ - Fixed [ 988248 ] Welcome Block XHTML (roland-d)
+ - Added sex symbols to recent changes block (roland-d)
+ - Fixed [ 983766 ] 3.1rc2 relationship.php Layout Bug on Mac (opus27)
+ - Added merge records page gdbi_merge.php (yalnifj)
+ - Cloudy theme :
+	Solved some rtl issues (wab73)
+	Updated images/fonts (wab73)
+	Updates header (wab73)
+	flicking while loading issue (wab73)
+	inserted resize script in individual page (wab73/roland-d)
+ - Updated is_dead function to be more accurate (yalnifj)
+ - Added RFE [ 985626 ] "Flags" for children, media, notes (yalnifj)
+ - Added family media to individual media tab RFE [ 806170 ] (yalnifj)
+ - Added RFE [ 888834 ] Add Family ID to family Llist and Family Events (yalnifj)
+ - Added RFE [ 888832 ] Add source ID to Source list (yalnifj)
+
+--------------------------------------------------------
+Version 3.1 2004-07-05
+ - Fixed [ 967326 ] PGV 3.1beta1 - doubling up of gedcom file in links (roland-d)
+ - Fixed [ 946512 ] Add husband, but tells son!
+ - Fixed [ 946351 ] primairy image Y & N
+ - Fixed [ 942632 ] Privacy issue on famlist.php (pluntke)
+ - Fixed [ 932213 ] Family List of Families without Parents (roland-d)
+ - Fixed [ 931340 ] Better import report - Step 4 (yalnifj)
+ - Fixed [ 930914 ] Jumping pages after change language (yalnifj)
+
+ - Added [ 978342 ] User Admin "Sort By" Column Headers (sjouke)
+ - Added [ 962254 ] lang_settings_std.php : default TIME_FORMAT for French lang. (sjouke)
+ - Added [ 960955 ] editconfig_gedcom : do not force .ged suffix (yalnifj)
+ - Added [ 952484 ] text editing a full record. (yalnifj)
+ - Added [ 960916 ] family.php : allow RESI tag (yalnifj)
+ - Added [ 945586 ] Window title : strip HTML tags (opus27)
+ - Added [ 945578 ] Reverse sort option for News articles (sjouke)
+ - Added [ 942574 ] Welcome for Require Visitor Authentication (eikland)
+ - Added [ 940028 ] no gedcom specified in message (yalnifj)
+ - Added [ 938044 ] URL request lost when redirected to login.php (yalnifj)
+ - Added [ 934870 ] Delete Multiple "My Messages" (yalnifj)
+ - Added [ 932982 ] Brief mode of My Messages (yalnifj)
+ - Added [ 929229 ] Wider help windows (jans-bl)
+
+ - Added sex filter option in calendar (eikland)
+ - Fixed [ 984578 ] Timeline EVEN/FACT Title (roland-d)
+ - Fixed [ 966819 ] New Hebrew Username and P/W (roland-d)
+ - Fixed [ 983110 ] 3.1rc2 edituser.php (roland-d)
+ - Fixed [ 983096 ] 3.1rc2 sourcelist.php (roland-d)
+ - Fixed [ 983738 ] 3.1rc2 timeline.php XHTML (roland-d)
+ - Fixed [ 983793 ] 3.1rc2 timeline.php undefined offset (roland-d)
+ - Fixed [ 982155 ] Bad link from Error (roland-d)
+ - Fixed [ 984558 ] Relationship Chart in Mozilla RtL (eikland)
+ - Fixed [ 984563 ] Printer-friendly Monthly Calendar - Mozilla (eikland
+ - Fixed [ 981015 ] gdbi_changes.php : display bug (sjouke)
+ - Added support for sorting columns in useradmin.php (index mode) (sjouke)
+ - Fixed [ 982315 ] 3.1rc2 placelist.php XHTML (kosherjava)
+ - Removed 2 unnecessary sorting of arrays in calendar day/year mode (eikland)
+ - Added support for year less than 1000 in is_dead check (eikland)
+ - Added filter text to preview in calendar (eikland)
+ - Fixed showing of dead "families" in calendar (eikland)
+ - Fixed [ 980049 ] Problem with URL in a Note (sjouke)
+ - Fixed $monthtonum to handle Hebrew dates (meliza)
+ - Fixed [ 962199 ] TimeLine Age Calculation Bug (roland-d)
+ - Added sort on various columns in useradmin (MySQL only) (sjouke)
+ - Fixed [963010] Between dates in calendar (eikland)
+ - Fixed sorting of My Messages in SQL (meliza)
+ - Fixed incorrect display of header in importgedcom.php - Ocean theme (sjouke)
+ - Fixed [ 962199 ] TimeLine Age Calculation Bug (roland-d)
+ - Fixed [ 979420 ] 1 DIV doesn't show up on family page (sjouke)
+ - Fixed error in header editconfig_gedcom.php (sjouke)
+ - Added [ 975805 ] RFE Additional facts from Rootsmagic (sjouke)
+ - Added better year search support in calendar (eikland/sjouke/roland-d)
+ - Added support to Hebrew dates (meliza)
+ - Fixed [ 977634 ] ChangeTheme Dropdown "Change Theme" Improper Selection (kosherjava)
+ - Fixed [ 978332 ] Never logged in users in User Admin Screen (sjouke)
+ - Fixed [ 975278 ] Accept changes by non-admin 3.1b2 (yalnifj)
+ - Fixed [ 955003 ] Living Missing Spouse in marriage from 1600s (yalnifj)
+ - Fixed [ 975368 ] html layout descendancy.php (yalnifj)
+ - Fixed login.php to use the referrer to find the url to go back to (yalnifj)
+ - Fixed [ 972358 ] Wood theme 3.1b1 (yalnifj)
+ - Fixed reset chart for rel. by marrage in relationship.php (eikland)
+ - Added login and registration dates to useradmin.php (yalnifj)
+ - Added links for +/-1 year jump in calendar (eikland)
+ - Fixed [ 974513 ] 3.1beta2 - indilist.php xhtml (kosherjava)
+ - Fixed [ 974516 ] 3.1b2 - individual.php xhtml (kosherjava)
+ - Fixed [ 962605 ] Individuals in RtL (kosherjava)
+ - Fixed [ 972385 ] pgv 3.1b1 indilist.php xhtml (kosherjava)
+ - fixed [ 972373 ] pgv3.1b1 medialist.php xhtml (kosherjava)
+ - calendar.php fixes for Hebrew display (kosherjava)
+ - Fixed xhtml issues with pedigree.php and descendancy.php (kosherjava)
+ - Added column "Can edit" to userlist (Sjouke)
+ - Added view of 2 or more years in calendar (eikland)
+ - Added sex icons to calendar (eikland)
+ - Added option to create new sources (yalnifj)
+ - Fixed year of Jewish dates (meliza)
+ - Fixed Finnish dates (meliza)
+ - Day zero-suppress and redundant day point (meliza)
+ - Fixed [ 967276 ] Birth Date in Lists (roland-d)
+ - Added marker for activ letter in indilist and famlist.php (eikland)
+ - Added icon for unknown sex in function_print.php (eikland)
+ - Modified the colors for the xenea theme (eikland)
+ - Modified place table in placelist.php (eikland)
+ - Added print.css - printsupport for the themes (eikland)
+ - Fixed zoom in/out for preview (eikland)
+ - Added sex icons for the charts (eikland)
+ - Fixwed [ 968146 ] Edit Raw Gedcom Data - RtL Pages (kosherjava)
+ - Partial fix [ 962605 ] Individuals in RtL (kosherjava)
+ - Added link to PHPGedView registry page (sjouke)
+ - Fixed preview for all themes descendancy.php (eikland)
+ - Fixed preview for all themes pedigree.php (eikland)
+ - Added date selector to GDBI Interface (yalnifj)
+ - Added RFE [ 858378 ] When search returns 1 hit, forward to view the hit (yalnifj)
+ - Added RFE [ 783856 ] Search for Default person for Charts (yalnifj)
+ - Added [ 958792 ] PAF Contact Address data (roland-d)
+ - Fixed [ 957181 ] support for Rtl in pedigree.php (eikland)
+ - Fixed [ 967977 ] New accounts have wrong theme (sjouke)
+ - Fixed [ 957181 ] support for Rtl in descendancy.php (eikland)
+ - Fixed [ 967320 ] PGV 3.1beta1 - not always adding spaces for (sjouke)
+ - Added New look for "menu" in descendancy.php (eikland)
+ - Fixed [ 962236 ] family.php : display pb with '+' (roland-d)
+ - Fixed [ 966402 ] Date format : FROM .. TO .. (roland-d)
+ - Added var mgv for MyGedView submenu (eikland)
+ - Added New look for "menu" in pedigree.php (eikland)
+ - Fixed [ 954427 ] Bug in quick search (roland-d)
+ - Fixed 966027 Welcome Help Menu - Rtl (eikland)
+ - Added support for pre 1970 dates in the calendar month function with the ADODB lib (sjouke)
+ - Fixed [ 964975 ] Gedcom Privacy - Minimal Theme colour problems (sjouke)
+ - Fixed [ 966084 ] Languages are mixed for useraccount (sjouke)
+ - Set sort order for messages most recent first in MySQL mode (sjouke)
+ - Added [ 941665 ] Registration mails in addressees language (sjouke)
+ - Added 924988 List of Families - without Marriage date
+ - Added 924976 Lists / Search -remove 'Birth:' Caption When N/A
+ - Added 887968 Upgrade util backup extension
+ - Fixed 943069 3.00.1 Personal favorites don't stick to gedcom
+ - Fixed 920151 Language Selection Flags
+ - Fixed 932225 Name Suffix
+ - Fixed 957528 chinese names on individual list
+ - Fixed 956207 Login Block Bugs
+ - Fixed 954398 FAMLIST surnamelist not correct
+ - Fixed 897874 Incomplete URL in certain E-mails
+ - Fixed 951293 Wrong path to PDF MM Object
+ - Fixed 932370 Duplicated person on chart
+ - Fixed 940088 URL to Media with '&' Not Escaped
+ - Fixed 949085 function_print.php : "Event"
+ - Fixed 943340 problem with abbreviations in most common names
+ - Fixed 939974 authenticaion.php and special characters
+ - Fixed 941918 Account Activated E-mail URL Wrong
+ - Fixed 940575 login_register.php param mispelled ri-g-t-h
+ - Fixed 933373 Skip/Show surname lists
+ - Fixed 940892 media no longer work - problem with stripping \
+ - Fixed 940644 3.00.1 wrong order in famlist
+ - Fixed 936100 Sorting in common surnames
+ - Fixed 929357 Add Gedcom File
+ - Fixed 936795 Release 3: language view on current user list
+ - Fixed 921059 GEDCOM focus lost on import
+ - Fixed 960057 Individual List - Privatisation
+ - Fixed 960366 functions_print.php param mispelled heig-t-h
+ - Fixed 955450 @P.N. in clippings cart
+ - Fixed 937675 Space is needed between palces
+ - Fixed 943571 3.00.1 Growing URL on login screen
+ - Fixed 940994 3.00.1 View Logfiles alternates
+ - Fixed 937611 Random MM Block available with MM Turned Off
+ - Fixed Wood Theme
+ - Fixed [ 958926 ] blocks add/remove error (index mode)
+ - Fixed [ 956255 ] Missing a generation on Pedigree Tree
+ - Fixed [ 939659 ] Inaccurate Age calculation
+ - Fixed [ 931453 ] Welcome Page Favorites
+ - Fixed speed issues with MyGedView portal in index mode
+ - Modified upgrade script to handle new privacy files.
+ - Added New look for "menu" in relationship.php
+ - Fixed [ 961796 ] gdbi_changes.php : TIME format (sjouke)
+ - Fixed [ 950952 ] Truncated Source Title in individual.php (sjouke)
+ - Fixed [ 950560 ] SOUR : bad label for tag PAGE (sjouke)
+ - Added Families and Sources to $person_facts privacy settings
+ - Fixed [ 943069 ] 3.00.1 Personal favorites don't stick to gedcom
+ - Fixed [ 954468 ] Indilist shows birthplace from baptism  (sjouke)
+ - Fixed relationship chart for RTL
+ - Adding arrows to relationship chart
+ - Added pretty relationship option - Patch [ 959546 ] relationship.php : pretty option
+ - Fixed bug in place list with same name county places not finding all sub places
+ - Added option to show people in a higher level place back to the place list
+ - Fixed [ 959648 ] Incorrect User can Edit (sjouke)
+ - Changed default questionmark for help to small helpicon (sjouke)
+ - Fixed [ 954890 ] DEAT Y displays as Y in individual.php (sjouke)
+ - Added cleanup of fact tags with Y and additional data (sjouke)
+ - Added View Year to Calendar and dynamic days of month
+ - Fixed [ 930460 ] Calendar and empty boxes
+ - Added progress bar to import gedcom report (yalnifj)
+ - Added sources to recent changes block (yalnifj)
+ - Added source editing (yalnifj)
+ - Added _PGVU custom tag to CHAN records (yalnifj)
+ - Fixed [ 922267 ] Privacy settings for source don't work (yalnifj)
+ - Fixed [ 920434 ] Gedcom changes remain after deleting Gedcom (yalnifj)
+ - Fixed [ 894242 ] No msg on incomplete gedcom download (yalnifj)
+ - Converted MyGedView from table to div layout (yalnifj)
+ - Added content div to all pages (yalnifj)
+ - Change layout of gedcom stats block (yalnifj)
+ - Fixed [ 950869 ] functions_print.php : TIME (sjouke)
+ - Changed usernews to display latest first in indexmode
+ - Fixed dead link to nonexistant spouse in MARR fact on individual page
+ - Added option to edit raw gedcom records (yalnifj)
+ - Fixed [ 950787 ] Timeline does not display multiple marriages (sjouke)
+ - Added backup gedcom before changes are made during import
+ - Fixed [ 952133 ] Error Messages on Import of Read Only GEDCOM  (sjouke)
+ - Fixed [ 952828 ] login_register.php -- Vestigial "Change Language" field (sjouke)
+ - Fixed [ 951209 ] Extra : after Author in source.php
+ - Fixed [ 950779 ] functions_print.php : OBJE title  (sjouke)
+ - Fixed [ 938254 ] Mozilla Lists and RTL
+ - Fixed [ 937241 ] List bug in Source info-page
+ - Fixed [ 950474 ] Individual.php page -- Formatting issue at footer (sjouke)
+ - Fixed [ 940672 ] 3.00.1 NTFS - Read Only config.php Seen as Writable
+ - Changed most hardcoded headers to vars (sjouke)
+ - Changed add to My Favorites stays on individual.php page instead of going to mygedview portal (yalnifj)
+ - Added Recent Changes Block (yalnifj)
+ - Added accept to show changes view of individual.php (yalnifj)
+ - Improved look of gdbi_changes.php page and added accept all option. (yalnifj)
+ - Added new user setting to Accept / Reject changes (yalnifj)
+ - Added new accept method that doesn't require reimporting the entire gedcom in MySQL mode (yalnifj)
+ - Fixed speed issue with medialist in index mode (yalnifj)
+ - Added "commonnames" index to $GEDCOMS array storage to speed up page generation so that the common names are not calculated on every page (yalnifj)
+ - Added welcome message to login screen (sjouke)
+ - xhtml validation fixes.
+ - Added ability to move module blocks from one column to the other.
+ - Added RFE [ 834727 ] Imageviewer (yalnifj)
+ - Added GUI gedcoms configuration option for common surnames variables (sjouke)
+ - Added GUI configuration for PGV_SIMPLE_MAIL option (sjouke)
+ - Fixed [ 933697 ] Special character conversion problem
+ - Fixed [ 929357 ] Add Gedcom File
+ - Fixed [ 936100 ] Sorting in common surnames
+
+--------------------------------------------------------
+Version 3.00.1
+ - Fixed @N.N. @P.N. do not get translated in soundex search (yalnifj - 20040416)
+ - Fixed slashes are removed from photo paths in index mode (yalnifj - 20040416)
+ - Fixed undefined privacy index during upgrade (yalnifj - 20040416)
+ - Improved performance of family list in index mode (yalnifj - 20040416)
+ - Added support for 1 NAME  /Surname/ Given Name (yalnifj - 20040416)
+ - Fixed undefined TIME_FORMAT_array if upgrading a site with custom lang settings (yalnifj - 20040416)
+ - Fixed @N.N. and @P.N. do not get translated when using the get_sortable_name function (yalnifj - 20040416)
+ - Fixed families and sources are not added to clippings cart (yalnifj - 20040416)
+
+--------------------------------------------------------
+Version 3.0
+ - Fixed [ 928870 ] MySQL Errors in Location browsing (roland-d)
+ - Fixed [ 892312 ] MultiMedia - 2.65.3 (yalnifj)
+ - Fixed [ 892026 ] Errors in View gedcom changes ver. 2.65.3 (yalnifj)
+
+ - Added function to return weekday for any date, in functions.php
+ - Fixed [ 933245 ] to speed up query of common surnames
+ - Fixed [ 929658 ] Xenea fact changes always red
+ - Fixed [ 931641 ] name in individual is not configurable by theme
+ - Fixed [ 931323 ] date format in simplygreen & xenea
+ - Fixed [ 928998 ] my favorites shown RtL
+ - Fixed [ 926126 ] themes not shown correctly
+ - In functions_print.php changed the Function print_help_text()
+ - Added enhancements to automatically upgrade from 2.65 to 3.0
+ - Add lines to editconfig_help.php for printing "Help Contents" and for Admin Help Contents
+ - Fixed [ 916040 ] Mozilla showing outline of empty blocks.
+ - Added function for helptext headers in function_print.php
+ - Fixed [ 926954 ] No writepermision to language files
+ - Fixed [ 921808 ] upload media errortext
+ - Fixed [ 913396 ] Edit Journal and Gedcom news
+ - Fixed [ 921618 ] update user
+ - Fixed [ 911280 ] Langeditor doesn't slash the $
+ - Fixed [ 913013 ] One Parent family
+ - Fixed [ 919143 ] 3.0b4 Odd display in inividual.php
+ - Fixed [ 923520 ] Fatal error in Add media tool
+ - Put "Cancel Peview" link (in functions_print.php)
+ - Added help cursor when hovering over the help ?
+ - Fixed [ 926820 ] User Name with Special Characters
+ - Fixed [ 925863 ] Prefix cut off in famlist
+ - Fixed [ 925860 ] Skipped names in indilist
+ - Fixed [ 919778 ] user theme always has priority
+ - Fixed [ 919769 ] put title in editting window in index_edit.php
+ - Fixed [ 925685 ] timeline instruction in preview, also moved instruction underneath ID boxes
+ - Fixed [ 923899 ] v3b5 GEDCOM import errors
+ - Fixed [ 924662 ] Error in common surnames/indilist
+ - Added links for help in useradmin.php
+ - Fixed [ 923426 ] '(' in Alphabetical index of Fam list
+ - Added Marriage Reference numbers for zoombox on pedigree chart
+ - Fixed [ 924581 ] Lost Password link in login.php
+ - Fixed [ 924573 ] Links in Login Block in functions_blocks.php
+ - Fixed [ 916012 ] 3.0b3: Place list doesn't show individuals
+ - Added links for help in validategedcom.php
+ - Fixed [ 919686 ] v3.0b4 Edit name, lose photos
+ - Fixed undefined offset error in editconfig_gedcom.php when the root id person cannot be found.
+ - Fixed pedigree chart overlaps form if no father line is found
+ - Fixed [ 914234 ] Pedigree tree missing top generation
+ - Set allows user themes and allow user registration to default to yes in config.php
+ - Added common surnames gedcom configuration variables
+ - Fixed [ 920884 ] Create gedcom - conversion on import
+ - Fixed [ 919827 ] edit GEDCOM privacy in SimplyGreen theme wasn't showing
+ - Fixed [ 920883 ] Error in step 2 creating gedcom
+ - Changed routine for help pop up in editconfig_help.php
+ - Fixed [ 908379 ] PGV Crashes on apostrophe in user fullname
+ - Added lines for help index in edit_config_help.php
+ - Added lines for help index in help_text.php
+ - Added function for sorting help index in functions_print.php
+ - Fixed unequal form field size for user name and password in IE (in both login page and login block)
+ - Fixed Alpha/Beta Bugs [ 916088 ] "User Language Setting Ignored" for index and mysql mode
+ - Fixed not displaying N.N. in toplinks
+ - Fixed [ 920146 ] "Undefined" in "Portal" Blocks - Languages
+ - Fixed bug where flags of languages which are not used were shown in the flag-selector for languages
+ - Fixed [ 916312 ] List pages align wrong in Xenea / Mozilla
+ - Fixed [ 891836 ] view logfile not able to be modified by theme - by adding class ".listlog" to style.css of all themes
+ - Fixed [ 908379 ] PGV Crashes on apostrophe in user fullname
+ - Fixed [ 917825 ] Undefined offset: 1 in indilist.php on line 229
+ - Fixed [ 911887 ] testresults for NN and PN
+ - Fixed [ 915580 ] 3.0b3 ... what is N.N. ???
+ - Fixed [ 916086 ] @N.N. showing in Monthly Calendar
+ - Fixed [ 915364 ] undefined offset in editconfig_gedcom.php
+ - Fixed no footer on Close Relatives tab, Individual page [918287]
+ - Fixed sort order of languages supported by PhpGedView
+ - Fixed [ 913401 ] 3.0b3 Add Gedcom error
+ - Solved RFE [ 873739 ] don't resort flags
+ - Fixed developer bug: [ 917417 ] Undefined finnish
+ - Fixed [ 916071 ] 3.0b4 ... Sources linking back to records
+ - Fixed typo in editconfig.php causing undefined index (Aplha Bug 915570)
+ - Hopefully fixed problem with finnish month extention "tu"
+ - Fixed (Bug 913402) confusing hit count on MyGedView Portal
+ - Added reset to default button on customize this portal
+ - Added CHAN tag update to GDBI
+ - Fixing javascript error in print preview mode (Alpha Bug 914238)
+ - Adding error message if user inputs year less than 1970 (Alpha Bug 913431)
+ - Fixed slashes get added to gedcom title (Alpha Bug 911204)
+ - Replaced drop down list for adding media/note/source, in family.php by single row for each item (bug 913474)
+ - Fixed editing bug for RESI & _SEPR data (Bug 909388)
+ - Added new simplygreen theme
+ - Created new file help_text_vars.php. This files contents nested vars for the help system.
+ - Added ability to add multimedia objects to facts
+ - Added ability to add parents
+ - Added better family diff view on family page
+ - Fixed undefined $pid bug in gdbi_interface.php
+ - Fixed place cleanup bug (BUG 911319)
+ - (07.03.2004) Fixed bug of the language editor with not escaped $ signs inside the language files.
+ - (06.03.2004) Due to different bugs, removed selection of different privacy files inside the privacy editor. This may be added again in a furhter release.
+ - Fixed [ phpgedview-Alpha/Beta Bugs-908974 ] show hide contextual help (in session.php)
+ - Updated calendar.php with today and this month and added to show the day or month clicked
+ - Fixed [Dev Bug - 909606] gedcom path with '\' should be changed to '/'
+ - Fixed [Bug-906799] showing month view of calendar.php in languages with different start day other than sunday
+ - Fixed [ phpgedview-Alpha/Beta Bugs-907177 ] Transparant DHTML drop down menu in IE for calendar.php: changed layout
+ - Added valid date check to calendar
+ - Added current_day to calendar for stylesheet settings [RFE 885757]
+ - Fixed [ phpgedview-Alpha/Beta Bugs-907177 ] Transparant DHTML drop down menu in IE for pedigree.php with a check for minimum and maximum number generations
+ - Fixed [ 908137 ] Xenea theme
+ - Added privatization to random_media_block
+ - Fixed print preview problems in individual.php
+ - Added [ 847564 ] more security in editconfig_gedcom.php
+ - Changed admin.php to work with imaging module without any more changes inside admin.php by a user
+ - Added search for start indi with I01, I001 and I0001 [ 891888 ] Try I01, I001 and I0001 if I1 not found
+ - Added leap year calculation [ 887967 ] calendar.php ... shows feb 29 in non-leap years
+ - Hopefully completed RFE [ 861598 ] Edit language files - 28.02.2004
+ - Fixed to change '\' to '/' in index & media paths configurations and to warn of drive letters in media path (BUG 891844 & BUG 894548)
+ - Added Hungarian sorting
+ - Added RFE [ 887968 ] Upgrade util backup extension
+ - Added sorting sequence for all languages in one taking chosen language as first language
+ - Removed possibility to add unlinked individuals
+ - Added age to person boxes, affects pedigree view, close relatives, etc. (RFE868642)
+ - Added hit counters for hits to index.php & individual.php (RFE877529)
+ - Changed header "Family with Spouse" in individual.php (tab Close Relatives)
+ - Fixed individual.php to show Unknown when sex is unknown (BUG 896668)
+ - Fixed functions_mysql.php to properly query places in get_place_positions (BUG 896670)
+ - Changed functions in functions.php, functions_print.php, timeline.php to show correct place levels in severals lists (RFE 876385)
+ - Added label AKA to individual.php and re-arranged line breaks in it.
+ - Added validategedcom.php to be called during import process
+ - Added functions_tools.php to take the place of placeconvert.php, xref2rin.php & dateconvert.php
+ - Added new function block to phpgeview.js for adding notes, sources and media to gedcom
+ - Changed the single tabsheet on individual.php for notes, sources and media into three seperate tabs (RFE 869681)
+ - Fixed undefined $PGV_IMAGE_DIR, $PGV_GEDCOM_IMG errors
+ - Moved index.php to pedigree.php
+ - Moved mygedview.php to index.php
+ - Fixed "View GEDCOM record" does not use defined character set (BUG 890964)
+ - Made the time translator easier to configure for other languages. Standard: $TIME_FORMAT="g:i:sa"
+ - Made english language settings editable
+ - File "langcodes.php" is not a part of PhpGedView anymore. Content is moved to lang_settings_std.php and can be
+   edited with the language editor
+ - Removed f_name field from pgv_families table.  This will speed up the import process and improve privacy display for family names
+ - Added ability to print family where one of the members is private
+ - Optimizing indilist and famlist total db queries
+ - Fixed problem of language editor in connection with PHPLauncher
+ - Added a solution to switch between gedcoms by language selection. Look into the FAQ to see how it works.
+ - Added $TIME_FORMAT to time printing pages
+ - Fixing $gedarray["privacy"] always gets reset to privacy.php in editgedcoms
+ - Fixed bug with export inside language tool.
+ - Fixing Bug where Clippings Cart drops first letter of media files (BUG 892434)
+ - Removed bug if facts-file didn't exist in another language than english (index.php, individual.php)
+ - German language shortcuts of PhpGedView language files were changed from "ge" to "de"
+ - Added comparision of changes on the helptext-language file to the language editor
+ - New adding of new languages to PhpGedView
+ - Added file "lang_codes_std.php" for adding new languages to the root dir of PhpGedView
+ - Removed bug if factsfile does not exist for a language (pedigree.php, descendancy.php, timeline.php, relationship.php, calendar.php, addmedia.php, edit_privacy.php, family.php, gdbi_changes.php, gdbi_interface.php, nosupport.php, source.php)
+ - Added check if a file is available in PGV before adding of same language new.
+ - Rised length of a line inside the language editor to 6144 chars
+ - RTL alignment of placelist places. Right align for RTL. Still needs some work.
+ - Fixed RTL bug with landscape images in trees.
+ - Work on rtl alignement in login.php, login_register.php, useradmin.php, edituser.php, myGedView, search.php
+ - Fixed RTL issues with Xenea theme header.
+ - Fixed [922314] RtL SimplyGreen Treeroad. Also button text is no longer static English.
+ - Better rtl support language editor
+ - Fixed alignment in search.php (ltr and rtl)
+ - Fixed [ 920177 ] RtL Last Updated by Date/Time
+ - Fixed bulleted lists in indilist, famlist and search
+ - Fixed bug [901957] (Hebrew date problems for years ending in 55 or 56)
+ - Fixed bug fixed [886562] (mozilla rtl issue in pedigree tree)
+ - Set URLs and paths to LTR even when displayed in RTL.
+ - Added memory limit configuration variable
+ - Added index_edit.php to make MyGedView Portal configurable
+ - Added option for admin to broadcast a message
+ - Removed bug with different date formats inside function convert_date() (especially for magyar)
+ - Added Hungarian (Magyar) as a supported language to PhpGedView
+ - Added selection of different privacy files inside the privacy editor.
+ - Fixed bug with page-refresh in the language editor.
+ - Force users to enter database username and password if the database is down before they can reconfigure.
+
+--------------------------------------------------------
+Version 2.65.3
+ - Fixed Bug [ 889052 ] Can see private individual's picture
+ - Fixed Bug [ 889048 ] notice when displaying EVEN event types
+ - Fixed Bug [ 889330 ] Fatal error in session.php
+ - Fixed Bug [ 888664 ] SQL Bugs in alpha functions
+ - Fixed Bug [ 888138 ] Zoom In on Close Relatives Page
+ - Fixed Bug [ 887949 ] medialist.php undefined variables
+ - Fixed Bug [ 886556 ] Multilingual Gedcom and Individual List
+ - Fixed Bug [ 880122 ] Undefined variable gedcom file
+ - Fixed RTL direction of () and [] in indilist, familylist, calendar, and all individual boxes (pedigree etc).
+ - Fixed RTL alignment issues in indilist, familylist, placelist, sourcelist and calendar
+ - Added improved backup handling
+ - Added Hebrew support to the individual and family list
+ - Fixed undefined offset in mygedview if the picture to show has a value of 0
+ - Fixed locked out after installation issue
+ - Added order for logfiles in Admin menu, shows latest one first
+ - Added check for Researchlog in upgrade utility, if not present can't upgrade
+ - Added current system time to admin page, this is sometimes helpful info when debugging
+ - Added error message on editgedcoms.php if gedcom has not been imported.
+ - Fixed date conversion errors (BUG 879420)
+ - Fixed bug in find_sourceid.php - missing $pgv_lang["find_sourceid"]
+ - Fixed Bug [ 887945 ] - broken image links
+ - Fixed wrong usage of $pgv_lang["file_read_error"] at line 454 of editlang_edit_settings.php
+ - Fixed Bug [ 887635 ] - Error in editlang_edit_settings.php v2.65.2
+ - The standard file with language settings is named "lang_settings_std.php" and placed in the root dir of PGV
+   This means "lang_settings_std.php" does not need to have write permissions anymore because the user changes
+   will be placed inside the $INDEX - folder of PGV.
+ - Added array with language codes from "langcodes.php" to "lang_settings_std.php"
+
+--------------------------------------------------------
+Version 2.65.2
+ - Fixed bug [ 876521 ] Errors in research log?
+ - Fixed place hierarchy bug in MySQL mode
+ - Added Spouse check to is_dead function
+ - Fixed the way Jewish dates displayed when being displayed in Hebrew
+ - Fixed zoombox scroll problem onClick
+ - Fixed gdbi_functions.php writes wrong line endings
+ - Updated sql injection detection
+ - Convert FILE paths to urls in gdbi.php
+ - Fixed bug with empty or non existing language files inside the language editor.
+ - added changings from language_settings_standard.php to language_settings.php for danish language
+ - Added privacy for source objects of living people
+ - Added find_sourceid.php to work with privacy editor
+ - Replaced language_settings_standard.php by language_settings_std.php to prevent probs with mac-systems
+ - Added link to languages/LANG_CHANGELOG.txt into the help text for language file comparision
+ - Added link to the translations forum of PGV on SourceForge
+ - Filenames of the english and german doc files were shortened to prevent filename conflicts with mac systems -> bugs [ 878232 ]
+ - Admin.php was adapted to the shortened filenames of the doc-html files -> bugs [ 878232 ]
+ - Fixed path disclosure vulnerability in login.php
+ - Fixed vulnerability in $INDEX_DIRECTORY/gedcom.ged_conf.php
+ - Fixed javascript error on close relatives tab in individual page
+ - moved privacy settings file to $GEDCOMS array
+ - Fixing addnewgedcom.php BUG [ 885805 ]
+ - added check to see if the gedcom has been imported
+ - Fixed bug adding source to clipping cart (BUG 878202)
+
+--------------------------------------------------------
+Version 2.65.1
+ - Fixed Indilist sorting problem (BUG 873029)
+ - Fixed Indilist famlist surname list problem (BUG 873031)
+ - Fixed invalid favorites after gedcom delete (BUG 874939)
+ - Fixed "Individual" printed in child box when no wife present (BUG 873554)
+ - Adding zoom boxes to hide details view (RFE 860097)
+
+--------------------------------------------------------
+Version 2.65
+ - Fixed popup boxes and general display bugs on family.php (BUG 856778)
+ - Added up generation arrows to family.php
+ - Moved Family Group Information section to the right of the children list
+ - Enabled ZoomBoxes on family.php
+ - Enabled ZoomBoxes on close relatives tab
+ - Updated readme file to reflect changes needed to use the edit_lang and upload media features (BUG 857104)
+ - Fixed bug where contact links didn't work in require_authentication mode (BUG 855337)
+ - Fixed bug where all users where logged out even if they weren't logged in (BUG 855347)
+ - Fixed overlap bug on 3 generation charts and updated stylesheets (BUG 854463)
+ - Added feature where if you click on the icon that pops up the links you are rooted on that individual.
+ - Fixed undefined offset bug in placelist (BUG 858090)
+ - Added Portrait mode to pedigree tree
+ - Made the full name field bigger on account edit screens (BUG 857918)
+ - Fixed user can override configuration variables on the URL security hole
+ - Fixed bug where user can add the same individual to favorites list many times (BUG 857982)
+ - Making main pages valid XHTML (RFE 783648)
+ - Fixing fact privacy ignored on charts
+ - Added first stage of pedigree tree collapsing (RFE 802591)
+ - Added option to create a new empty gedcom file.
+ - Fixed place table is not emptied when gedcom deleted
+ - Fixed major security holes
+ - Fixed file system UTF8/ISO character set problems
+ - Fixing timeline does not prefix I (BUG 859270)
+ - Fixed privacy error on placelist.php family list (BUG 861355)
+ - Worked on the individual list to work better with extended characters
+ - Modified the relationship chart to calculate more than one relationship (RFE 862352)
+ - Added SERVER_URL configuration parameter for HTTPS and alternate ports (BUGS 859253, 855193)
+ - Added PEDIGREE_GENERATIONS to pedigree tree link (BUG 862626)
+ - Fixing names records do not display custom tags (BUG 859279)
+ - Changed the chinese_number function to convert_number function for languages where numbers are displayed in different characters
+ - Adding http:// to HOME_SITE_URL and SERVER_URL if it wasn't entered. (BUG 859548)
+ - Added more acurate age calculation (RFE 847105)
+ - Added ability to add an unlinked person from indilist.php
+ - Added configurable start of week in the language file (RFE 847258)
+ - Added flags option for alternate language selector (RFE 861296)
+ - Changed length of hashcode table field to 255 to support longer hashcodes
+ - Fixing lost slashes in undo in index mode. (BUG 869423)
+ - Fixing messages to admin are sometimes cut short
+ - Adding security fix to uploadmedia and uploadgedcom files.
+ - Making downloadable config files work properly
+ - Adding favorites drop-down menu (RFE 857979)
+ - Added Latin American Spanish and Norwegian language files
+ - Fixing short months if calendar goes past 5 weeks
+ - Adding IE specific style declaring to get rid of form margins
+ - Added instructions to message form.
+ - Fixing linked OBJE records do not show on medialist in index mode (BUG 869284)
+ - Added RTL language support (90% complete)
+
+--------------------------------------------------------
+Version 2.61.1
+ - Fixed mailto link bug (BUG# 854472)
+ - Added stylesheets for print_contact_links, print_user_links, and print_lang_form functions (BUG# 854463)
+ - Fixing bug in 3 generation pedigree chart (BUG# 854463)
+ - Fixing overlap bug in pedigree chart in Hide details mode.
+ - Fixed User selected theme doesn't work (BUG# 854807)
+ - Fixing case sensitivity on timeline chart id boxes (BUG 847724)
+ - Cleaned up themes
+ - Moving JavaScript functions to phpgedview.js file
+ - Removing phpsession id from the emails sent out
+ - Adding name field to message form
+ - Updated language files
+
+--------------------------------------------------------
+Version 2.61
+ - Added Email options to messaging system (RFE 842525)
+ - Added age stylesheet (RFE 842521)
+ - Forward non admin users to mygedview page from admin page (BUG 842671)
+ - Fixed many bugs in the User Registration system (BUGS 845522, 844130, 844572, 844582, 845330, 844046, etc)
+ - Fixing bug where media items did not display on source.php (BUG 845334)
+ - Fixing Bugs in edit language utility
+ - Added client time to login so that dates are client local not server local (BUG 844182)
+ - Fixed bugs in messaging system
+ - Added senders IP address to email (RFE 847530)
+ - Added Relationship to Me sub link  (RFE 844829)
+ - Added Random Photo block to MyGedView Portal
+ - Added a place table to the MySQL mode to improve placelist performance (RFE 816992)
+ - Added options to encode and decode gedcom files in UTF-8 when they are uploaded or downloaded
+ - Added privacy file editor (RFE 809357)
+ - Began making changes to support valid XHTML (RFE 783648)
+ - Added configuration option to force people to login before they can view anything (RFE 846678)
+ - Added options for saving log files (RFE 846835)
+ - Added new verification columns to useradmin.php (RFE 840988)
+
+--------------------------------------------------------
+Version 2.60
+
+ - Added ability to edit external notes
+ - Added find source id link to edit interface
+ - Added image viewer to multimedia objects
+ - Fixed FTM UNKNOWN death date (RFE 827838)
+ - Fixed errors for missing /surname/ on NAME line (BUG 825041)
+ - Added option to add new notes and sources to facts
+ - Fixed errors for missing NAME tag (BUG 829362)
+ - Fixed locations listed on people from Legacy gedcom files (BUG 824504)
+ - Added ability to delete a source
+ - Added Filter options to calendar view (RFE 828976)
+ - Removed empty columns (RFE 817418)
+ - Added link to family page from marriage records (RFE 830405)
+ - Fixed mozilla footer problem (BUG 835226)
+ - Added privacy settings for research log
+ - Added Research Log tab to individual.php
+ - Added a variable for each of the images so that you can further customize the themes (RFE 835722)
+ - Clippings cart now adds a source back to your site with a citation linking the people to their page on your site (RFE 838543)
+ - Added MyGedView Portal (RFE 830234)
+ - Added age to facts on individual page (RFE 823028)
+ - Added living and recent filters to Anniversary Calendar (RFE 828976)
+ - Fixed start sorting on Capital letter (RFE 7784573)
+ - Hide unused columns in lists (RFE 817418)
+ - Added a link to the family page from the marriage fact (RFE 830405)
+ - Added Kurt's user self registration system (RFE 811006)
+ - Added User based theme selection (RFE 829294)
+ - Added Gendex generator (RFE 834675)
+ - Added abilty to add new people and edit names (RFE 809555)
+
+--------------------------------------------------------
+Version 2.52
+
+ - Added zoom to pedigree boxes (RFE 798350)
+ - Added more Hebrew date functionality (RFE 809301)
+ - Added zoom to the timeline chart (RFE 766639)
+ - Linked places on individual page to the place list (RFE 817049)
+ - Added marriage date check to is dead calculation
+ - Fixed undefined index error in family and indi list
+ - Fixed extra spaces in findid box return extraneous results
+ - Added GEDCOM ID Prefix to gedcom configuration and the findid charts
+ - Fixed changing gedcom path messes up gedcom configuration (see Bug# 823633)
+ - Fixed mozilla access denied on gdbi interface
+ - Added the ability to add and delete individuals form the gdbi interface (RFE 809555)
+ - Removed zoom, links icons from pedigree boxes in print preview mode (RFE 825176)
+ - Removed version number from HTML title (RFE 825175)
+ - Added configuration setting for behavior of popup links (RFE 825179)
+ - Optimized MySQL database queries by implementing a cache
+ - Optimized Month calendar view to only 2 db queries (RFE 825181)
+ - Added "Wood" Theme
+ - Added research log integration
+
+--------------------------------------------------------
+Version 2.51
+
+ - Added ability to download configuration files if there are no write permissions
+ - Fixed apostraphe problem in index files.
+ - Added more functionality to the GDBI CGI interface.
+ - Moved clippings files to the session instead of to a file.
+ - Removed clippings directory
+ - Added month view to anniversary calendar
+ - Removed whitespace at the end of included files
+ - Added new Spanish language files
+ - Updated GDBI functionality
+ - Fixed bugs in Edit Interface
+ - Fixed errors in EditLang interface
+ - Added privacy settings to surname lists
+ - Changed SHOW_PEDIGREE_PRIVACY to be a level of places to include
+
+--------------------------------------------------------
+Version 2.50
+
+ - Added CALENDAR_FORMAT to editconfig.php
+ - Added NAME_FROM_GEDCOM to editconfig.php
+ - Added SHOW_ID_NUMBERS to editconfig.php
+ - Added SHOW_PEDIGREE_PLACES to editconfig.php
+ - Added privacy to descending arrow on pedigree chart
+ - Fixed living names showing in chart popup boxes
+ - Fixed cache problem in relationship privacy
+ - Fixed PHP <4.3 bugs in place list and search page
+ - Merged MySQL and Standard version into a common codebase
+ - Added no results message to find id popup window
+ - Added privacy checking to family lists
+ - Added marriage date to family lists
+ - Created PGV_IMAGE_DIR variable in theme for image location
+ - Fixed missing CAUS tags
+ - Added Anniversary Calendar
+ - Added editgedcoms.php page for better management of gedcoms
+ - Added fact editing ability on individual page
+ - Added ability to review and undo editing changes
+ - Updated GDBI CGI interface files
+
+--------------------------------------------------------
+Version 2.13
+
+ - Dates in individual list are now translated (see Bug# 760799 and 762827)
+ - Fixed family popup boxes appear under the other layers in
+ relationship chart (see Bug# 760800)
+ - Added performance improvements to the relationship chart
+ - Print IDs in the person boxes (see RFE# 762816)
+ - Show all facts from spouse family records on individual page
+ (see RFE# 762938)
+ - Updated French, German, and Dutch language files
+ - Added gedcomID to useradmin
+ - Added ability to user to edit their user information
+ - Added relationship checking in privacy file
+ - Replaced Child with son or daughter in relationship chart
+ - Replaced Sibling with brother or sister in relationship chart
+ - Added a rootid to the user profile array for specifying the root id of
+ the pedigree and descendency charts for each user.
+ - Login page focus the username text box
+ - Make the search page use "Get" instead of "Post" so that the back button
+ can be used
+ - Fixed bug in Media List where the pictures of living people were still
+ being shown (see Bug# 767606)
+ - Added performance enhancement to the person chart boxes that makes the
+ pedigree chart and descendency chart run much faster.
+ - Fix bug in Place Hierarchy where clicking on the "top level" link produces
+ an error message. (See Bug# 768171)
+ - Added Danish language files.
+ - Allow user to continue viewing timeline chart even if they add a living person.
+ - Fix errors that occur with no birth date on the timeline chart.
+ - Fix problem where footer isn't centered in individual page tabs when the tab
+ is empty. (See Support Request #770691)
+ - New descendency chart where spouses are listed below, and children below them.
+ - Added indexes to MySQL tables for speed improvement.
+ - Add print preview header and footer files to the themes
+ - Added new Ocean Theme
+ - Added My Pedigree, My Info links in header
+ - Do not force automatic rebuild when gedcom changes.
+ - Renamed configure.php to editconfig.php
+ - Set write permissions on config.php, authenticate.php, and index/ if they
+ are not already set.
+ - Add icons to person box that roots them on the pedigree chart and the
+ descendency chart.
+ - Make the date translator easier to configure for other languages.
+ $DATE_FORMAT="D M Y" (See RFE# 766732)
+ - Custom user language files through lang.xx.extra.php
+ - Update the findId pop up box searching to look more like indilist
+ - Config help popup with theme applied
+ - Upload/download gedcom from admin menu
+ - Place hierarchy doesn't go to search page for place connections.
+ Results are more accurate.
+
+--------------------------------------------------------
+Version 2.12
+
+ - Fixed no $users error in useradmin.php of MySQL version
+ - Fixes media list errors in MySQL version
+ - Fixes print out before headers with invalid default id in MySQL version.
+ - Added administrative log functions to the authentication module
+ - Added 15 minute session cookie timeout to session.php
+ - Fixed faulty configuration of pedigree root id results in errors
+ - Added metatags.php in the themes folder that allows users to modify
+ HTML <meta> descriptions tags.
+ - Added Base Directory variable in config.php
+ - Added conversions for abbreviations of ABT, EST, BET etc. in date fields.
+ (See Feature Request# 755974)
+ - Added text to show who you are logged in as in the header
+ - Allow administrators to edit users without changing password
+ - Check for duplication usernames when adding users
+ - Fixed the addslashes problem in names with an apostrophe
+ - Link to phpGedView home page in footer now opens in a new window
+ - Fixed timeline dates showing gedcom date codes in event area (see
+ support request# 759004)
+ - Added error message to medialist.php when file cannot be found
+ - Added some memory caching of gedcom records to improve performance
+ - Added relationship chart
+ - Fixed duplicate name suffixes
+
+--------------------------------------------------------
+Version 2.11
+
+ - Updated the session code to get rid of depricated functions
+ - Removed the $pgv_user global variable and only look at the session
+ - Added page execution statistics
+ - All sections are shown on individual page in print preview mode
+
+
+--------------------------------------------------------
+Version 2.10
+
+ - Compute is_dead status at build index time and store in indilist.ind
+ - Hide living names in family popup lists
+ - Limit 20 media objects per page in media list
+ - Add notes to multimedia list
+ - Move language cookie and user cookie to session for better security
+ (Bug# 753757)
+ - Fixed source expand bug in name and gender source citations on individual
+ page (Bug# 750713)
+ - Fixed double login bug on first configuration run
+ - Added missing global variables to displayDetails function (Bug# 752098)
+ - Fixed infinite loop in print_pedigree_person function that occured under
+ certain cases of multiple families (Bug# 751173)
+ - Fixed unrecognized gedcom error for gedcom tags greater than 5 characters
+ long see http://sourceforge.net/forum/forum.php?thread_id=884471&forum_id=185166
+ - Added a print link to the print preview pages see
+ - Added check for CONC|T in FILE tag of multimedia objects
+ - Updated Dutch, German, and Turkish language files
+
+ -------------------------------------------------------

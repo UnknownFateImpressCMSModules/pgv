@@ -1,0 +1,28 @@
+<div id="pgvheader" class="<?php print $TEXT_DIRECTION; ?>">
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<table width="100%">
+			<tr>
+			<td><a href="<?php print $HOME_SITE_URL; ?>"><h2><?php print $HOME_SITE_TEXT; ?></h2></a>
+			<?php  print_gedcom_title_link(TRUE); ?><br />
+			</td>
+			<td>
+				<form action="search.php" method="get">
+					<input type="hidden" name="action" value="general" />
+					<input type="hidden" name="topsearch" value="yes" />
+					<input type="text" name="query" size="15" value="<?php print $pgv_lang['search']?>" onfocus="if (this.value == '<?php print $pgv_lang['search']?>') this.value=''; focusHandler();" onblur="if (this.value == '') this.value='<?php print $pgv_lang['search']?>';" />
+					<input type="submit" name="search" value=" &gt; " />
+				</form>
+				<?php print_lang_form(); ?>
+			</td>
+			<td align="center">
+				&nbsp;&nbsp;<?php print_theme_dropdown(); ?>
+				<?php //print_user_links(); ?>
+				<?php print_favorite_selector(); ?>
+			</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>

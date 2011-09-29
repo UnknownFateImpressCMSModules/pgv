@@ -1,0 +1,28 @@
+<!-- THIS FILE MUST BE SAVED IN UTF-8 ENCODING (or some special characters will be lost) -->
+<!-- $Id: CHE.txt,v 1.1 2005/10/07 18:10:20 skenow Exp $ -->
+Appenzell Rhodes Ext.
+Appenzell Rhodes Int.
+Argovie
+Basel-Landschaft
+Basel-Stadt
+Berne
+Fribourg
+Genève
+Glaris
+Grisons
+Jura
+Lucerne
+Neuchâtel
+Nidwald
+Obwald
+Saint-Gall
+Schaffhouse
+Schwyz
+Soleure
+Tessin
+Thurgovie
+Uri
+Valais
+Vaud
+Zoug
+Zürich
