@@ -539,10 +539,10 @@ function get_changed_date($datestr) {
 			// already in english !
 			if ($LANGUAGE!="english") {
 				foreach (array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") as $indexval => $item) {
-					// February => Février
+					// February => Fï¿½vrier
 					$translated = $pgv_lang[substr(strtolower($item),0,3)];
 					$adate = str_replace($item, $translated, $adate);
-					// Feb => Fév
+					// Feb => Fï¿½v
 					$item = substr($item, 0, 3);
 					$translated = substr($translated, 0, 3);
 					$adate = str_replace($item, $translated, $adate);
