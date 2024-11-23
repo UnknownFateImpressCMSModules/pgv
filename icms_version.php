@@ -44,7 +44,24 @@ $modversion = array(
 $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
 
 // Tables created by sql file (without prefix!)
-$modversion['tables'] = array('pgv_blocks', 'pgv_dates', 'pgv_families', 'pgv_favorites', 'pgv_individuals', 'pgv_messages', 'pgv_names', 'pgv_news', 'pgv_other', 'pgv_placelinks', 'pgv_places', 'pgv_sources', 'pgv_users', 'pgv_media', 'pgv_media_mapping', 'pgv_tblver');
+$modversion['tables'] = array(
+	'pgv_blocks', 
+	'pgv_dates', 
+	'pgv_families', 
+	'pgv_favorites', 
+	'pgv_individuals', 
+	'pgv_messages', 
+	'pgv_names', 
+	'pgv_news', 
+	'pgv_other', 
+	'pgv_placelinks', 
+	'pgv_places', 
+	'pgv_sources', 
+	'pgv_users', 
+	'pgv_media', 
+	'pgv_media_mapping', 
+	'pgv_tblver'
+);
 
 // Admin things
 $modversion['hasAdmin'] = 1;
