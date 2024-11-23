@@ -21,7 +21,7 @@
  *
  * @package PhpGedView
  * @subpackage Edit
- * @version $Id: edit_quickupdate.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+ * @version $Id: edit_quickupdate.php,v 1.4 2005/08/17 10:42:52 canajun2eh Exp $
  */
 
 require("config.php");
@@ -505,6 +505,7 @@ function helpPopup(which) {
 		<select name="SSEX">
 			<option value="M"<?php if (preg_match("/1 SEX F/", $gedrec)>0) print " selected=\"selected\""; ?>><?php print $pgv_lang["male"]; ?></option>
 			<option value="F"<?php if (preg_match("/1 SEX M/", $gedrec)>0) print " selected=\"selected\""; ?>><?php print $pgv_lang["female"]; ?></option>
+			<option value="U"<?php if (preg_match("/1 SEX U/", $gedrec)>0) print " selected=\"selected\""; ?>><?php print $pgv_lang["unknown"]; ?></option>
 		</select>
 	</td>
 </tr>
@@ -569,6 +570,7 @@ function helpPopup(which) {
 		<select name="CSEX">
 			<option value="M"><?php print $pgv_lang["male"]; ?></option>
 			<option value="F"><?php print $pgv_lang["female"]; ?></option>
+			<option value="U"><?php print $pgv_lang["unknown"]; ?></option>
 		</select>
 	</td></tr>
 <tr>

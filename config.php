@@ -33,7 +33,7 @@ if (preg_match("/\Wconfig.php/", $_SERVER["PHP_SELF"])>0) {
 	print "Got your hand caught in the cookie jar.";
 	exit;
 }
-
+require_once "../../mainfile.php";
 /**
  * Absolut Path to PhpGedView installation
  *
@@ -43,11 +43,11 @@ if (preg_match("/\Wconfig.php/", $_SERVER["PHP_SELF"])>0) {
 $PGV_BASE_DIRECTORY = "";						//-- path to phpGedView (Only needed when running as phpGedView from another php program such as postNuke, otherwise leave it blank)
 $PGV_DATABASE = "db";						//-- which database is being used, file indexes or mysql
 $DBTYPE = "mysql";								//-- type of database to connect when using the PEAR:DB module
-$DBHOST = "";							//-- Host where MySQL database is kept
-$DBUSER = "";									//-- MySQL database User Name
-$DBPASS = "";									//-- MySQL database User Password
-$DBNAME = "";							//-- The MySQL database name where you want PHPGedView to build its tables
-$TBLPREFIX = "xoops_pgv_";							//-- prefix to include on table names
+$DBHOST = XOOPS_DB_HOST;							//-- Host where MySQL database is kept
+$DBUSER = XOOPS_DB_USER;									//-- MySQL database User Name
+$DBPASS = XOOPS_DB_PASS;									//-- MySQL database User Password
+$DBNAME = XOOPS_DB_NAME;							//-- The MySQL database name where you want PHPGedView to build its tables
+$TBLPREFIX = XOOPS_DB_PREFIX."_pgv_";							//-- prefix to include on table names
 $INDEX_DIRECTORY = "./index/";					//-- Readable and Writeable Directory to store index files (include the trailing "/")
 $AUTHENTICATION_MODULE = "authentication_xoops.php";	//-- File that contains authentication functions
 $PGV_STORE_MESSAGES = true;						//-- allow messages sent to users to be stored in the PGV system
@@ -60,7 +60,7 @@ $LOGFILE_CREATE = "monthly";					//-- set how often new log files are created, "
 $PGV_SESSION_SAVE_PATH = "";					//-- Path to save PHP session Files -- DO NOT MODIFY unless you know what you are doing
 												//-- leaving it blank will use the default path for your php configuration as found in php.ini
 $PGV_SESSION_TIME = "7200";						//-- number of seconds to wait before an inactive session times out
-$SERVER_URL = "";								//-- the URL used to access this server
+$SERVER_URL = XOOPS_URL."/modules/pgv/";								//-- the URL used to access this server
 $LOGIN_URL = "";								//-- the URL to use to go to the login page, use this value if you want to redirect to a different site when users login, useful for switching from http to https
 $PGV_MEMORY_LIMIT = "32M";						//-- the maximum amount of memory that PGV should be allowed to consume
 $ALLOW_REMEMBER_ME = true;						//-- whether the users have the option of being remembered on the current computer

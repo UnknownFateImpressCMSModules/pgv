@@ -23,7 +23,7 @@
  *
  * @package PhpGedView
  * @subpackage Charts
- * @version $Id: individual.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: individual.php,v 1.277 2005/08/15 20:37:52 canajun2eh Exp $
  */
 
 require("config.php");
@@ -1375,14 +1375,17 @@ if (count($hfamids)>0) {
 				if ($hparents['HUSB']!=$newhparents['HUSB']) {
 					$styleadd="red";
 					if (!empty($newhparents['HUSB'])) {
-						$isf="";
 						$srec = find_record_in_file($newhparents['HUSB']);
-						$ct = preg_match("/1 SEX F/", $srec);
-						if ($ct>0) {
+						$isf = "NN";
+						if (preg_match("/1 SEX F/", $srec)>0) {
 								$label = $pgv_lang["mother"];
-								$isf="F";
+								$isf = "F";
 						}
-						else $label = $pgv_lang["father"];
+						if (preg_match("/1 SEX M/", $srec)>0) {
+								$label = $pgv_lang["father"];
+								$isf = "";
+						}
+						if ($isf == "NN") $label = $pgv_lang["parent"];
 						print "<tr><td class=\"facts_labelblue\">".$label."</td><td class=\"facts_value, person_box$isf\">";
 						print_pedigree_person($newhparents['HUSB'],2,$view!="preview");
 						$personcount++;
@@ -1390,15 +1393,18 @@ if (count($hfamids)>0) {
 					}
 				}
 				if (!empty($hparents['HUSB'])) {
-					$isf="";
 					$srec = find_person_record($hparents['HUSB']);
 					if (empty($srec)) $srec = find_record_in_file($hparents['HUSB']);
-					$ct = preg_match("/1 SEX F/", $srec);
-					if ($ct>0) {
+					$isf = "NN";
+					if (preg_match("/1 SEX F/", $srec)>0) {
 							$label = $pgv_lang["mother"];
-							$isf="F";
+							$isf = "F";
 					}
-					else $label = $pgv_lang["father"];
+					if (preg_match("/1 SEX M/", $srec)>0) {
+							$label = $pgv_lang["father"];
+							$isf = "";
+					}
+					if ($isf == "NN") $label = $pgv_lang["parent"];
 					print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value, person_box$isf\">";
 					print_pedigree_person($hparents['HUSB'],2,$view!="preview");
 					$personcount++;
@@ -1416,14 +1422,17 @@ if (count($hfamids)>0) {
 				if ($hparents['WIFE']!=$newhparents['WIFE']) {
 					$styleadd="red";
 					if (!empty($newhparents['WIFE'])) {
-						$isf="";
 						$srec = find_record_in_file($newhparents['WIFE']);
-						$ct = preg_match("/1 SEX F/", $srec);
-						if ($ct>0) {
+						$isf = "NN";
+						if (preg_match("/1 SEX F/", $srec)>0) {
 								$label = $pgv_lang["mother"];
-								$isf="F";
+								$isf = "F";
 						}
-						else $label = $pgv_lang["father"];
+						if (preg_match("/1 SEX M/", $srec)>0) {
+								$label = $pgv_lang["father"];
+								$isf = "";
+						}
+						if ($isf == "NN") $label = $pgv_lang["parent"];
 						print "<tr><td class=\"facts_labelblue\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 						print_pedigree_person($newhparents['WIFE'],2,$view!="preview");
 						$personcount++;
@@ -1431,15 +1440,18 @@ if (count($hfamids)>0) {
 					}
 				}
 				if (!empty($hparents['WIFE'])) {
-					$isf="";
 					$srec = find_person_record($hparents['WIFE']);
 					if (empty($srec)) $srec = find_record_in_file($hparents['WIFE']);
-					$ct = preg_match("/1 SEX F/", $srec);
-					if ($ct>0) {
+					$isf = "NN";
+					if (preg_match("/1 SEX F/", $srec)>0) {
 							$label = $pgv_lang["mother"];
-							$isf="F";
+							$isf = "F";
 					}
-					else $label = $pgv_lang["father"];
+					if (preg_match("/1 SEX M/", $srec)>0) {
+							$label = $pgv_lang["father"];
+							$isf = "";
+					}
+					if ($isf == "NN") $label = $pgv_lang["parent"];
 					print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 					print_pedigree_person($hparents['WIFE'],2,$view!="preview");
 					$personcount++;
@@ -1463,17 +1475,19 @@ if (count($hfamids)>0) {
 					$chil[] = $spid;
 					$styleadd="";
 					if (isset($newchil)&&(!in_array($spid, $newchil))) $styleadd="red";
-					print "<tr><td class=\"facts_label$styleadd\">";
 					$srec = find_person_record($spid);
 					if (empty($srec)) $srec = find_record_in_file($spid);
-					$isf="";
-					$ct = preg_match("/1 SEX F/", $srec);
-					if ($ct>0) {
-							print $pgv_lang["sister"];
-							$isf="F";
+					$isf = "NN";
+					if (preg_match("/1 SEX F/", $srec)>0) {
+							$label = $pgv_lang["sister"];
+							$isf = "F";
 					}
-					else print $pgv_lang["brother"];
-					print "</td><td class=\"facts_value$styleadd, person_box$isf\">";
+					if (preg_match("/1 SEX M/", $srec)>0) {
+							$label = $pgv_lang["brother"];
+							$isf = "";
+					}
+					if ($isf == "NN") $label = $pgv_lang["sibling"];
+					print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 					print_pedigree_person($spid,2,$view!="preview");
 					$personcount++;
 					print "</td></tr>\n";
@@ -1482,16 +1496,18 @@ if (count($hfamids)>0) {
 			if (isset($newchil)) {
 				for($i=0; $i<count($newchil); $i++) {
 					if ((!in_array($newchil[$i], $chil))&&(strtoupper($newchil[$i])!=strtoupper($pid))) {
-						print "<tr><td class=\"facts_labelblue\">";
 						$srec = find_record_in_file($newchil[$i]);
-						$isf="";
-						$ct = preg_match("/1 SEX F/", $srec);
-						if ($ct>0) {
-								print $pgv_lang["sister"];
-								$isf="F";
+						$isf = "NN";
+						if (preg_match("/1 SEX F/", $srec)>0) {
+								$label = $pgv_lang["sister"];
+								$isf = "F";
 						}
-						else print $pgv_lang["brother"];
-						print "</td><td class=\"facts_valueblue, person_box$isf\">";
+						if (preg_match("/1 SEX M/", $srec)>0) {
+								$label = $pgv_lang["brother"];
+								$isf = "";
+						}
+						if ($isf == "NN") $label = $pgv_lang["sibling"];
+						print "<tr><td class=\"facts_labelblue\">".$label."</td><td class=\"facts_valueblue, person_box$isf\">";
 						print_pedigree_person($newchil[$i],2,$view!="preview");
 						$personcount++;
 						print "</td></tr>\n";
@@ -1589,17 +1605,19 @@ if (count($hfamids)>0) {
 									$chil[] = $spid;
 									$styleadd="";
 									if (isset($newchil)&&(!in_array($spid, $newchil))) $styleadd="red";
-									print "<tr><td class=\"facts_label$styleadd\">";
 									$srec = find_person_record($spid);
 									if (empty($srec)) $srec = find_record_in_file($spid);
-									$isf="";
-									$ct = preg_match("/1 SEX F/", $srec);
-									if ($ct>0) {
-											print $pgv_lang["halfsister"];
-											$isf="F";
+									$isf = "NN";
+									if (preg_match("/1 SEX F/", $srec)>0) {
+											$label = $pgv_lang["halfsister"];
+											$isf = "F";
 									}
-									else print $pgv_lang["halfbrother"];
-									print "</td><td class=\"facts_value$styleadd, person_box$isf\">";
+									if (preg_match("/1 SEX M/", $srec)>0) {
+											$label = $pgv_lang["halfbrother"];
+											$isf = "";
+									}
+									if ($isf == "NN") $label = $pgv_lang["halfsibling"];
+									print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 									print_pedigree_person($spid,2,$view!="preview");
 									$personcount++;
 									print "</td></tr>\n";
@@ -1684,33 +1702,37 @@ if (count($famids)>0) {
 									if ((!is_array($newparents))||(!in_array($spid, $newparents))) {
 											if($pid!=$newparents["HUSB"]) $nspid=$newparents["HUSB"];
 											else $nspid=$newparents["WIFE"];
-											print "<tr><td class=\"facts_labelblue\">";
 											$srec = find_person_record($nspid);
 											if (empty($srec)) $srec = find_record_in_file($nspid);
-											$isf="";
-											$ct = preg_match("/1 SEX F/", $srec);
-											if ($ct>0) {
-													print $pgv_lang["wife"];
-													$isf="F";
+											$isf = "NN";
+											if (preg_match("/1 SEX F/", $srec)>0) {
+													$label = $pgv_lang["mother"];
+													$isf = "F";
 											}
-											else print $pgv_lang["husband"];
-											print "</td><td class=\"facts_valueblue, person_box$isf\">";
+											if (preg_match("/1 SEX M/", $srec)>0) {
+													$label = $pgv_lang["father"];
+													$isf = "";
+											}
+											if ($isf == "NN") $label = $pgv_lang["parent"];
+											print "<tr><td class=\"facts_labelblue\">".$label."</td><td class=\"facts_valueblue, person_box$isf\">";
 											print_pedigree_person($spid, 2,$view!="preview");
 											$personcount++;
 											print "</td></tr>\n";
 											$styleadd="red";
 									}
-									print "<tr><td class=\"facts_label$styleadd\">";
 									$srec = find_person_record($spid);
 									if (empty($srec)) $srec = find_record_in_file($spid);
-									$isf="";
-									$ct = preg_match("/1 SEX F/", $srec);
-									if ($ct>0) {
-											print $pgv_lang["wife"];
-											$isf="F";
+									$isf = "NN";
+									if (preg_match("/1 SEX F/", $srec)>0) {
+											$label = $pgv_lang["mother"];
+											$isf = "F";
 									}
-									else print $pgv_lang["husband"];
-									print "</td><td class=\"facts_value$styleadd, person_box$isf\">";
+									if (preg_match("/1 SEX M/", $srec)>0) {
+											$label = $pgv_lang["father"];
+											$isf = "";
+									}
+									if ($isf == "NN") $label = $pgv_lang["parent"];
+									print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 									print_pedigree_person($spid, 2,$view!="preview");
 									$personcount++;
 									print "</td></tr>\n";
@@ -1733,17 +1755,19 @@ if (count($famids)>0) {
 						  $chil[] = $spid;
 						  $styleadd="";
 						  if (isset($newchil)&&(!in_array($spid, $newchil))) $styleadd="red";
-						  print "<tr><td class=\"facts_label$styleadd\">";
 						  $srec = find_person_record($spid);
 						  if (empty($srec)) $srec = find_record_in_file($spid);
-						  $ct = preg_match("/1 SEX F/", $srec);
-						  $isf="";
-						  if ($ct>0) {
-								  print $pgv_lang["daughter"];
-								  $isf="F";
+						  $isf = "NN";
+						  if (preg_match("/1 SEX F/", $srec)>0) {
+						  		$label = $pgv_lang["daughter"];
+						  		$isf = "F";
 						  }
-						  else print $pgv_lang["son"];
-						  print "</td><td class=\"facts_value$styleadd, person_box$isf\">";
+						  if (preg_match("/1 SEX M/", $srec)>0) {
+						  		$label = $pgv_lang["son"];
+						  		$isf = "";
+						  }
+						  if ($isf == "NN") $label = $pgv_lang["child"];
+						  print "<tr><td class=\"facts_label$styleadd\">".$label."</td><td class=\"facts_value$styleadd, person_box$isf\">";
 						  print_pedigree_person($spid,2,$view!="preview");
 						  $personcount++;
 						  print "</td></tr>\n";
@@ -1751,16 +1775,18 @@ if (count($famids)>0) {
 				   if (isset($newchil)) {
 								for($i=0; $i<count($newchil); $i++) {
 										if (!in_array($newchil[$i], $chil)) {
-												print "<tr><td class=\"facts_labelblue\">";
 												$srec = find_record_in_file($newchil[$i]);
-												$ct = preg_match("/1 SEX F/", $srec);
-												$isf="";
-												if ($ct>0) {
-														print $pgv_lang["daughter"];
-														$isf="F";
-												}
-												else print $pgv_lang["son"];
-												print "</td><td class=\"facts_valueblue, person_box$isf\">";
+						  						$isf = "NN";
+						  						if (preg_match("/1 SEX F/", $srec)>0) {
+						  								$label = $pgv_lang["daughter"];
+						  								$isf = "F";
+						  						}
+						  						if (preg_match("/1 SEX M/", $srec)>0) {
+						  								$label = $pgv_lang["son"];
+						  								$isf = "";
+						  						}
+						  						if ($isf == "NN") $label = $pgv_lang["child"];
+												print "<tr><td class=\"facts_labelblue\">".$label."</td><td class=\"facts_valueblue, person_box$isf\">";
 												print_pedigree_person($newchil[$i],2,$view!="preview");
 												$personcount++;
 												print "</td></tr>\n";

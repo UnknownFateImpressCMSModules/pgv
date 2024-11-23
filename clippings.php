@@ -410,7 +410,8 @@ else if($action=='download') {
 	$head = find_gedcom_record("HEAD");
 	$placeform = trim(get_sub_record(1, "1 PLAC", $head));
 	if (!empty($placeform)) $filetext .= $placeform."\r\n";
-	else $filetext .= "1 PLAC\r\n2 FORM ".$pgv_lang["default_form"]."\r\n";
+//	else $filetext .= "1 PLAC\r\n2 FORM ".$pgv_lang["default_form"]."\r\n";
+	else $filetext .= "1 PLAC\r\n2 FORM "."City, County, State/Province, Country"."\r\n";
 	if ($convert=="yes") {
 		$filetext = preg_replace("/UTF-8/", "ANSI", $filetext);
 		$filetext = utf8_decode($filetext);

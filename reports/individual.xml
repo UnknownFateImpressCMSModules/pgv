@@ -59,7 +59,7 @@
 				</PGVRif>
 
 				<!-- print the person's facts -->
-				<PGVRTextBox border="1" width="$width" height="16" newline="1" fill="#DDDDDD">
+				<PGVRTextBox border="1" left="24" width="$width" height="16" top="70" newline="1" fill="#DDDDDD">
 					<PGVRText style="label1"><PGVRvar var="pgv_lang[personal_facts]" />   </PGVRText>
 				</PGVRTextBox>
 				<PGVRFacts ignore="$ignore" families="1">

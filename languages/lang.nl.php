@@ -8,7 +8,7 @@
 		Comments		: Dutch Language file for PhpGedView
 		Changelog		: See LANG_CHANGELOG.txt
 ===================================================*/
-# $Id: lang.nl.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+# $Id: lang.nl.php,v 1.118 2005/12/28 14:17:08 dick_kaas Exp $
 if (preg_match("/lang\...\.php$/", $_SERVER["PHP_SELF"])>0) {
 		print "You cannot access a language file directly.";
 		exit;
@@ -1058,60 +1058,84 @@ $pgv_lang["changed_mac"]			= "Regeleinden in Macintosh-formaat gevonden. Regelei
 $pgv_lang["process_error"]			= "Er is een probleem met de pagina. Een nieuwere versie kan niet worden gevonden.";
 $pgv_lang["upgrade_completed"]		= "Opwaarderen succesvol beëindigd";
 $pgv_lang["start_using_upgrad"]		= "Klik hier om te beginnen met versie";
+
 //-- statistics utility
-$pgv_lang["statutci"]				= "kan de index niet aanmaken";
-$pgv_lang["statnnames"]				= "aantal namen	=";
-$pgv_lang["statnfam"]				= "aantal gezinnen =";
-$pgv_lang["statnmale"]				= "aantal mannen   =";
-$pgv_lang["statnfemale"]			= "aantal vrouwen  =";
-$pgv_lang["statvars"]				= "Zet de volgende variabelen voor de plot";
-$pgv_lang["statlxa"]				= "langs x-as:";
-$pgv_lang["statlya"]				= "langs y-as:";
-$pgv_lang["statlza"]				= "langs z-as";
-$pgv_lang["stat_18_ard"]			= "leeftijd ten opzichte van overlijdensjaar.";
-$pgv_lang["stat_21_nok"]			= "aantal kinderen.";
-$pgv_lang["stat_gmx"]				= " controleer grenswaarden voor maand";
-$pgv_lang["stat_gax"]				= " controleer grenswaarden voor leeftijden";
-$pgv_lang["stat_200_none"]			= "alle (of leeg)";
-$pgv_lang["stat_302_cgp"]			= "perioden: controleer grenswaarden voor perioden z-as";
-$pgv_lang["stat_301_mf"]			= "m/v";
-$pgv_lang["stat_300_none"]			= "geen";
-$pgv_lang["stat_202_perc"]			= "percentage";
-$pgv_lang["stat_201_num"]			= "aantallen";
-$pgv_lang["stat_gnx"]				= " controleer grenswaarden voor aantallen";
-$pgv_lang["stat_19_arm"]			= "leeftijd bij huwelijk,";
-$pgv_lang["stat_20_arm1"]			= "leeftijd in jaar eerste huwelijk.";
-$pgv_lang["stat_17_arb"]			= "leeftijd ten opzichte van geboortejaar.";
-$pgv_lang["stat_16_mmb"]			= "Maanden tussen huwelijk en eerste kind";
-$pgv_lang["stat_15_mm1"]			= "Maand eerste huwelijk";
-$pgv_lang["stat_14_mb1"]			= "Maand van geboorte van eerste kind in relatie";
-$pgv_lang["stat_13_mm"]				= "Huwelijksmaand";
-$pgv_lang["stat_12_md"]				= "Overlijdensmaand";
-$pgv_lang["stat_11_mb"]				= "Geboortemaand";
-$pgv_lang["stat_10_none"]			= "geen";
-$pgv_lang["statar_xgm"]				= "grenswaarden voor maand (x-as):";
-$pgv_lang["statar_zgp"]				= "grenswaarden voor perioden (z-as):";
-$pgv_lang["statar_xga"]				= "keuzwaarden voor aantallen (x-as):";
-$pgv_lang["statar_xgl"]				= "grenswaarden voor leeftijden (x-as):";
-$pgv_lang["statar_xgp"]				= "grenswaarden voor perioden (z-as):";
-$pgv_lang["statmess1"]				= "<b>Verander eventueel de volgende waarden afhankelijk van settings x-as en z-as</b>";
-$pgv_lang["statreset"]				= "herstel";
-$pgv_lang["statsubmit"]				= "laat plot zien";
+$pgv_lang["statutci"]			= "unable to create index";
+$pgv_lang["statnnames"]                = "aantal namen    =";
+$pgv_lang["statnfam"]                  = "aantal families =";
+$pgv_lang["statnmale"]                 = "aantal mannen   =";
+$pgv_lang["statnfemale"]               = "aantal vrouwen  =";
+$pgv_lang["statvars"]			 = "Zet de volgende variabelen voor de plot";
+$pgv_lang["statlxa"]			 = "langs x-as:";
+$pgv_lang["statlya"]			 = "langs y-as:";
+$pgv_lang["statlza"]			 = "langs z-as";
+$pgv_lang["stat_10_none"]		= "blanco";
+$pgv_lang["stat_11_mb"]			= "Geboorten per maand";
+$pgv_lang["stat_12_md"]			= "Overlijdens per maand";
+$pgv_lang["stat_13_mm"]			= "Huwelijken per maand";
+$pgv_lang["stat_14_mb1"]		= "1e geboorte in relatie per maand";
+$pgv_lang["stat_15_mm1"]		= "1e huwelijk per maand";
+$pgv_lang["stat_16_mmb"]		= "Maanden tussen huwelijk en geboorte 1e kind.";
+$pgv_lang["stat_17_arb"]		= "Leeftijd t.o.v. geboortejaar.";
+$pgv_lang["stat_18_ard"]		= "Leeftijd t.o.v. overlijdensjaar.";
+$pgv_lang["stat_19_arm"]		= "Leeftijd in huwelijksjaar.";
+$pgv_lang["stat_20_arm1"]		= "Leeftijd bij 1e huwelijk.";
+$pgv_lang["stat_21_nok"]		= "Aantal kinderen.";
+//--$pgv_lang["stat_gmx"]			= " check grenswaarden maanden";
+//--$pgv_lang["stat_gax"]			= " check grenswaarden leeftijden";
+//--$pgv_lang["stat_gnx"]			= " check grenswaarden aantallen";
+$pgv_lang["stat_200_none"]		= "blanco";
+$pgv_lang["stat_201_num"]		= "aantallen";
+$pgv_lang["stat_202_perc"]		= "Percentage";
+$pgv_lang["stat_300_none"]		= "blanco";
+$pgv_lang["stat_301_mf"]		= "Man/vrouw";
+$pgv_lang["stat_302_cgp"]		= "perioden. check grenswaarden z-as";
+$pgv_lang["statmess1"]			 = "<b>Verander eventueel de volgende waarden afhankelijk van settings x-as en z-as</b>";
+$pgv_lang["statar_xg"]			 = "grenswaarden (x-as):";
+//--$pgv_lang["statar_xgp"]			 = "grenswaarden voor perioden  (x-as):";
+//--$pgv_lang["statar_xgl"]			 = "grenswaarden voor leeftijden(x-as):";
+//--$pgv_lang["statar_xgm"]			 = "grenswaarden voor maanden   (x-as):";
+//--$pgv_lang["statar_xga"]			 = "grenswaarden voor aantallen (x-as):";
+$pgv_lang["statar_zg"]			 = "grenswaarden (z-as):";
+//--$pgv_lang["statar_zgp"]			 = "grenswaarden voor perioden  (z-as):";
+$pgv_lang["statreset"]			 = "herstel";
+$pgv_lang["statsubmit"]			 = "laat plot zien";
 
 //-- statisticsplot utility
-$pgv_lang["stpl"]					= "...";
-$pgv_lang["stplnoim"]				= "niet geïmplementeerd:";
-$pgv_lang["stpltype"]				= "type:";
-$pgv_lang["stplinfo"]				= "variabelen voor deze grafiek:";
-$pgv_lang["stplGDno"]				= "De GD(Graphics Display) Library is niet in PHP 4 aanwezig. Vraag uw systeembeheerder deze te installeren. Dit eist PHP 4.3.8 of hoger<br>";
-$pgv_lang["stpljpgraphno"]			= "JPgraph modules zijn niet beschikbaar in phpgedview/jpgraph/. U kunt ze downloaden vanaf http://www.aditus.nu/jpgraph/jpdownload.php<br> <h3>Installeer eerst JPgraph in directory phpgedview/jpgraph/ </h3><br>";
-$pgv_lang["stplmf"]					= " / man-vrouw";
-$pgv_lang["stplipot"]				= " / per tijdeenheid";
-$pgv_lang["stplgzas"]				= "grenzen z-as:";
-$pgv_lang["stplmonth"]				= "maand";
-$pgv_lang["stplnumbers"]			= "aantallen";
-$pgv_lang["stplage"]				= "leeftijd";
-$pgv_lang["stplperc"]				= "percentage";
+$pgv_lang["stpl"]			 = "...";
+$pgv_lang["stplGDno"]			 = "De GD(Graphics Display) Library is niet in PHP 4 aanwezig. Vraag uw systeembeheerder deze te installeren. Dit eist PHP 4.3.8 of hoger<br>";
+$pgv_lang["stpljpgraphno"]		= "JPgraph modules zijn niet beschikbaar in PhpGedview/jpgraph/. U kunt ze downloaden vanaf http://www.aditus.nu/jpgraph/jpdownload.php<br> <h3>Installeer eerst JPgraph in directory PhpGedview/jpgraph/ </h3><br>";
+$pgv_lang["stpltype"]			 = "type:";
+$pgv_lang["stplnoim"]			 = " niet geimplementeerd:";
+$pgv_lang["stplinfo"]			 = "plotgegevens:";
+$pgv_lang["stplnumof"]			= "Aantal gegevens ";
+$pgv_lang["stplborns"]			= "Geboorten";
+$pgv_lang["stpldeath"]			= "Overlijden";
+$pgv_lang["stplmarr"]			= "Huwelijken";
+$pgv_lang["stplpmonth"]			= " per maand.n";
+$pgv_lang["stplagerel"]			= "Leeftijd gerelateerd aan ";
+$pgv_lang["stplyob"]			 = "geboortejaar";
+$pgv_lang["stplyod"]			 = "overlijdensjaar";
+$pgv_lang["stplaomd"]			 = "Leeftijd op huwelijksdatum:n";
+$pgv_lang["stplcpm"]			 = "Kinderen per huwelijk";
+$pgv_lang["stplmf"]			 = " / man-vrouw";
+$pgv_lang["stplipot"]			 = " / per tijdeenheid";
+$pgv_lang["stplgzas"]			 = "grenzen z-as:";
+$pgv_lang["stplmonth"]			 = "maand";
+$pgv_lang["stplnumbers"]		= "aantallen";
+$pgv_lang["stplage"]			 = "leeftijd";
+$pgv_lang["stplperc"]			 = "percentage";
+
+
+//-- slklist utility
+$pgv_lang["slklist_header"]		= "Maak een (EXCEL) SYLK bestand";
+$pgv_lang["slklist_lezen"]		= "Alle namen zijn gecontroleerd";
+$pgv_lang["slklist_progress1"]		= "Voortgang bij het controleren van individuele namen";
+$pgv_lang["slklist_maken"]		= "Alle namen staan in het bestand";
+$pgv_lang["slklist_progress2"]		= "Voortgang bij aanmaken van het bestand";
+$pgv_lang["slklist_tab"]		= "werkblad:";
+$pgv_lang["slklist_create"]		= " wordt aangemaakt in het bestand: ";
+
 $pgv_lang["alive_in_year"]			= "Levend in jaar";
 $pgv_lang["is_alive_in"]			= "Is in leven in ";
 $pgv_lang["alive"]					= "Levend ";

@@ -157,7 +157,12 @@ else if ($action=='get') {
 	}
 }
 else if ($action=='getvar') {
-	if ((!empty($pgv_user))&&(!empty($var))&&(isset($$var))&&(!in_array($var, $CONFIG_VARS))) {
+	$public_vars = array("READ_ONLY","CHARACTER_SET","GEDCOM","PEDIGREE_ROOT_ID");
+	if (!empty($var) && (in_array($var, $public_vars)) && isset($$var)) {
+		addDebugLog($action." var=$var SUCCESS\n".$$var);
+		print "SUCCESS\n".$$var;
+	}
+	else if ((!empty($pgv_user))&&(!empty($var))&&(isset($$var))&&(!in_array($var, $CONFIG_VARS))) {
 		addDebugLog($action." var=$var SUCCESS\n".$$var);
 		print "SUCCESS\n".$$var;
 	}

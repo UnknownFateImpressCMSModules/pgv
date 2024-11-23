@@ -1,0 +1,4 @@
+<!-- @version $Id: AUS_Tasmania.txt,v 1.2 2005/11/23 19:54:06 opus27 Exp $ -->
+North - North East
+North West
+South

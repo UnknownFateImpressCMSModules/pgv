@@ -5,7 +5,7 @@
  * @see http://susning.nu/Landskod  (list #7) for another list, taken from ISO standards
  * @package PhpGedView
  * @subpackage Languages
- * @version $Id: countries.en.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+ * @version $Id: countries.en.php,v 1.4 2005/12/16 13:06:29 canajun2eh Exp $
  */
 if (preg_match("/lang\...\.php$/", $_SERVER["PHP_SELF"])>0) {
 		print "You cannot access a language file directly.";
@@ -198,6 +198,7 @@ $countries["RUS"]="Russian Federation";
 $countries["RWA"]="Rwanda";
 $countries["SAU"]="Saudi Arabia (Kingdom of)";
 $countries["SCG"]="Serbia and Montenegro";
+$countries["SCT"]="Scotland";
 $countries["SDN"]="Sudan";
 $countries["SEN"]="Senegal";
 $countries["SGP"]="Singapore";
@@ -246,6 +247,7 @@ $countries["VIR"]="US Virgin Islands";
 $countries["VNM"]="Viet Nam";
 $countries["VUT"]="Vanuatu";
 $countries["WLF"]="Wallis and Futuna Islands";
+$countries["WLS"]="Wales";
 $countries["WSM"]="Samoa";
 $countries["YEM"]="Yemen";
 $countries["ZAF"]="South Africa";

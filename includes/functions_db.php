@@ -883,6 +883,7 @@ function setup_database($stage) {
 	if (preg_match("/mysql|pgsql/", $DBTYPE)>0) $DBCONN->autoCommit(false);
 	//-- start a transaction
 	$sql = "BEGIN";
+	if ($DBTYPE=='mssql') $sql = "BEGIN TRANSACTION";
 	$res =& dbquery($sql);
 }
 
@@ -927,6 +928,7 @@ function cleanup_database() {
 	*/
 	//-- end the transaction
 	$sql = "COMMIT";
+	if ($DBTYPE=='mssql') $sql = "COMMIT TRANSACTION";
 	$res =& dbquery($sql);
 	if (preg_match("/mysql|pgsql/", $DBTYPE)>0) $DBCONN->autoCommit(false);
 	RETURN;
@@ -1151,9 +1153,11 @@ function get_other_list() {
  * @return	array $myindilist array with all individuals that matched the query
  */
 function search_indis($query, $allgeds=false, $ANDOR="AND") {
-	global $TBLPREFIX, $GEDCOM, $indilist, $DBCONN, $REGEXP_DB;
+	global $TBLPREFIX, $GEDCOM, $indilist, $DBCONN, $REGEXP_DB, $DBTYPE;
 	$myindilist = array();
-	if ($REGEXP_DB) $term = "REGEXP";
+	//print $DBTYPE;
+	if (preg_match("/mysql/i", $DBTYPE)>0) $term = "REGEXP";
+	else if ($DBTYPE == "pgsql") $term = "~";
 	else $term = "LIKE";
 	if (!is_array($query)) $sql = "SELECT i_id, i_name, i_file, i_gedcom, i_isdead, i_letter, i_surname FROM ".$TBLPREFIX."individuals WHERE (i_gedcom $term '".$DBCONN->escapeSimple(strtoupper($query))."' OR i_gedcom $term '".$DBCONN->escapeSimple(str2upper($query))."' OR i_gedcom $term '".$DBCONN->escapeSimple(str2lower($query))."')";
 	else {
@@ -1251,9 +1255,10 @@ function search_indis_year_range($startyear, $endyear, $allgeds=false) {
 
 //-- search through the gedcom records for individuals
 function search_indis_names($query, $allgeds=false) {
-	global $TBLPREFIX, $GEDCOM, $indilist, $DBCONN, $REGEXP_DB;
+	global $TBLPREFIX, $GEDCOM, $indilist, $DBCONN, $REGEXP_DB,$DBTYPE;
 
-	if ($REGEXP_DB) $term = "REGEXP";
+	if ($DBTYPE == "mysql") $term = "REGEXP";
+	else if ($DBTYPE == "pgsql") $term = "~";
 	else $term = "LIKE";
 
 	$myindilist = array();
@@ -1287,8 +1292,9 @@ function search_indis_names($query, $allgeds=false) {
 
 //-- search through the gedcom records for families
 function search_fams($query, $allgeds=false, $ANDOR="AND") {
-	global $TBLPREFIX, $GEDCOM, $famlist, $DBCONN, $REGEXP_DB;
-	if ($REGEXP_DB) $term = "REGEXP";
+	global $TBLPREFIX, $GEDCOM, $famlist, $DBCONN, $REGEXP_DB,$DBTYPE;
+	if ($DBTYPE == "mysql") $term = "REGEXP";
+	else if ($DBTYPE == "pgsql") $term = "~";
 	else $term = "LIKE";
 	$myfamlist = array();
 	if (!is_array($query)) $sql = "SELECT f_id, f_husb, f_wife, f_file, f_gedcom FROM ".$TBLPREFIX."families WHERE (f_gedcom $term '".$DBCONN->escapeSimple(strtoupper($query))."' OR f_gedcom $term '".$DBCONN->escapeSimple(str2upper($query))."' OR f_gedcom $term '".$DBCONN->escapeSimple(str2lower($query))."')";
@@ -1377,8 +1383,9 @@ function search_fams_year_range($startyear, $endyear, $allgeds=false) {
 
 //-- search through the gedcom records for sources
 function search_sources($query, $allgeds=false) {
-	global $TBLPREFIX, $GEDCOM, $DBCONN, $REGEXP_DB;
-	if ($REGEXP_DB) $term = "REGEXP";
+	global $TBLPREFIX, $GEDCOM, $DBCONN, $REGEXP_DB,$DBTYPE;
+	if ($DBTYPE == "mysql") $term = "REGEXP";
+	else if ($DBTYPE == "pgsql") $term = "~";
 	else $term = "LIKE";
 	$mysourcelist = array();
 	$sql = "SELECT s_id, s_name, s_file, s_gedcom FROM ".$TBLPREFIX."sources WHERE (s_gedcom $term '".$DBCONN->escapeSimple(strtoupper($query))."' OR s_gedcom $term '".$DBCONN->escapeSimple(str2upper($query))."' OR s_gedcom $term '".$DBCONN->escapeSimple(str2lower($query))."')";
@@ -1413,8 +1420,9 @@ function search_sources($query, $allgeds=false) {
 
 //-- search through the gedcom records for sources
 function search_repos($query, $allgeds=false) {
-	global $TBLPREFIX, $GEDCOM, $DBCONN, $REGEXP_DB;
-	if ($REGEXP_DB) $term = "REGEXP";
+	global $TBLPREFIX, $GEDCOM, $DBCONN, $REGEXP_DB,$DBTYPE;
+	if ($DBTYPE == "mysql") $term = "REGEXP";
+	else if ($DBTYPE == "pgsql") $term = "~";
 	else $term = "LIKE";
 	$myrepolist = array();
 	$sql = "SELECT o_id, o_file, o_gedcom FROM ".$TBLPREFIX."other WHERE o_type='REPO' AND (o_gedcom $term '".$DBCONN->escapeSimple(strtoupper($query))."' OR o_gedcom $term '".$DBCONN->escapeSimple(str2upper($query))."' OR o_gedcom $term '".$DBCONN->escapeSimple(str2lower($query))."')";
@@ -1713,7 +1721,7 @@ function get_fam_alpha() {
 		if (!isset($famalpha[$letter])) $famalpha[$letter]=$letter;
 	}
 	$res->free();
-	$sql = "SELECT f_id FROM ".$TBLPREFIX."families WHERE f_file='".$DBCONN->escapeSimple($GEDCOM)."' AND (f_husb='' || f_wife='')";
+	$sql = "SELECT f_id FROM ".$TBLPREFIX."families WHERE f_file='".$DBCONN->escapeSimple($GEDCOM)."' AND (f_husb='' OR f_wife='')";
 	$res =& dbquery($sql);
 	if ($res->numRows()>0) {
 		$famalpha["@"] = "@";
@@ -1900,7 +1908,7 @@ function get_alpha_fams($letter) {
 	$myindilist = get_alpha_indis($letter);
 	$SHOW_MARRIED_NAMES = $temp;
 	//-- escaped letter for regular expressions
-	if ($letter=="(" || $letter=="[" || $letter=="?" || $letter=="/" || $letter=="*" || $letter=="+") $letter = "\\".$letter;
+	if ($letter=="(" || $letter=="[" || $letter=="?" || $letter=="/" || $letter=="*" || $letter=="+" || $letter==')') $letter = "\\".$letter;
 
 	foreach($myindilist as $gid=>$indi) {
 		$ct = preg_match_all("/1 FAMS @(.*)@/", $indi["gedcom"], $match, PREG_SET_ORDER);
@@ -2233,7 +2241,7 @@ function get_top_surnames($num) {
 	global $TBLPREFIX, $GEDCOM, $DBCONN;
 
 	$surnames = array();
-	$sql = "SELECT COUNT(i_surname) as count, i_surname from ".$TBLPREFIX."individuals WHERE i_file='".$DBCONN->escapeSimple($GEDCOM)."' GROUP BY i_surname ORDER BY count DESC";
+	$sql = "SELECT COUNT(i_surname) AS count, i_surname FROM ".$TBLPREFIX."individuals WHERE i_file='".$DBCONN->escapeSimple($GEDCOM)."' GROUP BY i_surname ORDER BY count DESC";
 	$res =& dbquery($sql);
 	if (!DB::isError($res)) {
 		while($row =& $res->fetchRow()) {
@@ -2245,7 +2253,7 @@ function get_top_surnames($num) {
 		}
 		$res->free();
 	}
-	$sql = "SELECT COUNT(n_surname) as count, n_surname from ".$TBLPREFIX."names WHERE n_file='".$DBCONN->escapeSimple($GEDCOM)."' AND n_type!='C' GROUP BY n_surname ORDER BY count DESC";
+	$sql = "SELECT COUNT(n_surname) AS count, n_surname FROM ".$TBLPREFIX."names WHERE n_file='".$DBCONN->escapeSimple($GEDCOM)."' AND n_type!='C' GROUP BY n_surname ORDER BY count DESC";
 	$res =& dbquery($sql);
 	if (!DB::isError($res)) {
 		while($row =& $res->fetchRow()) {

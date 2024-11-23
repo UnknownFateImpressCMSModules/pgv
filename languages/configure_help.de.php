@@ -13,7 +13,7 @@
 				11.02.2003 Renamed from configure_help.ge.php to configure_help.de.php
    2005.02.19 "PhpGedView" and "GEDCOM" made consistent across all language files  G.Kroll (canajun2eh)
 ===================================================*/
-# $Id: configure_help.de.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+# $Id: configure_help.de.php,v 1.55 2005/03/30 23:43:48 yalnifj Exp $
 if (preg_match("/configure_help\...\.php$/", $_SERVER["PHP_SELF"])>0) {
         print "You cannot access a language file directly.";
         exit;

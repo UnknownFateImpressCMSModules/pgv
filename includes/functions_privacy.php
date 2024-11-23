@@ -280,7 +280,7 @@ function displayDetails($indirec) {
 		$type = "INDI";
 	}
 //    print "(Display Detail pid, type: ".$pid.", ".$type.") ";
-   
+
 	return displayDetailsByID($pid, $type);
 }
 }
@@ -405,8 +405,8 @@ function displayDetailsByID($pid, $type = "INDI") {
 				if (($cyear-$byear) <= $MAX_ALIVE_AGE) return false;
 			}
 		}
-		$disp = is_dead_id($pid);
-		if ($disp) {
+//		$disp = is_dead_id($pid);
+		if (is_dead_id($pid)) {
 			if ($SHOW_DEAD_PEOPLE>=getUserAccessLevel($username)) return true;
 			else return false;
 		}
@@ -514,7 +514,7 @@ function showLivingNameByID($pid) {
 		}
 	}
 	*/
-	
+
 }
 }
 

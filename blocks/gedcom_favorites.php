@@ -21,7 +21,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id: gedcom_favorites.php,v 1.1 2005/10/07 18:08:13 skenow Exp $
+ * $Id: gedcom_favorites.php,v 1.5 2005/09/15 16:39:27 yalnifj Exp $
  * @package PhpGedView
  * @subpackage Blocks
  */
@@ -66,28 +66,33 @@ function print_gedcom_favorites($block = true, $config="", $side, $index) {
 					else print "NN";
 					print "\" style=\"position: static; left: 0px; top: auto; width: 99%; z-index: 1;\">\n";
 					print_pedigree_person($favorite["gid"], $style, 1);
-					if ($command=="user" || userGedcomAdmin(getUserName())) print "<font size=\"1\"><a href=\"index.php?command=$command&amp;action=deletefav&amp;fv_id=".$key."\" onclick=\"return confirm('".$pgv_lang["confirm_fav_remove"]."');\">".$pgv_lang["remove"]."</a><br />\n";
+					if ($command=="user" || userGedcomAdmin(getUserName())) print "<font size=\"1\"><a href=\"index.php?command=$command&amp;action=deletefav&amp;fv_id=".$key."\" onclick=\"return confirm('".$pgv_lang["confirm_fav_remove"]."');\">".$pgv_lang["remove"]."</a></font><br />\n";
 					print "</div>\n";
 				}
 			}
 		}
 		if (userGedcomAdmin(getUserName())) { ?>
 			<script language="JavaScript" type="text/javascript">
-			var pasteto;
-			function iopenfind(textbox) {
-					pasteto = textbox;
-					findwin = window.open('findid.php', '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
+			<!--
+			var gpasteto;
+			var gform;
+			function giopenfind(textbox, form) {
+					gpasteto = textbox;
+					gform = form;
+					findwin = window.open('findid.php?callback=gpaste_id', '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
 			}
-			function paste_id(value) {
-					pasteto.value=value;
-					document.addfavform.submit();
+			function gpaste_id(value) {
+					gpasteto.value=value;
+					gform.submit();
 			}
+			//-->
 			</script>
 			<?php
-			print "<form name=\"addfavform\" method=\"get\" action=\"index.php\">\n";
+			print "<form name=\"addgfavform\" method=\"get\" action=\"index.php\">\n";
 			print "<input type=\"hidden\" name=\"action\" value=\"addfav\" />\n";
 			print "<input type=\"hidden\" name=\"command\" value=\"$command\" />\n";
-			print "<input class=\"pedigree_form\" type=\"text\" name=\"gid\" size=\"3\" value=\"\" /><font size=\"1\"><a href=\"#\" onclick=\"iopenfind(document.addfavform.gid); return false;\"> ".$pgv_lang["find_id"]."</a></font>";
+			print "<input type=\"hidden\" name=\"favtype\" value=\"gedcom\" />\n";
+			print "<input class=\"pedigree_form\" type=\"text\" name=\"gid\" size=\"3\" value=\"\" /><font size=\"1\"><a href=\"#\" onclick=\"giopenfind(document.addgfavform.gid, document.addgfavform); return false;\"> ".$pgv_lang["find_id"]."</a></font>";
 			print " <input type=\"submit\" value=\"".$pgv_lang["add"]."\" style=\"font-size: 8pt; \" />\n";
 			print "\n</form>\n";
 		}

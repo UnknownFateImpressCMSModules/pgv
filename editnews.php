@@ -55,11 +55,14 @@ if ($action=="compose") {
 				document.messageform.title.focus();
 				return false;
 			}
+			<?php if (! file_exists("modules/FCKeditor/fckeditor.js")) { //will be empty for FCK. FIXME, use FCK API to check for content.
+			?>
 			if (frm.text.value=="") {
 				alert('<?php print $pgv_lang["enter_text"]; ?>');
 				document.messageform.text.focus();
 				return false;
 			}
+			<?php } ?>
 			return true;
 		}
 	</script>
@@ -83,7 +86,34 @@ if ($action=="compose") {
 	print "<input type=\"hidden\" name=\"date\" value=\"".$news["date"]."\" />\n";
 	print "<table>\n";
 	print "<tr><td align=\"right\">".$pgv_lang["title"]."</td><td><input type=\"text\" name=\"title\" size=\"50\" value=\"".$news["title"]."\" /><br /></td></tr>\n";
-	print "<tr><td valign=\"top\" align=\"right\">".$pgv_lang["article_text"]."<br /></td><td><textarea name=\"text\" cols=\"50\" rows=\"7\">".$news["text"]."</textarea><br /></td></tr>\n";
+	print "<tr><td valign=\"top\" align=\"right\">".$pgv_lang["article_text"]."<br /></td>";
+	print "<td>";
+	if (file_exists("modules/FCKeditor/fckeditor.js")) { // use FCKeditor module
+
+		$trans = get_html_translation_table(HTML_SPECIALCHARS);
+		$trans = array_flip($trans);
+		$news["text"] = strtr($news["text"], $trans);
+		$news["text"] = nl2br($news["text"]);
+
+?>
+
+	<script type="text/javascript" src="./modules/FCKeditor/fckeditor.js"></script>
+	<script type="text/javascript">
+	  var oFCKeditor = new FCKeditor( 'text' ) ;
+	  oFCKeditor.BasePath = './modules/FCKeditor/' ;
+	  oFCKeditor.Value = "<?php  print str_replace('"','\"',$news["text"]); ?>" ;
+	  oFCKeditor.Width = 700 ;
+	  oFCKeditor.Height = "250" ;
+	  oFCKeditor.Config[ "AutoDetectLanguage" ] = false ; //use PGV language
+	  oFCKeditor.Config[ "DefaultLanguage" ] = "<?php print $language_settings[$LANGUAGE]["lang_short_cut"]; ?>" ; //get code for current PGV language
+	  oFCKeditor.Create() ;
+	</script>
+
+<?php
+	} else { //use standard textarea
+		print "<textarea name=\"text\" cols=\"100\" rows=\"10\">".$news["text"]."</textarea>";
+	}
+	print "<br /></td></tr>\n";
 	print "<tr><td></td><td><input type=\"submit\" value=\"".$pgv_lang["save"]."\" /></td></tr>\n";
 	print "</table>\n";
 	print "</form>\n";

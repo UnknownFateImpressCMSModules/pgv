@@ -607,6 +607,9 @@ width:99%;
 #pgvcontent table {
 	width: auto;
 }
+#pgvcontent table table {
+	width: 100%;
+}
 #pgvcontent td {
 	vertical-align: middle;
 }

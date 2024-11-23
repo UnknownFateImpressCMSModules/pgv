@@ -127,5 +127,6 @@ if($SHOW_COUNTER)
     $hits = str_replace("$i","<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES[$i]["digit"]."\" alt='pgv_counter' />","$hits");
 
   $hits = str_replace('alt=""','alt="" border="0" height="12" width="10"',$hits);
+  $hits = '<span dir="ltr">'.$hits.'</span>';
 }
 ?>

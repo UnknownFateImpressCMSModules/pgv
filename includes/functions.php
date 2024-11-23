@@ -23,7 +23,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * @package PhpGedView
- * @version $Id: functions.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: functions.php,v 1.27 2005/12/16 15:53:54 yalnifj Exp $
  */
 
 /**
@@ -61,7 +61,7 @@ function check_db() {
 		$options = array(
 			'debug' 	  => 3,
 			'portability' => DB_PORTABILITY_ALL,
-			'persistent'  => true
+			'persistent'  => false
 		);
 
 		$DBCONN = DB::connect($dsn, $options);
@@ -404,6 +404,8 @@ function get_sub_record($level, $tag, $gedrec, $num=1) {
  * @return array an array of the raw subrecords to return
  */
 function get_all_subrecords($gedrec, $ignore="", $families=true, $sort=true, $ApplyPriv=true) {
+	global $ASC, $IGNORE_FACTS, $IGNORE_YEAR;
+	
 	$repeats = array();
 
 	$id = "";
@@ -470,7 +472,12 @@ function get_all_subrecords($gedrec, $ignore="", $families=true, $sort=true, $Ap
 		}
 	}
 
-	if ($sort) usort($repeats, "compare_facts");
+	if ($sort) {
+		$ASC = 0;
+  		$IGNORE_FACTS = 0;
+  		$IGNORE_YEAR = 0;
+		usort($repeats, "compare_facts");
+	}
 	return $repeats;
 }
 
@@ -744,7 +751,7 @@ function find_highlighted_object($pid, $indirec) {
 		}
 		else if (($object["PRIM"]=="Y")&&($highlight["PRIM"]!="Y")) $highlight = $object;
 	}
-	if (!empty($highlight["file"]) && ($highlight["PRIM"]!="N") && ($highlight["THUM"]!="N")) {
+	if (!empty($highlight["file"]) && (($highlight["PRIM"]!="N") || ($highlight["THUM"]!="N"))) {
 		if (!file_exists(filename_decode($highlight["thumb"])) && $highlight["THUM"]!="Y") {
 			if (is_writable($MEDIA_DIRECTORY."thumbs")) generate_thumbnail($highlight["file"], $highlight["thumb"]);
 		}
@@ -915,6 +922,14 @@ function generate_thumbnail($filename, $thumbnail) {
 	global $MEDIA_DIRECTORY;
 
 	if (file_exists($thumbnail)) return false;
+	if (!is_writable($MEDIA_DIRECTORY."thumbs")) return false;
+	$ext = "";
+	$ct = preg_match("/\.([^\.]+)$/", $filename, $match);
+	if ($ct>0) {
+		$ext = strtolower(trim($match[1]));
+	}
+	if ($ext!='jpg' && $ext!='jpeg' && $ext!='gif' && $ext!='png') return false;
+	
 	if (!strstr($filename, "://")) {
 		$imgsize = @getimagesize($filename);
 		//-- check if file is small enough to be its own thumbnail
@@ -940,49 +955,45 @@ function generate_thumbnail($filename, $thumbnail) {
 		if (($imgsize[0]<150)&&($imgsize[1]<150)) return true;
 	}
 
-		$width = 100;
-		$height = round($imgsize[1] * ($width/$imgsize[0]));
-		$ct = preg_match("/\.([^\.]+)$/", $filename, $match);
-		if ($ct>0) {
-			$ext = strtolower(trim($match[1]));
-			if ($ext=="gif") {
-				if (function_exists("imagecreatefromgif") && function_exists("imagegif")) {
-					$im = imagecreatefromgif($filename);
-					if (empty($im)) return false;
-					$new = imagecreatetruecolor($width, $height);
-					imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
-					imagegif($new, $thumbnail);
-					imagedestroy($im);
-					imagedestroy($new);
-					return true;
-				}
-			}
-			else if ($ext=="jpg" || $ext=="jpeg") {
-				if (function_exists("imagecreatefromjpeg") && function_exists("imagejpeg")) {
-					$im = imagecreatefromjpeg($filename);
-					if (empty($im)) return false;
-					$new = imagecreatetruecolor($width, $height);
-					imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
-					imagejpeg($new, $thumbnail);
-					imagedestroy($im);
-					imagedestroy($new);
-					return true;
-				}
-			}
-			else if ($ext=="png") {
-				if (function_exists("imagecreatefrompng") && function_exists("imagepng")) {
-					$im = imagecreatefrompng($filename);
-					if (empty($im)) return false;
-					$new = imagecreatetruecolor($width, $height);
-					imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
-					imagepng($new, $thumbnail);
-					imagedestroy($im);
-					imagedestroy($new);
-					return true;
-				}
-			}
+	$width = 100;
+	$height = round($imgsize[1] * ($width/$imgsize[0]));
+	if ($ext=="gif") {
+		if (function_exists("imagecreatefromgif") && function_exists("imagegif")) {
+			$im = imagecreatefromgif($filename);
+			if (empty($im)) return false;
+			$new = imagecreatetruecolor($width, $height);
+			imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
+			imagegif($new, $thumbnail);
+			imagedestroy($im);
+			imagedestroy($new);
+			return true;
 		}
-
+	}
+	else if ($ext=="jpg" || $ext=="jpeg") {
+		if (function_exists("imagecreatefromjpeg") && function_exists("imagejpeg")) {
+			$im = imagecreatefromjpeg($filename);
+			if (empty($im)) return false;
+			$new = imagecreatetruecolor($width, $height);
+			imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
+			imagejpeg($new, $thumbnail);
+			imagedestroy($im);
+			imagedestroy($new);
+			return true;
+		}
+	}
+	else if ($ext=="png") {
+		if (function_exists("imagecreatefrompng") && function_exists("imagepng")) {
+			$im = imagecreatefrompng($filename);
+			if (empty($im)) return false;
+			$new = imagecreatetruecolor($width, $height);
+			imagecopyresampled($new, $im, 0, 0, 0, 0, $width, $height, $imgsize[0], $imgsize[1]);
+			imagepng($new, $thumbnail);
+			imagedestroy($im);
+			imagedestroy($new);
+			return true;
+		}
+	}
+		
 	return false;
 }
 

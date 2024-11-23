@@ -1,0 +1,8 @@
+<!-- @version $Id: AUS_Western-Australia.txt,v 1.2 2005/11/23 19:54:06 opus27 Exp $ -->
+Gascoyne Region
+Goldfields Region
+Kimberley Region
+Mid West
+Perth
+Pilbara Region
+South West

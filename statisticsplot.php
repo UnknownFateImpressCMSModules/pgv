@@ -390,7 +390,7 @@ $hulpar= array();
 	$hulpar= explode(",",$xas_grenzen);
 //--print "string x-as".$xas_grenzen."<BR>";
 //--for ($k=0;$k<10;$k++) {print "grenzen x-as:" . $k .":" . $hulpar[$k];}print "<br>";
-	$i=1; $xdata[0]= "<" . "$hulpar[0]"; $xgrenzen[0]= $hulpar[0]-1;
+	$i=1; $xdata[0]= "<=" . "$hulpar[0]"; $xgrenzen[0]= $hulpar[0]-1;
 	while (isset($hulpar[$i]))
 	{	$i1= $i-1; 
 		if (($hulpar[$i] - $hulpar[$i1]) == 1) {$xdata[$i]= "$hulpar[$i1]";}
@@ -399,11 +399,11 @@ $hulpar= array();
 		$xgrenzen[$i]= $hulpar[$i]; $i++;
 //--print " xgrenzen:".$i.":".$xgrenzen[$i-1].":".$xdata[$i-1].":<BR>";
 	}
-	$xmax= $i; $xmax1= $xmax-1; $xdata[$xmax]= ">" . "$hulpar[$xmax1]"; $xgrenzen[$xmax]= 10000;
+	$xmax= $i; $xmax1= $xmax-1; $xdata[$xmax]= "=>" . "$hulpar[$xmax1]"; $xgrenzen[$xmax]= 10000;
 	$xmax= $xmax+1;
 	if ($xmax > 20) {$xmax=20;}
 }
-//regel 389
+
 function calc_legend($grenzen_zas)
 {
 global $x_as,$y_as, $z_as, $nrfam, $famgeg, $nrpers, $persgeg, $key2ind, $n1;
@@ -438,8 +438,9 @@ global $x_as,$y_as, $z_as, $nrfam, $famgeg, $nrpers, $persgeg, $key2ind, $n1;
 global $legend, $xdata, $ydata, $xmax, $xgrenzen, $zmax, $zgrenzen, $xgiven,$zgiven, $percentage, $man_vrouw;
 global $pgv_lang;
 
-$monthdata= array();
 $monthdata= array("jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec");
+$qdata=     array("Q1","Q2","Q3","Q4");
+$hdata=     array("H1","H2");
 
 //--print "xas: " . $x_as . " current: " . $current . "<br>";
 if ($x_as == $current)
@@ -449,9 +450,18 @@ if ($x_as == $current)
 	$xtitle= $pgv_lang["$xt"]; $ytitle= $pgv_lang["stplnumbers"];
 	$grenzen_xas= $gx; $grenzen_zas= $gz;
 	if ($xg == true)
-	{$xdata=$monthdata; $xmax=12;}
+	{	if ($grenzen_xas == "1,2,3,4,5,6,7,8,9,10,11,12")
+		{	$xdata=$monthdata; $xmax=12;}
+		else
+		{	$xgiven= false; calc_axis($grenzen_xas);
+			if ($grenzen_xas == "3,6,9,12")
+			{	$xdata=$qdata; $xmax=4;}
+			else if ($grenzen_xas == "6,12")
+			{	$xdata=$hdata; $xmax=2;}
+		}
+	}
 	else
-	{ calc_axis($grenzen_xas);}
+	{ 	calc_axis($grenzen_xas);}
 	calc_legend($grenzen_zas);
 
 	$percentage= false; $ytitle= $pgv_lang["stplnumbers"];
@@ -519,10 +529,12 @@ $keys= array();
 	$x_as= $_POST["x-as"];
 	$y_as= $_POST["y-as"];
 	$z_as= $_POST["z-as"];
-	$xas_grenzen_leeftijden= $_POST["xas-grenzen-leeftijden"];
-	$xas_grenzen_maanden= $_POST["xas-grenzen-maanden"];
-	$xas_grenzen_aantallen= $_POST["xas-grenzen-aantallen"];
-	$zas_grenzen_periode= $_POST["zas-grenzen-periode"];
+	$xas_grenzen= $_POST["xas-grenzen"];
+	$zas_grenzen= $_POST["zas-grenzen"];
+//--	$xas_grenzen_leeftijden= $_POST["xas-grenzen-leeftijden"];
+//--	$xas_grenzen_maanden= $_POST["xas-grenzen-maanden"];
+//--	$xas_grenzen_aantallen= $_POST["xas-grenzen-aantallen"];
+//--	$zas_grenzen_periode= $_POST["zas-grenzen-periode"];
 //--	print " sort, x-as,y-as,blokken,periode:" . $x_as . ":". $y_as . ":". $z_as . ":" . 
 //--		$xas_grenzen_leeftijden . ":" . $xas_grenzen_maanden . ":" . $xas_grenzen_aantallen . ":" . $zas_grenzen_periode . "<BR>";
 
@@ -549,27 +561,29 @@ $keys= array();
 	$ystr="";
 //regel 508
 //-- Set params for request out of the information for plot
-	$g_xas= "1,2,3,4,5,6,7,8,9,10,11,12"; //should not be needed. but just for month
-	$xgl= $xas_grenzen_leeftijden;
-	$xgm= $xas_grenzen_maanden;
-	$xga= $xas_grenzen_aantallen;
-	$zgp= $zas_grenzen_periode;
+//--	$g_xas= "1,2,3,4,5,6,7,8,9,10,11,12"; //should not be needed. but just for month
+	$xg= $xas_grenzen;
+	$zg= $zas_grenzen;
+//--	$xgl= $xas_grenzen_leeftijden;
+//--	$xgm= $xas_grenzen_maanden;
+//--	$xga= $xas_grenzen_aantallen;
+//--	$zgp= $zas_grenzen_periode;
 
 //-- end of setting variables	
 
 //---------nr,bron ,xgiven,zgiven,	title,      xtitle,   ytitle, grenzen_xas, grenzen-zas,,
 //--print "true false". true .":" . false ."<br>";
-set_params(11,"IND", true,  false, stat_11_mb,  stplmonth, $y_as, $g_xas, $zgp,bimo);  //plot aantal geboorten per maand
-set_params(12,"IND", true,  false, stat_12_md,  stplmonth, $y_as, $g_xas, $zgp,demo);  //plot aantal overlijdens per maand
-set_params(13,"FAM", true,  false, stat_13_mm,  stplmonth, $y_as, $g_xas, $zgp,mamo);  //plot aantal huwelijken per maand
-set_params(14,"FAM", true,  false, stat_14_mb1, stplmonth, $y_as, $g_xas, $zgp,bimo1); //plot aantal 1e geboorten per huwelijk per maand
-set_params(15,"FAM", true,  false, stat_15_mm1, stplmonth, $y_as, $g_xas, $zgp,mamo1); //plot 1e huwelijken per maand
-set_params(16,"FAM", false, false, stat_16_mmb, stplmarrbirth,$y_as, $xgm,$zgp,mamam); //plot tijd tussen 1e geboort en huwelijksdatum
-set_params(17,"IND", false, false, stat_17_arb, stplage,   $y_as, $xgl,   $zgp,agbi);  //plot leeftijd t.o.v. geboortedatum
-set_params(18,"IND", false, false, stat_18_ard, stplage,   $y_as, $xgl,   $zgp,agde);  //plot leeftijd t.o.v. overlijdensdatum
-set_params(19,"FAM", false, false, stat_19_arm, stplage,   $y_as, $xgl,   $zgp,agma);  //plot leeftijd op de huwelijksdatum
-set_params(20,"FAM", false, false, stat_20_arm1,stplage,   $y_as, $xgl,   $zgp,agma1); //plot leeftijd op de 1e huwelijksdatum
-set_params(21,"FAM", false, false, stat_21_nok, stplnumbers,$y_as,$xga,   $zgp,nuch);  //plot plot aantal kinderen in een maand
+set_params(11,"IND", true,  false, stat_11_mb,  stplmonth, $y_as, $xg, $zg,bimo);  //plot aantal geboorten per maand
+set_params(12,"IND", true,  false, stat_12_md,  stplmonth, $y_as, $xg, $zg,demo);  //plot aantal overlijdens per maand
+set_params(13,"FAM", true,  false, stat_13_mm,  stplmonth, $y_as, $xg, $zg,mamo);  //plot aantal huwelijken per maand
+set_params(14,"FAM", true,  false, stat_14_mb1, stplmonth, $y_as, $xg, $zg,bimo1); //plot aantal 1e geboorten per huwelijk per maand
+set_params(15,"FAM", true,  false, stat_15_mm1, stplmonth, $y_as, $xg, $zg,mamo1); //plot 1e huwelijken per maand
+set_params(16,"FAM", false, false, stat_16_mmb, stplmarrbirth,$y_as, $xg,$zg,mamam); //plot tijd tussen 1e geboort en huwelijksdatum
+set_params(17,"IND", false, false, stat_17_arb, stplage,   $y_as, $xg,   $zg,agbi);  //plot leeftijd t.o.v. geboortedatum
+set_params(18,"IND", false, false, stat_18_ard, stplage,   $y_as, $xg,   $zg,agde);  //plot leeftijd t.o.v. overlijdensdatum
+set_params(19,"FAM", false, false, stat_19_arm, stplage,   $y_as, $xg,   $zg,agma);  //plot leeftijd op de huwelijksdatum
+set_params(20,"FAM", false, false, stat_20_arm1,stplage,   $y_as, $xg,   $zg,agma1); //plot leeftijd op de 1e huwelijksdatum
+set_params(21,"FAM", false, false, stat_21_nok, stplnumbers,$y_as,$xg,   $zg,nuch);  //plot plot aantal kinderen in een maand
 
 //--print "\n\t\t</td>\n\t\t</tr>\n\t</table></center>";
 //--print "<br>";

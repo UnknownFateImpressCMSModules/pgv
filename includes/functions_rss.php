@@ -19,7 +19,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * @version $Id: functions_rss.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: functions_rss.php,v 1.4 2005/12/29 17:12:42 canajun2eh Exp $
  * @package PhpGedView
  * @subpackage RSS
  */
@@ -48,320 +48,324 @@ function iso8601_date($time) {
 }
 
 function getUpcomingEvents() {
-        global $pgv_lang, $month, $year, $day, $monthtonum, $HIDE_LIVE_PEOPLE, $SHOW_ID_NUMBERS, $SHOW_FAM_ID_NUMBERS, $command, $indilist, $TEXT_DIRECTION;
-        global $PGV_IMAGES, $PGV_IMAGE_DIR,$SERVER_URL;
-
-        if ($command=="user") $filter = "living";
-        else $filter = "all";
-
-        $daytext = "";
-        $dataArray[0] = $pgv_lang["upcoming_events"];
-        $dataArray[1] = time();
-        $monthstart = mktime(1,0,0,$monthtonum[strtolower($month)],$day,$year);
-        $mmon = strtolower(date("M", $monthstart));
-        $myindilist = array();
-        $myfamlist = array();
-        $query = "2 DATE [0-9]{1,2} $mmon";
-        $myindilist = search_indis($query);
-        $myfamlist = search_fams($query);
-        if ((count($myindilist)>0)||(count($myfamlist)>0)) {
-                $oldmonth=$month;
-                $oldyear = $year;
-                $oldday = $day;
-                for($k=0; $k<30; $k++) {
-                        $mday = date("j", $monthstart);
-                        $mmon = strtolower(date("M", $monthstart));
-                        $day = $mday;
-                        $year = (int)date("Y", $monthstart);
-                        if ($mmon!=strtolower($month)) {
-                                $query = "2 DATE [0-9]{1,2} $mmon";
-                                $myindilist = search_indis($query);
-                                $myfamlist = search_fams($query);
-                                $month=$mmon;
-                        }
-                        $dayindilist = array();
-                        if ($mday<10) $query = "2 DATE 0?$mday $mmon";
-                        else $query = "2 DATE $mday $mmon";
-                        foreach($myindilist as $gid=>$indi) {
-                                if (preg_match("/$query/i", $indi["gedcom"])>0) {
-                                        if (displayDetailsById($gid)) $dayindilist[$gid]=$indi;
-                                }
-                        }
-                        $dayfamlist = array();
-                        foreach($myfamlist as $gid=>$fam) {
-                                if (preg_match("/$query/i", $fam["gedcom"])>0) {
-                                        if (displayDetailsById($gid, "FAM")) $dayfamlist[$gid]=$fam;
-                                }
-                        }
-                        if ((count($dayindilist)>0)||(count($dayfamlist)>0)) {
-
-                                foreach($dayindilist as $gid=>$indi) {
-                                        $disp = true;
-                                        if ($disp) {
-                                                $indilines = split("\n", $indi["gedcom"]);
-                                                $factrec = "";
-                                                $lct = count($indilines);
-                                                $text = "";
-                                                for($i=1; $i<=$lct; $i++) {
-                                                        if ($i<$lct) $line = $indilines[$i];
-                                                        if (empty($line)) $line = " ";
-                                                        if ($i==$lct||($line{0}=="1")) {
-                                                                if (!empty($factrec)) {
-                                                                        $ct = preg_match("/$query/i", $factrec, $match);
-                                                                        if ($ct>0) {
-																			$tempText = get_calendar_fact($factrec, "block", $filter, $gid);
-																			$text.= preg_replace("/href=\"calendar\.php/", "href=".$SERVER_URL."calendar.php", $tempText);
-                                                                        }
-                                                                }
-                                                                $factrec="";
-                                                        }
-                                                        $factrec.=$line."\n";
-                                                }
-                                                if (!empty($text)) {
-                                                        $daytext .= "<a href=\"" .$SERVER_URL . "individual.php?pid=$gid&amp;ged=".$indi["file"]."\">".get_person_name($gid);
-                                                        if ($SHOW_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
-                                                        $daytext .= "</a> ";
-                                                        $daytext .= $text;
-                                                }
-                                        }
-                                }
-                                foreach($dayfamlist as $gid=>$fam) {
-                                        $indilines = split("\n", $fam["gedcom"]);
-                                        $factrec = "";
-                                        $lct = count($indilines);
-                                        $text = "";
-                                        for($i=1; $i<=$lct; $i++) {
-                                                if ($i<$lct) $line = $indilines[$i];
-                                                if (empty($line)) $line = " ";
-                                                if ($i==$lct||($line{0}=="1")) {
-                                                        if (!empty($factrec)) {
-                                                                $ct = preg_match("/$query/i", $factrec, $match);
-                                                                if ($ct>0) {
-                                                                	$tempText = get_calendar_fact($factrec, "block", $filter, $gid);
-                                                                    $text.= preg_replace("/href=\"calendar\.php/", "href=".$SERVER_URL."calendar.php", $tempText);
-                                                                }
-                                                        }
-                                                        $factrec="";
-                                                }
-                                                $factrec.=$line."\n";
-                                        }
-                                        if (!empty($text)) {
-                                                $names = preg_split("/[,+]/", $fam["name"]);
-                                                $fam["name"] = check_NN($names);
-                                                $daytext .= "<a href=\"" .$SERVER_URL . "family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$fam["name"];
-                                                if ($SHOW_FAM_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
-                                                $daytext .= "</a> ";
-                                                $daytext .= $text;
-                                        }
-                                }
-
-                        }
-                        $monthstart += (60*60*24);
-                }
-                $day = $oldday;
-                $month = $oldmonth;
-                $year = $oldyear;
-
-        }
-        $dataArray[2]  = $daytext;
-        return $dataArray;
+	global $pgv_lang, $month, $year, $day, $monthtonum, $HIDE_LIVE_PEOPLE, $SHOW_ID_NUMBERS, $SHOW_FAM_ID_NUMBERS, $command, $indilist, $TEXT_DIRECTION;
+	global $PGV_IMAGES, $PGV_IMAGE_DIR,$SERVER_URL;
+	
+	if ($command=="user") $filter = "living";
+	else $filter = "all";
+	
+	$daytext = "";
+	$dataArray[0] = $pgv_lang["upcoming_events"];
+	$dataArray[1] = time();
+	$monthstart = mktime(1,0,0,$monthtonum[strtolower($month)],$day,$year);
+	$mmon = strtolower(date("M", $monthstart));
+	$myindilist = array();
+	$myfamlist = array();
+	$query = "2 DATE [0-9]{1,2} $mmon";
+	$myindilist = search_indis($query);
+	$myfamlist = search_fams($query);
+	if ((count($myindilist)>0)||(count($myfamlist)>0)) {
+		$oldmonth=$month;
+		$oldyear = $year;
+		$oldday = $day;
+		for($k=0; $k<30; $k++) {
+			$mday = date("j", $monthstart);
+			$mmon = strtolower(date("M", $monthstart));
+			$day = $mday;
+			$year = (int)date("Y", $monthstart);
+			if ($mmon!=strtolower($month)) {
+				$query = "2 DATE [0-9]{1,2} $mmon";
+				$myindilist = search_indis($query);
+				$myfamlist = search_fams($query);
+				$month=$mmon;
+			}
+			$dayindilist = array();
+			if ($mday<10) $query = "2 DATE 0?$mday $mmon";
+			else $query = "2 DATE $mday $mmon";
+			foreach($myindilist as $gid=>$indi) {
+				if (preg_match("/$query/i", $indi["gedcom"])>0) {
+					if (displayDetailsById($gid)) $dayindilist[$gid]=$indi;
+				}
+			}
+			$dayfamlist = array();
+			foreach($myfamlist as $gid=>$fam) {
+				if (preg_match("/$query/i", $fam["gedcom"])>0) {
+					if (displayDetailsById($gid, "FAM")) $dayfamlist[$gid]=$fam;
+				}
+			}
+			if ((count($dayindilist)>0)||(count($dayfamlist)>0)) {
+				
+				foreach($dayindilist as $gid=>$indi) {
+					$disp = true;
+					if ($disp) {
+						$indilines = split("\n", $indi["gedcom"]);
+						$factrec = "";
+						$lct = count($indilines);
+						$text = "";
+						for($i=1; $i<=$lct; $i++) {
+							if ($i<$lct) $line = $indilines[$i];
+							if (empty($line)) $line = " ";
+							if ($i==$lct||($line{0}=="1")) {
+								if (!empty($factrec)) {
+									$ct = preg_match("/$query/i", $factrec, $match);
+									if ($ct>0) {
+										$tempText = get_calendar_fact($factrec, "block", $filter, $gid);
+										$text.= str_replace('href="calendar.php', 'href="'.$SERVER_URL.'calendar.php', $tempText);
+									}
+								}
+								$factrec="";
+							}
+							$factrec.=$line."\n";
+						}
+						if (!empty($text)) {
+							$daytext .= "<a href=\"" .$SERVER_URL . "individual.php?pid=$gid&amp;ged=".$indi["file"]."\">".get_person_name($gid);
+							if ($SHOW_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
+							$daytext .= "</a> ";
+							$daytext .= $text;
+						}
+					}
+				}
+				foreach($dayfamlist as $gid=>$fam) {
+					$indilines = split("\n", $fam["gedcom"]);
+					$factrec = "";
+					$lct = count($indilines);
+					$text = "";
+					for($i=1; $i<=$lct; $i++) {
+						if ($i<$lct) $line = $indilines[$i];
+						if (empty($line)) $line = " ";
+						if ($i==$lct||($line{0}=="1")) {
+							if (!empty($factrec)) {
+								$ct = preg_match("/$query/i", $factrec, $match);
+								if ($ct>0) {
+									$tempText = get_calendar_fact($factrec, "block", $filter, $gid);
+									$text.= str_replace('href="calendar.php', 'href="'.$SERVER_URL.'calendar.php', $tempText);
+								}
+							}
+							$factrec="";
+						}
+						$factrec.=$line."\n";
+					}
+					if (!empty($text)) {
+//						$names = preg_split("/[,+]/", $fam["name"]);
+//						$fam["name"] = check_NN($names);
+//						$daytext .= "<a href=\"".$SERVER_URL ."family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$fam["name"];
+						$name = get_family_descriptor($gid);
+						$daytext .= "<a href=\"".$SERVER_URL ."family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$name;
+						if ($SHOW_FAM_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
+						$daytext .= "</a> ";
+						$daytext .= $text;
+					}
+				}
+				
+			}
+			$monthstart += (60*60*24);
+		}
+		$day = $oldday;
+		$month = $oldmonth;
+		$year = $oldyear;
+		
+	}
+	$dataArray[2]  = $daytext;
+	return $dataArray;
 }
 
 function getTodaysEvents() {
-        global $pgv_lang, $month, $year, $day, $monthtonum, $HIDE_LIVE_PEOPLE, $SHOW_ID_NUMBERS, $SHOW_FAM_ID_NUMBERS, $command, $TEXT_DIRECTION;
-        global $PGV_IMAGE_DIR, $PGV_IMAGES,$SERVER_URL;
-
-        if ($command=="user") $filter = "living";
-        else $filter = "all";
-        $action = "today";
-        $dataArray[0] = $pgv_lang["on_this_day"];
-        $dataArray[1] = time();
-        $daytext = "";
-        $dayindilist = array();
-        $dayfamlist = array();
-        if ($day<10) $query = "2 DATE 0?$day $month";
-        else $query = "2 DATE $day $month";
-        $dayindilist = search_indis($query);
-        $dayfamlist = search_fams($query);
-        if ((count($dayindilist)>0)||(count($dayfamlist)>0)) {
-
-                foreach($dayindilist as $gid=>$indi) {
-                        $disp = true;
-                        if (($filter=="living")&&(is_dead_id($gid)==1)) $disp = false;
-                        else if ($HIDE_LIVE_PEOPLE) $disp = displayDetailsByID($gid);
-                        if ($disp) {
-                                $indilines = split("\n", $indi["gedcom"]);
-                                $factrec = "";
-                                $lct = count($indilines);
-                                $text = "";
-                                for($i=1; $i<=$lct; $i++) {
-                                        if ($i<$lct) $line = $indilines[$i];
-                                        if (empty($line)) $line = " ";
-                                        if ($i==$lct||($line{0}=="1")) {
-                                                if (!empty($factrec)) {
-                                                        $ct = preg_match("/$query/i", $factrec, $match);
-                                                        if ($ct>0) {
-															$tempText = get_calendar_fact($factrec, $action, $filter, $gid);
-															$text.= preg_replace("/href=\"calendar\.php/", "href=".$SERVER_URL."calendar.php", $tempText);
-                                                        }
-                                                }
-                                                $factrec="";
-                                        }
-                                        $factrec.=$line."\n";
-                                }
-                                if (!empty($text)) {
-                                        $daytext .= "<a href=\"".$SERVER_URL ."individual.php?pid=$gid&amp;ged=".$indi["file"]."\">".get_person_name($gid);
-                                        if ($SHOW_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
-                                        $daytext .= "</a> ";
-                                        $daytext .= $text;
-                                }
-                        }
-                }
-                foreach($dayfamlist as $gid=>$fam) {
-                        $indilines = split("\n", $fam["gedcom"]);
-                        $factrec = "";
-                        $lct = count($indilines);
-                        $text = "";
-                        for($i=1; $i<=$lct; $i++) {
-                                if ($i<$lct) $line = $indilines[$i];
-                                if (empty($line)) $line = " ";
-                                if ($i==$lct||($line{0}=="1")) {
-                                        if (!empty($factrec)) {
-                                                $ct = preg_match("/$query/i", $factrec, $match);
-                                                if ($ct>0) {
-													$tempText = get_calendar_fact($factrec, $action, $filter, $gid);
-													$text.= preg_replace("/href=\"calendar\.php/", "href=".$SERVER_URL."calendar.php", $tempText);
-                                                }
-                                        }
-                                        $factrec="";
-                                }
-                                $factrec.=$line."\n";
-                        }
-                        if (!empty($text)) {
-                                $display = true;
-                                if (preg_match("/$query/i", $fam["gedcom"])>0) {
-                                        if (displayDetailsById($gid, "FAM")) $dayfamlist[$gid]=$fam;
-                                }
-                                $parents = find_parents($gid);
-                                if (!empty($parents["HUSB"])) {
-                                        if (($filter=="living")&&(is_dead_id($parents["HUSB"])==1)) $display = false;
-                                        else if ($HIDE_LIVE_PEOPLE) $display = displayDetailsByID($parents["HUSB"]);
-                                }
-                                if ($display) {
-                                        if (!empty($parents["WIFE"])) {
-                                                if (($filter=="living")&&(is_dead_id($parents["WIFE"])==1)) $display = false;
-                                                else if ($HIDE_LIVE_PEOPLE) $display = displayDetailsByID($parents["WIFE"]);
-                                        }
-                                }
-                                if ($display) {
-                                        $names = preg_split("/[,+]/", $fam["name"]);
-                                        $fam["name"] = check_NN($names);
-                                        $daytext .= "<a href=\"".$SERVER_URL ."family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$fam["name"];
-                                        if ($SHOW_FAM_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
-                                        $daytext .= "</a> ";
-                                        $daytext .= $text;
-                                }
-                        }
-
-                }
-        }
-        $dataArray[2] = $daytext;
-        return $dataArray;
+	global $pgv_lang, $month, $year, $day, $monthtonum, $HIDE_LIVE_PEOPLE, $SHOW_ID_NUMBERS, $SHOW_FAM_ID_NUMBERS, $command, $TEXT_DIRECTION;
+	global $PGV_IMAGE_DIR, $PGV_IMAGES,$SERVER_URL;
+	
+	if ($command=="user") $filter = "living";
+	else $filter = "all";
+	$action = "today";
+	$dataArray[0] = $pgv_lang["on_this_day"];
+	$dataArray[1] = time();
+	$daytext = "";
+	$dayindilist = array();
+	$dayfamlist = array();
+	if ($day<10) $query = "2 DATE 0?$day $month";
+	else $query = "2 DATE $day $month";
+	$dayindilist = search_indis($query);
+	$dayfamlist = search_fams($query);
+	if ((count($dayindilist)>0)||(count($dayfamlist)>0)) {
+		
+		foreach($dayindilist as $gid=>$indi) {
+			$disp = true;
+			if (($filter=="living")&&(is_dead_id($gid)==1)) $disp = false;
+			else if ($HIDE_LIVE_PEOPLE) $disp = displayDetailsByID($gid);
+			if ($disp) {
+				$indilines = split("\n", $indi["gedcom"]);
+				$factrec = "";
+				$lct = count($indilines);
+				$text = "";
+				for($i=1; $i<=$lct; $i++) {
+					if ($i<$lct) $line = $indilines[$i];
+					if (empty($line)) $line = " ";
+					if ($i==$lct||($line{0}=="1")) {
+						if (!empty($factrec)) {
+							$ct = preg_match("/$query/i", $factrec, $match);
+							if ($ct>0) {
+								$tempText = get_calendar_fact($factrec, $action, $filter, $gid);
+								$text.= str_replace('href="calendar.php', 'href="'.$SERVER_URL.'calendar.php', $tempText);
+							}
+						}
+						$factrec="";
+					}
+					$factrec.=$line."\n";
+				}
+				if (!empty($text)) {
+					$daytext .= "<a href=\"".$SERVER_URL ."individual.php?pid=$gid&amp;ged=".$indi["file"]."\">".get_person_name($gid);
+					if ($SHOW_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
+					$daytext .= "</a> ";
+					$daytext .= $text;
+				}
+			}
+		}
+		foreach($dayfamlist as $gid=>$fam) {
+			$indilines = split("\n", $fam["gedcom"]);
+			$factrec = "";
+			$lct = count($indilines);
+			$text = "";
+			for($i=1; $i<=$lct; $i++) {
+				if ($i<$lct) $line = $indilines[$i];
+				if (empty($line)) $line = " ";
+				if ($i==$lct||($line{0}=="1")) {
+					if (!empty($factrec)) {
+						$ct = preg_match("/$query/i", $factrec, $match);
+						if ($ct>0) {
+							$tempText = get_calendar_fact($factrec, $action, $filter, $gid);
+							$text.= str_replace('href="calendar.php', 'href="'.$SERVER_URL.'calendar.php', $tempText);
+						}
+					}
+					$factrec="";
+				}
+				$factrec.=$line."\n";
+			}
+			if (!empty($text)) {
+				$display = true;
+				if (preg_match("/$query/i", $fam["gedcom"])>0) {
+					if (displayDetailsById($gid, "FAM")) $dayfamlist[$gid]=$fam;
+				}
+				$parents = find_parents($gid);
+				if (!empty($parents["HUSB"])) {
+					if (($filter=="living")&&(is_dead_id($parents["HUSB"])==1)) $display = false;
+					else if ($HIDE_LIVE_PEOPLE) $display = displayDetailsByID($parents["HUSB"]);
+				}
+				if ($display) {
+					if (!empty($parents["WIFE"])) {
+						if (($filter=="living")&&(is_dead_id($parents["WIFE"])==1)) $display = false;
+						else if ($HIDE_LIVE_PEOPLE) $display = displayDetailsByID($parents["WIFE"]);
+					}
+				}
+				if ($display) {
+//					$names = preg_split("/[,+]/", $fam["name"]);
+//					$fam["name"] = check_NN($names);
+//					$daytext .= "<a href=\"".$SERVER_URL ."family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$fam["name"];
+					$name = get_family_descriptor($gid);
+					$daytext .= "<a href=\"".$SERVER_URL ."family.php?famid=$gid&amp;ged=".$fam["file"]."\">".$name;
+					if ($SHOW_FAM_ID_NUMBERS) $daytext .= " &lrm;($gid)&lrm;";
+					$daytext .= "</a> ";
+					$daytext .= $text;
+				}
+			}
+			
+		}
+	}
+	$dataArray[2] = $daytext;
+	return $dataArray;
 }
 
 function getGedcomStats() {
-        global $pgv_lang, $day, $month, $year, $GEDCOM, $GEDCOMS, $ALLOW_CHANGE_GEDCOM, $command, $COMMON_NAMES_THRESHOLD, $SERVER_URL, $RTLOrd;
-
-		$data = "";
-		$dataArray[0] = $pgv_lang["gedcom_stats"] . " - " . $GEDCOMS[$GEDCOM]["title"];
-
-        $head = find_gedcom_record("HEAD");
-        $ct=preg_match("/1 SOUR (.*)/", $head, $match);
-        if ($ct>0) {
-                $softrec = get_sub_record(1, "1 SOUR", $head);
-                $tt= preg_match("/2 NAME (.*)/", $softrec, $tmatch);
-                if ($tt>0) $title = trim($tmatch[1]);
-                else $title = trim($match[1]);
-                if (!empty($title)) {
-                        $text = strip_tags(str_replace("#SOFTWARE#", $title, $pgv_lang["gedcom_created_using"]));
-                        $tt = preg_match("/2 VERS (.*)/", $softrec, $tmatch);
-                        if ($tt>0) $version = trim($tmatch[1]);
-                        else $version="";
-                        $text = strip_tags(str_replace("#VERSION#", $version, $text));
-                        $data .= $text;
-                }
-        }
-        $ct=preg_match("/1 DATE (.*)/", $head, $match);
-        if ($ct>0) {
-                $date = trim($match[1]);
-                $dataArray[1] = strtotime($date);
-
-        }
-        $data .= " <br />\n";
-        $data .= get_list_size("indilist"). " - " .$pgv_lang["stat_individuals"]." <br/>";
-        $data .= get_list_size("famlist"). " - ".$pgv_lang["stat_families"]." <br/>";
-        $data .= get_list_size("sourcelist")." - ".$pgv_lang["stat_sources"]." <br/> ";
-        $data .= get_list_size("otherlist")." - ".$pgv_lang["stat_other"]." <br />";
-        $surnames = get_common_surnames_index($GEDCOM);
-        if (count($surnames)>0) {
-                $data .= $pgv_lang["common_surnames"]." <br />";
-                $i=0;
-                foreach($surnames as $indexval => $surname) {
-                        if ($i>0) $data .= ", ";
-                        if (in_array(ord(substr($surname["name"], 0, 2)),$RTLOrd)) {
-//                      	if (ord(substr($surname["name"], 0, 2),$RTLOrd)){}
-	                      	$data .= "<a href=\"".$SERVER_URL ."indilist.php?surname=".urlencode($surname["name"])."\">".$surname["name"]."</a>";
-                      	}
-                        else $data .= "<a href=\"".$SERVER_URL ."indilist.php?surname=".$surname["name"]."\">".$surname["name"]."</a>";
-                        $i++;
-                }
-        }
-        $dataArray[2] = $data;
-        return $dataArray;
-
+	global $pgv_lang, $day, $month, $year, $GEDCOM, $GEDCOMS, $ALLOW_CHANGE_GEDCOM, $command, $COMMON_NAMES_THRESHOLD, $SERVER_URL, $RTLOrd;
+	
+	$data = "";
+	$dataArray[0] = $pgv_lang["gedcom_stats"] . " - " . $GEDCOMS[$GEDCOM]["title"];
+	
+	$head = find_gedcom_record("HEAD");
+	$ct=preg_match("/1 SOUR (.*)/", $head, $match);
+	if ($ct>0) {
+		$softrec = get_sub_record(1, "1 SOUR", $head);
+		$tt= preg_match("/2 NAME (.*)/", $softrec, $tmatch);
+		if ($tt>0) $title = trim($tmatch[1]);
+		else $title = trim($match[1]);
+		if (!empty($title)) {
+			$text = strip_tags(str_replace("#SOFTWARE#", $title, $pgv_lang["gedcom_created_using"]));
+			$tt = preg_match("/2 VERS (.*)/", $softrec, $tmatch);
+			if ($tt>0) $version = trim($tmatch[1]);
+			else $version="";
+			$text = strip_tags(str_replace("#VERSION#", $version, $text));
+			$data .= $text;
+		}
+	}
+	$ct=preg_match("/1 DATE (.*)/", $head, $match);
+	if ($ct>0) {
+		$date = trim($match[1]);
+		$dataArray[1] = strtotime($date);
+		
+	}
+	$data .= " <br />\n";
+	$data .= get_list_size("indilist"). " - " .$pgv_lang["stat_individuals"]." <br/>";
+	$data .= get_list_size("famlist"). " - ".$pgv_lang["stat_families"]." <br/>";
+	$data .= get_list_size("sourcelist")." - ".$pgv_lang["stat_sources"]." <br/> ";
+	$data .= get_list_size("otherlist")." - ".$pgv_lang["stat_other"]." <br />";
+	$surnames = get_common_surnames_index($GEDCOM);
+	if (count($surnames)>0) {
+		$data .= $pgv_lang["common_surnames"]." <br />";
+		$i=0;
+		foreach($surnames as $indexval => $surname) {
+			if ($i>0) $data .= ", ";
+			if (in_array(ord(substr($surname["name"], 0, 2)),$RTLOrd)) {
+//  		if (ord(substr($surname["name"], 0, 2),$RTLOrd)){}
+				$data .= "<a href=\"".$SERVER_URL ."indilist.php?surname=".urlencode($surname["name"])."\">".$surname["name"]."</a>";
+			}
+			else $data .= "<a href=\"".$SERVER_URL ."indilist.php?surname=".$surname["name"]."\">".$surname["name"]."</a>";
+			$i++;
+		}
+	}
+	$dataArray[2] = $data;
+	return $dataArray;
+	
 }
 
 
 function getGedcomNews() {
-        global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $GEDCOM, $command, $TIME_FORMAT, $VERSION, $SERVER_URL;
-
-        $usernews = getUserNews($GEDCOM);
-
-        $dataArray = array();
-        foreach($usernews as $key=>$news) {
-
-                $day = date("j", $news["date"]);
-                $mon = date("M", $news["date"]);
-                $year = date("Y", $news["date"]);
-                $data = "";
-                $ct = preg_match("/#(.+)#/", $news["title"], $match);
-                if ($ct>0) {
-                        if (isset($pgv_lang[$match[1]])) $news["title"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["title"]);
-                }
-                $itemArray[0] = $news["title"];
-
-                $itemArray[1] = iso8601_date($news["date"]);
-                $ct = preg_match("/#(.+)#/", $news["text"], $match);
-                if ($ct>0) {
-                        if (isset($pgv_lang[$match[1]])) $news["text"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["text"]);
-                }
-                $ct = preg_match("/#(.+)#/", $news["text"], $match);
-                if ($ct>0) {
-                        if (isset($pgv_lang[$match[1]])) $news["text"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["text"]);
-                        $varname = $match[1];
-                        if (isset($$varname)) $news["text"] = preg_replace("/$match[0]/", $$varname, $news["text"]);
-                }
-                $trans = get_html_translation_table(HTML_SPECIALCHARS);
-                $trans = array_flip($trans);
-                $news["text"] = strtr($news["text"], $trans);
-                $news["text"] = nl2br($news["text"]);
-                $data .= $news["text"];
-                $itemArray[2] = $data;
-                $dataArray[] = $itemArray;
-
-        }
-		return $dataArray;
-
+	global $pgv_lang, $PGV_IMAGE_DIR, $PGV_IMAGES, $TEXT_DIRECTION, $GEDCOM, $command, $TIME_FORMAT, $VERSION, $SERVER_URL;
+	
+	$usernews = getUserNews($GEDCOM);
+	
+	$dataArray = array();
+	foreach($usernews as $key=>$news) {
+		
+		$day = date("j", $news["date"]);
+		$mon = date("M", $news["date"]);
+		$year = date("Y", $news["date"]);
+		$data = "";
+		$ct = preg_match("/#(.+)#/", $news["title"], $match);
+		if ($ct>0) {
+			if (isset($pgv_lang[$match[1]])) $news["title"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["title"]);
+		}
+		$itemArray[0] = $news["title"];
+		
+		$itemArray[1] = iso8601_date($news["date"]);
+		$ct = preg_match("/#(.+)#/", $news["text"], $match);
+		if ($ct>0) {
+			if (isset($pgv_lang[$match[1]])) $news["text"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["text"]);
+		}
+		$ct = preg_match("/#(.+)#/", $news["text"], $match);
+		if ($ct>0) {
+			if (isset($pgv_lang[$match[1]])) $news["text"] = preg_replace("/$match[0]/", $pgv_lang[$match[1]], $news["text"]);
+			$varname = $match[1];
+			if (isset($$varname)) $news["text"] = preg_replace("/$match[0]/", $$varname, $news["text"]);
+		}
+		$trans = get_html_translation_table(HTML_SPECIALCHARS);
+		$trans = array_flip($trans);
+		$news["text"] = strtr($news["text"], $trans);
+		$news["text"] = nl2br($news["text"]);
+		$data .= $news["text"];
+		$itemArray[2] = $data;
+		$dataArray[] = $itemArray;
+		
+	}
+	return $dataArray;
+	
 }
 
 function getTop10Surnames($block=true, $config="") {

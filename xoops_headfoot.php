@@ -1,5 +1,5 @@
 <?php
-ob_start();
+	ob_start();
 require_once '../../mainfile.php';
 if (
 	(stristr($_SERVER['SCRIPT_NAME'], 'addmedia') == true) ||
@@ -22,6 +22,12 @@ if (
 )
 {
 	include_once XOOPS_ROOT_PATH.'/include/cp_functions.php';
+	global $xoopsConfig, $xoopsUser;
+	if ($xoopsConfig['gzip_compression'] == 1) {
+		ob_start("ob_gzhandler");
+	} else {
+		ob_start();
+	}
 	xoops_cp_header();
 	print '{pgvsplit}';
 	xoops_cp_footer();

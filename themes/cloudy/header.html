@@ -120,18 +120,11 @@
                        				$menu["submenuclass"] = "submenu$ff";
                                     $menu["items"] = get_mygedview_submenu();
                                     $i=0;
-                                    foreach ( $menu["items"] as $key ) {
-			                            $menu["items"][$i]["class"] = "submenuitem$ff";
-			                            $menu["items"][$i]["hoverclass"] = "submenuitem_hover$ff";
-                                    	if ($i < 2) $menu["items"][$i]["icon"] = $PGV_IMAGE_DIR."/".$PGV_IMAGES["mygedview"]["small"];
-                                    	else if (stristr($menu["items"][$i]["link"],"admin.php") or (stristr($menu["items"][$i]["link"],"editgedcoms.php")))
-                                 		$menu["items"][$i]["icon"] = $PGV_IMAGE_DIR."/".$PGV_IMAGES["admin"]["small"];
-		                                else if (stristr($menu["items"][$i]["link"],"pedigree.php"))
-		                                $menu["items"][$i]["icon"] = $PGV_IMAGE_DIR."/".$PGV_IMAGES["pedigree"]["small"];
-		                                else if (stristr($menu["items"][$i]["link"],"individual.php"))
-		                                $menu["items"][$i]["icon"] = $PGV_IMAGE_DIR."/".$PGV_IMAGES["indis"]["small"];
-	                                    $i++;
-                                    }
+                foreach ( $menu["items"] as $key ) {
+                    $menu["items"][$i]["class"] = "submenuitem$ff";
+                    $menu["items"][$i]["hoverclass"] = "submenuitem_hover$ff";
+                    $i++;
+                }
                                     print_menu($menu);
                                     ?>
                                 </td>

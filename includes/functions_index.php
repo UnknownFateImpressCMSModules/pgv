@@ -460,13 +460,13 @@ function get_repo_id_list() {
 function search_indis($query) {
 	global $indilist;
 
-	$query1 = str2upper($query);
-	if (!is_array($query)) $query1 = array($query1);
+	if (!is_array($query)) $query = array($query);
 
 	$myindilist = array();
 	foreach($indilist as $gid=>$indi) {
 		$add=1;
-		foreach($query1 as $indexval => $q) {
+		foreach($query as $indexval => $q) {
+			$q = str2upper($q);
 			$q = preg_replace("'/'", "\\/", $q);
 			$ct = preg_match("/($q)/is", str2upper($indi["gedcom"]), $recmatch);
 			$add = $add && $ct;

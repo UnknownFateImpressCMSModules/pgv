@@ -10,7 +10,7 @@
 	Change Log:
 		6/3/02 - File Created
 ===================================================*/
-# $Id: gedrecord.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+# $Id: gedrecord.php,v 1.19 2005/05/06 14:43:43 yalnifj Exp $
 
 require("config.php");
 header("Content-Type: text/html; charset=$CHARACTER_SET");

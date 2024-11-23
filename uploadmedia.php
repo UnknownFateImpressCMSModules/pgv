@@ -25,7 +25,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 ===================================================*/
-# $Id: uploadmedia.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+# $Id: uploadmedia.php,v 1.23 2005/09/20 18:35:32 yalnifj Exp $
 
 require "config.php";
 
@@ -34,7 +34,8 @@ if (!userCanEdit(getUserName())) {
 	exit;
 }
 
-if ($_SESSION["cookie_login"]) {
+if (isset($_SESSION["cookie_login"]) && $_SESSION["cookie_login"]==true) {
+	print "[".$_SESSION["cookie_login"]."]";
 	header("Location: login.php?ged=$GEDCOM&url=uploadmedia.php");
 	exit;
 }

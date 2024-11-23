@@ -148,7 +148,7 @@ if (($PGV_DATABASE=='index')||(check_db())) {
 	}
 }
 }
-else {   
+/*else {   
 	//-- set the default to sqlite for php 5+   
     if (empty($action)) {   
 		if (phpversion()>=5) {   
@@ -158,7 +158,7 @@ else {
             $AUTHENTICATION_MODULE = "authentication_mysql.php";   
         }   
      }   
- } 
+ } */
 
 
 print_header($pgv_lang["configure_head"]);

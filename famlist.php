@@ -17,7 +17,7 @@
  * Beneath the details list is the option to skip the surname list or show it.
  * Depending on the current status of the list.
  *
- * @version $Id: famlist.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+ * @version $Id: famlist.php,v 1.149 2005/05/09 15:43:47 yalnifj Exp $
  * @package PhpGedView
  * @subpackage Lists
  */

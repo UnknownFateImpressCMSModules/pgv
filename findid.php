@@ -21,19 +21,21 @@
  *
  * @package PhpGedView
  * @subpackage Display
- * @version $Id: findid.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+ * @version $Id: findid.php,v 1.40 2005/09/15 17:33:44 yalnifj Exp $
  */
 
 require("config.php");
 if (!isset($action)) $action="";
 if (!isset($name_filter)) $name_filter="";
+if (!isset($callback)) $callback = "paste_id";
 
 print_simple_header($pgv_lang["find_individual"]);
 if (isset($name_filter)) $name_filter = stripslashes($name_filter);
+
 ?>
 <script language="JavaScript" type="text/javascript">
 	function paste_id(id) {
-		window.opener.paste_id(id);
+		window.opener.<?php print $callback; ?>(id);
 		window.close();
 	}
 </script>
@@ -41,6 +43,7 @@ if (isset($name_filter)) $name_filter = stripslashes($name_filter);
 <span class="subheaders"><?php print $pgv_lang["find_individual"]; ?></span>
 <form name="filter" method="post">
 <input type="hidden" name="action" value="filter" />
+<input type="hidden" name="callback" value="<?php print $callback; ?>" />
 <?php print $pgv_lang["name_contains"]; ?> <input type="text" name="name_filter" value="<?php print $name_filter;?>" />
 <input type="submit" value="<?php print $pgv_lang["filter"];?>" /><br />
 </form>

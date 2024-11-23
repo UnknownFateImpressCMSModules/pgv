@@ -82,7 +82,7 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 				print "\">\n";
 				print_pedigree_person($favorite["gid"], $style, 1, $key);
 				print "</div>\n";
-				if ($command=="user" || userIsAdmin(getUserName())) print "<font size=\"1\"><a href=\"index.php?command=$command&amp;action=deletefav&amp;fv_id=".$key."\" onclick=\"return confirm('".$pgv_lang["confirm_fav_remove"]."');\">".$pgv_lang["remove"]."</a><br />\n";
+				if ($command=="user" || userIsAdmin(getUserName())) print "<font size=\"1\"><a href=\"index.php?command=$command&amp;action=deletefav&amp;fv_id=".$key."\" onclick=\"return confirm('".$pgv_lang["confirm_fav_remove"]."');\">".$pgv_lang["remove"]."</a></font><br />\n";
 				print "</td></tr>\n";
 			}
 		}
@@ -102,21 +102,25 @@ function print_user_favorites($block=true, $config="", $side, $index) {
 	?>
 <script language="JavaScript" type="text/javascript">
 <!--
-var pasteto;
-function iopenfind(textbox) {
-		pasteto = textbox;
-		findwin = window.open('findid.php', '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
+var upasteto;
+var uform;
+function uiopenfind(textbox, form) {
+		upasteto = textbox;
+		uform = form;
+		findwin = window.open('findid.php?callback=upaste_id', '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
 }
-function paste_id(value) {
-		pasteto.value=value;
-		document.addfavform.submit();
+function upaste_id(value) {
+		upasteto.value=value;
+		uform.submit();
 }
 //-->
 </script>
 <?php
-		print "<form name=\"addfavform\" method=\"get\" action=\"index.php\">\n";
+		print "<form name=\"addufavform\" method=\"get\" action=\"index.php\">\n";
 		print "<input type=\"hidden\" name=\"action\" value=\"addfav\" />\n";
-		print "<input class=\"pedigree_form\" type=\"text\" name=\"gid\" size=\"3\" value=\"\" /><a href=\"#\" onclick=\"iopenfind(document.addfavform.gid); return false;\"> ".$pgv_lang["find_id"]."</a>";
+		print "<input type=\"hidden\" name=\"command\" value=\"$command\" />\n";
+		print "<input type=\"hidden\" name=\"favtype\" value=\"user\" />\n";
+		print "<input class=\"pedigree_form\" type=\"text\" name=\"gid\" size=\"3\" value=\"\" /><a href=\"#\" onclick=\"uiopenfind(document.addufavform.gid, document.addufavform); return false;\"> ".$pgv_lang["find_id"]."</a>";
 		print " <input type=\"submit\" value=\"".$pgv_lang["add"]."\" style=\"font-size: 8pt; \" />\n";
 		print "\n</form>\n";
 		if ($block) print "</div>\n";

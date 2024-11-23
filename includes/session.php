@@ -21,7 +21,7 @@
  *
  * @package PhpGedView
  * @subpackage Reports
- * @version $Id: session.php,v 1.1 2005/10/07 18:08:22 skenow Exp $
+ * @version $Id: session.php,v 1.15 2005/12/05 17:00:22 yalnifj Exp $
  */
 if (strstr($_SERVER["PHP_SELF"],"session")) {
 	print "Now, why would you want to do that.  You're not hacking are you?";
@@ -29,18 +29,20 @@ if (strstr($_SERVER["PHP_SELF"],"session")) {
 }
 
 //-- check for the sanity worm to save bandwidth
-if (eregi("LWP::Simple",getenv("HTTP_USER_AGENT"),$regs) or eregi("lwp-trivial",getenv("HTTP_USER_AGENT"),$regs)
-		|| eregi("HTTrack",getenv("HTTP_USER_AGENT"),$regs)) {
+if (stristr(getenv("HTTP_USER_AGENT"),"LWP::Simple") 
+	|| stristr(getenv("HTTP_USER_AGENT"),"lwp-trivial")
+	|| stristr(getenv("HTTP_USER_AGENT"),"HTTrack")
+) {
 	print "Bad Worm! Bad!  Crawl back into your hole.";
 	exit;
 }
 
 @ini_set('arg_separator.output', '&amp;');
-@ini_set('error_reporting', E_ALL);
+@ini_set('error_reporting', E_ERROR | E_WARNING | E_PARSE); 
 @ini_set('display_errors', '1');
 
 //-- version of phpgedview
-$VERSION = "3.3.5";
+$VERSION = "3.3.8";
 $VERSION_RELEASE = "final";
 $REQUIRED_PRIVACY_VERSION = "3.1";
 $REQUIRED_CONFIG_VERSION = "3.1";
@@ -150,7 +152,10 @@ if (!empty($PGV_SESSION_SAVE_PATH)) session_save_path($PGV_SESSION_SAVE_PATH);
 
 //-- import the post, get, and cookie variable into the scope on new versions of php
 if (phpversion() >= '4.1') {
-	@import_request_variables("cgp");
+//	@import_request_variables("cgp");
+	extract($_COOKIE);
+	extract($_GET);
+	extract($_POST);
 }
 if (phpversion() > '4.2.2') {
 	//-- prevent sql and code injection
@@ -244,6 +249,18 @@ if (file_exists($INDEX_DIRECTORY . "lang_settings.php")) {
 	require_once($INDEX_DIRECTORY . "lang_settings.php");
 	$Languages_Default = false;
 }
+
+/**
+ * The following business rules are used to choose currently active language
+ * 1. If the user has chosen a language from the list or the flags, use their choice.
+ * 2. When the user logs in, switch to the language in their user profile
+ * 3. Use the language in visitor's browser settings if it is supported in the PGV site.  
+ *    If it is not supported, use the gedcom configuration setting.
+ * 4. When a user logs out their current language choice is ignored and the site will
+ *    revert back to the language they first saw when arriving at the site according to
+ *    rule 3. 
+ */
+if ((!empty($logout))&&($logout==1)) unset($_SESSION["CLANGUAGE"]);		// user is about to log out
 
 if (($ENABLE_MULTI_LANGUAGE)&&(empty($_SESSION["CLANGUAGE"]))) {
    if (isset($HTTP_ACCEPT_LANGUAGE)) $accept_langs = $HTTP_ACCEPT_LANGUAGE;

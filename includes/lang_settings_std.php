@@ -21,7 +21,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * $Id: lang_settings_std.php,v 1.1 2005/10/07 18:08:22 skenow Exp $
+ * $Id: lang_settings_std.php,v 1.6 2005/08/19 12:40:14 canajun2eh Exp $
  *
  * @package PhpGedView
  * @subpackage Languages
@@ -455,6 +455,27 @@ $lang["ALPHABET_lower"]		= "ابتثجحخدذرزسشصضطظعغفقكلمنه
 // iranian/pakistani/indian numbers   "۰۱۲۳۴۵۶۷۸۹"; 
 // 
 $language_settings["arabic"]	= $lang;
+
+//-- settings for lithuanian
+$lang = array();
+$lang["pgv_langname"]		= "lithuanian";
+$lang["pgv_lang_use"]		= false;
+$lang["pgv_lang"]		= "Lithuanian";
+$lang["lang_short_cut"]		= "lt";
+$lang["langcode"]		= "lt;";
+$lang["pgv_language"]		= "languages/lang.lt.php";
+$lang["confighelpfile"]		= "languages/configure_help.lt.php";
+$lang["helptextfile"]		= "languages/help_text.lt.php";
+$lang["flagsfile"]		= "images/flags/lt.gif";
+$lang["factsfile"]		= "languages/facts.lt.php";
+$lang["DATE_FORMAT"]		= "Y M D";
+$lang["TIME_FORMAT"]		= "g:i:sa";
+$lang["WEEK_START"]		= "1";
+$lang["TEXT_DIRECTION"]		= "ltr";
+$lang["NAME_REVERSE"]		= false;
+$lang["ALPHABET_upper"]		= "AĄBCČDEĘĖFGHIYĮJKLMNOPRSŠTUŲŪVZŽ";
+$lang["ALPHABET_lower"]		= "aąbcčdeęėfghiyįjklmnoprsštuųūvzž";
+$language_settings["lithuanian"]	= $lang;
 //-- NEVER manually delete or edit this entry and every line above this entry! --END--//
 
 // Array definitions

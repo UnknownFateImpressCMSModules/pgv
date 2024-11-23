@@ -7,7 +7,7 @@
 	Denne og annen informasjon kan du finne online p�
 	http://www.PhpGedView.net
 
-	# $Id: readme-norsk.txt,v 1.1 2005/10/07 18:12:20 skenow Exp $
+	# $Id: readme-norsk.txt,v 1.1 2004/12/03 14:00:28 eikland Exp $
 =======================================================
 
 INNHOLD
