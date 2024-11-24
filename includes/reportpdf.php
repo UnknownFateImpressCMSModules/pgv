@@ -23,7 +23,7 @@
  *
  * @package PhpGedView
  * @subpackage Reports
- * @version $Id: reportpdf.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: reportpdf.php,v 1.5 2005/08/16 14:50:16 yalnifj Exp $
  */
 
 //-- do not allow direct access to this file
@@ -553,18 +553,32 @@ class PGVRTextBox extends PGVRElement {
 
 		$curx = $pdf->GetX();
 		$cury = $pdf->GetY();
-		$curn = $pdf->page;
+		$curn = $pdf->PageNo();
 		if (($this->top!=".")||($this->left!=".")) {
 			if ($this->top==".") $this->top = $cury;
 			if ($this->left==".") $this->left = $curx;
 			$pdf->SetXY($this->left, $this->top);
+			$startY = $this->top;
+			$startX = $this->left;
+			$cury = $startY;
+			$curx = $startX;
 		}
 
 		$newpage = false;
 		$ph = $pdf->getPageHeight();
 		if ($pdf->GetY()+$this->height > $ph) {
-			if ($pdf->GetY()>$ph-36) {
+			if ($this->border==1) {
+				//print "HERE2";
 				$pdf->AddPage();
+				$newpage = true;
+				$startX = $pdf->GetX();
+				$startY = $pdf->GetY();
+			}
+			else if ($pdf->GetY()>$ph-36) {
+				//print "HERE1";
+				$pdf->AddPage();
+				$startX = $pdf->GetX();
+				$startY = $pdf->GetY();
 			}
 			else {
 				$th = $this->height;
@@ -580,11 +594,11 @@ class PGVRTextBox extends PGVRElement {
 			if ($element=="footnotetexts") $pdf->Footnotes();
 			else $element->render($pdf, $curx);
 		}
-		if ($curn != $pdf->page) $cury = $pdf->GetY();
+		if ($curn != $pdf->PageNo()) $cury = $pdf->GetY();
 		if ($this->newline) {
 			$lastheight = 0;
 			$ty = $pdf->GetY();
-			if ($curn != $pdf->page) $ny = $cury+$pdf->getCurrentStyleHeight();
+			if ($curn != $pdf->PageNo()) $ny = $cury+$pdf->getCurrentStyleHeight();
 			else $ny = $cury+$this->height;
 			if ($ty > $ny) $ny = $ty;
 			$pdf->SetY($ny);
@@ -847,24 +861,25 @@ class PGVRImage extends PGVRElement {
 		if ($this->y==0) {
 			//-- first check for a collision with the last picture
 			if (isset($lastpicbottom)) {
-				if (($pdf->page==$lastpicpage)&&($lastpicbottom > $pdf->GetY())&&($this->x>=$lastpicleft)&&($this->x<=$lastpicright)) $pdf->SetY($lastpicbottom+5);
+				if (($pdf->PageNo()==$lastpicpage)&&($lastpicbottom >= $pdf->GetY())&&($this->x>=$lastpicleft)&&($this->x<=$lastpicright)) 
+					$pdf->SetY($lastpicbottom+5);
 			}
 			$this->y=$pdf->GetY();
 		}
 		$pdf->Image($this->file, $this->x, $this->y, $this->width, $this->height);
 		$lastpicbottom = $this->y + $this->height;
-		$lastpicpage = $pdf->page;
+		$lastpicpage = $pdf->PageNo();
 		$lastpicleft=$this->x;
 		$lastpicright=$this->x+$this->width;
 	}
 
 
 	function getHeight(&$pdf) {
-		return $this->h;
+		return $this->height;
 	}
 
 	function getWidth(&$pdf) {
-		return $this->w;
+		return $this->width;
 	}
 } //-- END PGVRImage
 
@@ -1979,11 +1994,11 @@ function PGVRImageSHandler($attrs) {
 				if (preg_match("/(jpg)|(jpeg)|(png)$/i", $filename)>0) {
 					if (file_exists($filename)) {
 						$size = getimagesize($filename);
-						if (($width>0)&&($size[0]>$size[1])) {
+						if (($width>0)&&($height==0)) {
 							$perc = $width / $size[0];
 							$height= round($size[1]*$perc);
 						}
-						if (($height>0)&&($size[1]>$size[0])) {
+						if (($height>0)&&($width==0)) {
 							$perc = $height / $size[1];
 							$width= round($size[0]*$perc);
 						}
@@ -1995,9 +2010,19 @@ function PGVRImageSHandler($attrs) {
 		}
 	}
 	else {
-		if (preg_match("/(jpg)|(jpeg)|(png)$/i", $file)>0) {
+		if (preg_match("/(jpg)|(jpeg)|(png)$/i", $filename)>0) {
 			if (file_exists($filename)) {
-				$image = new PGVRImage($file, $left, $top, $width, $height);
+				$size = getimagesize($filename);
+				if (($width>0)&&($size[0]>$size[1])) {
+					$perc = $width / $size[0];
+					$height= round($size[1]*$perc);
+				}
+				if (($height>0)&&($size[1]>$size[0])) {
+					$perc = $height / $size[1];
+					$width= round($size[0]*$perc);
+				}
+				//print "2 width:$width height:$height ";
+				$image = new PGVRImage($filename, $left, $top, $width, $height);
 				$pgvreport->addElement($image);
 			}
 		}
@@ -2175,8 +2200,17 @@ function PGVRListSHandler($attrs) {
 							}
 							else $keep=false;
 							break;
+						case "SUBCONTAINS":
+							$ct = preg_match("/$val\W/i", $subrec);
+							if ($ct>0) $keep = true;
+							else $keep = false;
+							break;
 						default:
+							$v = get_gedcom_value($t, $level, $subrec);
+							//print "[$v == $val] ";
 							if ($v==$val) $keep=true;
+							else $keep = false;
+							//print $keep;
 							break;
 					}
 				}

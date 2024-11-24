@@ -486,9 +486,14 @@ $maxyoffset+=120;
 <script language="JavaScript" type="text/javascript">
 	content_div = document.getElementById("pgvcontent");
 	if (content_div) {
-		//content_div.style.border = "solid red 1px";
 		content_div.style.height = <?php print $maxyoffset; ?> + "px";
 	}
+	<?php if ($view=="preview") { ?>
+	pedigree_div = document.getElementById("pedigree_chart");
+	if (pedigree_div) {
+		pedigree_div.style.height = <?php print $maxyoffset; ?> + "px";
+	}
+	<?php } ?>
 </script>
 <?php
 if ($view=="preview") print "<br /><br /><br />";

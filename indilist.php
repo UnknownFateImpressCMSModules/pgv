@@ -17,7 +17,7 @@
  * Beneath the details list is the option to skip the surname list or show it.
  * Depending on the current status of the list.
  *
- * $Id: indilist.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+ * $Id: indilist.php,v 1.169 2005/12/09 20:58:49 yalnifj Exp $
  * @package PhpGedView
  * @subpackage Lists
  */
@@ -29,6 +29,9 @@ print "\n\t<h2>".$pgv_lang["individual_list"]."</h2>";
 if (empty($surname_sublist)) $surname_sublist = "yes";
 if (empty($show_all)) $show_all = "no";
 if (empty($show_all_firstnames)) $show_all_firstnames = "no";
+
+$MinNamesPerColumn = 8;		// Number of names required before list switches to two columns
+
 
 // Remove slashes
 if (isset($alpha)) $alpha = stripslashes($alpha);
@@ -98,7 +101,7 @@ print_help_link("alpha_help", "qm");
 
 //-- escaped letter for regular expressions
 $expalpha = $alpha;
-if ($expalpha=="(" || $expalpha=="[" || $expalpha=="?" || $expalpha=="/" || $expalpha=="*" || $expalpha=="+") $expalpha = "\\".$expalpha;
+if ($expalpha=="(" || $expalpha=="[" || $expalpha=="?" || $expalpha=="/" || $expalpha=="*" || $expalpha=="+" || $expalpha==')') $expalpha = "\\".$expalpha;
 
 print "<br /><br /><table class=\"list_table, $TEXT_DIRECTION\"><tr>";
 if (($surname_sublist=="yes")&&($show_all=="yes")) {
@@ -270,7 +273,7 @@ else {
 			$name = check_NN(sortable_name_from_name($namearray[0]));
 			print_list_person($namearray[4], array($name, $GEDCOM));
 			$i++;
-			if ($i==ceil($count/2) && $count>8) print "</ul></td><td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>\n";			
+			if ($i==ceil($count/2) && $count>$MinNamesPerColumn) print "</ul></td><td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>\n";			
 		}
 		print "</ul></td>\n";
 		if ($count>1) {
@@ -371,7 +374,7 @@ else {
 			$indi = $tindilist[$gid];
 			print_list_person($gid, array($name, $indi["file"]));
 			$i++;
-			if ($i==ceil($count/2) && $count>8) print "</ul></td><td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>\n";			
+			if ($i==ceil($count/2) && $count>$MinNamesPerColumn) print "</ul></td><td class=\"list_value_wrap $TEXT_DIRECTION\"><ul>\n";			
 		}
 		print "</ul></td>\n";
 		if ($count>1) {

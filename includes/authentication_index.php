@@ -202,6 +202,7 @@ function userGedcomAdmin($username, $ged="") {
 	global $GEDCOM;
 
 	if (empty($ged)) $ged = $GEDCOM;
+//	if (!isset($_SESSION['cookie_login'])) return false;
 	if ($_SESSION['cookie_login']) return false;
 	if (userIsAdmin($username)) return true;
 	if (empty($username)) return false;

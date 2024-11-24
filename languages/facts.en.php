@@ -8,7 +8,7 @@
    Change Log:	8/5/02 - File Created
    2005.02.19 "PhpGedView" and "GEDCOM" made consistent across all language files  G.Kroll (canajun2eh)
 ===================================================*/
-# $Id: facts.en.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+# $Id: facts.en.php,v 1.35 2005/03/30 23:43:56 yalnifj Exp $
 if (preg_match("/facts\...\.php$/", $_SERVER["PHP_SELF"])>0) {
 	print "You cannot access a language file directly.";
 	exit;

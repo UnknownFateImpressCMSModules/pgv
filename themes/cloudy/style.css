@@ -315,6 +315,9 @@ width: 99%;
 #pgvcontent table {
 	width: 100%;
 }
+#pgvcontent table table {
+	width: 100%;
+}
 /*-- descendancy chart rtl specific stylesheets --*/
 #descendancy_chart table {
 	width: auto;
@@ -506,7 +509,6 @@ font-size:11px;
 margin-right:10px;
 padding-right:10px;
 padding-left:0px;
-width:80%;
 }
 .tabs_table {
 max-width:99%;
@@ -515,7 +517,6 @@ margin-left:0pt;
 }
 .tab_page{
 max-width:95%;
-width:100%;
 }
 .facts_label {
 COLOR: #FFFFFF;
@@ -759,9 +760,11 @@ padding: 5px;
 }
 .icon {
 border: none;
+/* removed for responsive theme May 2, 2017
 padding-top:1pt;
 padding-left:3pt;
 padding-right:5pt;
+*/
 }
 .link {
 font-size: 11px;
@@ -784,6 +787,7 @@ background-color: #95B8E0;
 	padding: 0px;
 	margin: 0px;
 }
+/*
 .menuitem .icon {
 	width: 22px;
 	height: 22px;
@@ -796,6 +800,7 @@ background-color: #95B8E0;
 	width: 22px;
 	height: 22px;
 	}
+*/
 .subheaders {
 font-size: 16px;
 font-weight: bold;
@@ -1104,6 +1109,9 @@ font-size: 12px;
 	position: relative;
 	top: 50px;
 	right: 0px;
+}
+#timeline_chart table {
+	width: auto;
 }
 .person0{
 background-color: #ECF5FF;

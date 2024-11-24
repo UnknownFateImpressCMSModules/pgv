@@ -1,16 +1,36 @@
 <?php
 /**
- * FeedCreator class v1.7.1
+ *
+ * FeedCreator class v1.7.2
  * originally (c) Kai Blankenhorn
  * www.bitfolge.de
  * kaib@bitfolge.de
  * v1.3 work by Scott Reynen (scott@randomchaos.com) and Kai Blankenhorn
  * v1.5 OPML support by Dirk Clemens
  *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * Changelog:
+ * V1.7.2pgv Small changes for PGV including setting encoding to UTF-8
+ * v1.7.2    10-11-04
+ *    license changed to LGPL
+ *
  * @author www.bitfolge.de
  * @package PhpGedView
  * @subpackage RSS
- * @version $Id: feedcreator.class.php,v 1.1 2005/10/07 18:08:21 skenow Exp $
+ * @version $Id: feedcreator.class.php,v 1.3 2005/12/08 04:03:13 kosherjava Exp $
  */
 
 
@@ -21,7 +41,7 @@ define("TIME_ZONE","");
 /**
  * Version string.
  **/
-define("FEEDCREATOR_VERSION", "FeedCreator 1.7.1");
+define("FEEDCREATOR_VERSION", "FeedCreator 1.7.2-PGV");
 
 
 
@@ -276,7 +296,7 @@ class UniversalFeedCreator extends FeedCreator {
 	 *
 	 * @param	string	format	format the feed should comply to. Valid values are:
 	 *			"PIE0.1" (deprecated), "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM", "ATOM0.3", "HTML", "JS"
-	 * @param	string	filename	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+	 * @param	string	filename	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["SCRIPT_NAME"] with the extension changed to .xml (see _generateFilename()).
 	 * @param	boolean	displayContents	optional	send the content of the file or not. If true, the file will be sent in the body of the response.
 	 */
 	function saveFeed($format="RSS0.91", $filename="", $displayContents=true) {
@@ -294,7 +314,7 @@ class UniversalFeedCreator extends FeedCreator {
     *
     * @param   string   format   format the feed should comply to. Valid values are:
     *       "PIE0.1" (deprecated), "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM0.3".
-    * @param filename   string   optional the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+    * @param filename   string   optional the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["SCRIPT_NAME"] with the extension changed to .xml (see _generateFilename()).
     * @param timeout int      optional the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
     */
    function useCached($format="RSS0.91", $filename="", $timeout=3600) {
@@ -460,10 +480,10 @@ class FeedCreator extends HtmlDescribable {
 	}
 
 	/**
-	 * Generate a filename for the feed cache file. The result will be $_SERVER["PHP_SELF"] with the extension changed to .xml.
+	 * Generate a filename for the feed cache file. The result will be $_SERVER["SCRIPT_NAME"] with the extension changed to .xml.
 	 * For example:
 	 *
-	 * echo $_SERVER["PHP_SELF"]."\n";
+	 * echo $_SERVER["SCRIPT_NAME"]."\n";
 	 * echo FeedCreator::_generateFilename();
 	 *
 	 * would produce:
@@ -476,7 +496,7 @@ class FeedCreator extends HtmlDescribable {
 	 * @access private
 	 */
 	function _generateFilename() {
-		$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+		$fileInfo = pathinfo($_SERVER["SCRIPT_NAME"]);
 		return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".xml";
 	}
 
@@ -512,7 +532,7 @@ class FeedCreator extends HtmlDescribable {
 	 * before anything else, especially before you do the time consuming task to build the feed
 	 * (web fetching, for example).
 	 * @since 1.4
-	 * @param filename	string	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+	 * @param filename	string	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["SCRIPT_NAME"] with the extension changed to .xml (see _generateFilename()).
 	 * @param timeout	int		optional	the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
 	 */
 	function useCached($filename="", $timeout=3600) {
@@ -531,7 +551,7 @@ class FeedCreator extends HtmlDescribable {
 	 * header may be sent to redirect the user to the newly created file.
 	 * @since 1.4
 	 *
-	 * @param filename	string	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+	 * @param filename	string	optional	the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["SCRIPT_NAME"] with the extension changed to .xml (see _generateFilename()).
 	 * @param redirect	boolean	optional	send an HTTP redirect header or not. If true, the user will be automatically redirected to the created file.
 	 */
 	function saveFeed($filename="", $displayContents=true) {
@@ -1088,7 +1108,7 @@ class MBOXCreator extends FeedCreator {
 	 * @access private
 	 */
 	function _generateFilename() {
-		$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+		$fileInfo = pathinfo($_SERVER["SCRIPT_NAME"]);
 		return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".mbox";
 	}
 }
@@ -1292,7 +1312,7 @@ class HTMLCreator extends FeedCreator {
 	 * @access private
 	 */
 	function _generateFilename() {
-		$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+		$fileInfo = pathinfo($_SERVER["SCRIPT_NAME"]);
 		return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".html";
 	}
 }
@@ -1331,7 +1351,7 @@ class JSCreator extends HTMLCreator {
 	 * @access private
 	 */
 	function _generateFilename() {
-		$fileInfo = pathinfo($_SERVER["PHP_SELF"]);
+		$fileInfo = pathinfo($_SERVER["SCRIPT_NAME"]);
 		return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".js";
 	}
 }

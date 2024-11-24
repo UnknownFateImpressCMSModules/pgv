@@ -452,6 +452,10 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0) {
 	 if (!$show_full) print "\n<div id=\"inout-$pid.$count\" style=\"display: none;\">\n";
 	 print "<div id=\"fontdef-$pid.$count\" class=\"details$style\">";
 
+//	 if ($show_full) print "\n<div id=\"inout2-$pid.$count\" style=\"display: block;\">\n";
+	 print "\n<div id=\"inout2-$pid.$count\" ";
+	 if ($show_full) print " style=\"display: block;\">\n";
+	 else print " style=\"display: none;\">\n";
 	 $birttag = "BIRT";
 	 $bpos1 = strpos($indirec, "1 BIRT");
 	 if ($bpos1) {
@@ -482,8 +486,18 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0) {
 		 }
 	 }
 
+	 $bpos1 = strpos($indirec, "1 DEAT");
+	 if ($bpos1) {
+		  if (showFact("DEAT", $pid)) {
+			  print_simple_fact($indirec, "DEAT", $pid);
+		  }
+	 }
+
+//	 if ($show_full) print "</div>\n";
+	 print "</div>\n";
+
 	 //-- find all level 1 sub records
-	  $skipfacts = array($birttag,"DEAT","SEX","FAMS","FAMC","NAME","TITL","NOTE","SOUR","SSN","OBJE","HUSB","WIFE","CHIL","ALIA","ADDR","PHON","SUBM","_EMAIL","CHAN","URL","EMAIL","WWW");
+	  $skipfacts = array("SEX","FAMS","FAMC","NAME","TITL","NOTE","SOUR","SSN","OBJE","HUSB","WIFE","CHIL","ALIA","ADDR","PHON","SUBM","_EMAIL","CHAN","URL","EMAIL","WWW","RESI");
 	  $subfacts = get_all_subrecords($indirec, implode(",", $skipfacts));
 
 	  if ($show_full) print "\n<div id=\"inout-$pid.$count\" style=\"display: none;\">\n";
@@ -541,14 +555,7 @@ function print_pedigree_person($pid, $style=1, $show_famlink=true, $count=0) {
 			print_fact_place($factrec, true, true);
 		}
 	  }
-	 print "</div>\n";
-
-	 $bpos1 = strpos($indirec, "1 DEAT");
-	 if ($bpos1) {
-		  if (showFact("DEAT", $pid)) {
-			  print_simple_fact($indirec, "DEAT", $pid);
-		  }
-	 }
+	 if ($show_full) print "</div>\n";
 	 print "</div>";
 	 print "\n\t\t\t</td></tr></table></div>";
 }
@@ -747,7 +754,7 @@ function deleterepository(pid) {
 }
 
 function message(username, method, url, subject) {
-	 if ((!url)||(url=="")) url='<?php print urlencode(basename($PHP_SELF)."?".$QUERY_STRING); ?>';
+	 if ((!url)||(url=="")) url='<?php print rawurlencode(basename($PHP_SELF)."?".$QUERY_STRING); ?>';
 	 if ((!subject)||(subject=="")) subject= '';
 	 window.open('message.php?to='+username+'&method='+method+'&url='+url+'&subject='+subject+"&"+sessionname+"="+sessionid, '', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1');
 	 return false;
@@ -885,7 +892,7 @@ function print_simple_header($title) {
 	}
 
 function message(username, method, url, subject) {
-	 if ((!url)||(url=="")) url='<?php print urlencode(basename($PHP_SELF)."?".$QUERY_STRING); ?>';
+	 if ((!url)||(url=="")) url='<?php print rawurlencode(basename($PHP_SELF)."?".$QUERY_STRING); ?>';
 	 if ((!subject)||(subject=="")) subject= '';
 	 window.open('message.php?to='+username+'&method='+method+'&url='+url+'&subject='+subject+"&"+sessionname+"="+sessionid, '', 'top=50,left=50,width=600,height=500,resizable=1,scrollbars=1');
 	 return false;
@@ -1050,10 +1057,10 @@ function print_user_links() {
  * this function will print appropriate links based on the preferred contact methods for the genealogy
  * contact user and the technical support contact user
  */
-function print_contact_links($style=0) {
+function print_contact_links($style=0) {{
 	global $WEBMASTER_EMAIL, $SUPPORT_METHOD, $CONTACT_EMAIL, $CONTACT_METHOD, $pgv_lang;
 
-	if ($SUPPORT_METHOD=="none" && $CONTACT_METHOD=="none") return;
+	if ($SUPPORT_METHOD=="none" && $CONTACT_METHOD=="none") return array();
 	if ($SUPPORT_METHOD=="none") $WEBMASTER_EMAIL = $CONTACT_EMAIL;
 	if ($CONTACT_METHOD=="none") $CONTACT_EMAIL = $WEBMASTER_EMAIL;
 	switch($style) {
@@ -1062,28 +1069,37 @@ function print_contact_links($style=0) {
 			//--only display one message if the contact users are the same
 			if ($CONTACT_EMAIL==$WEBMASTER_EMAIL) {
 				$user = getUser($WEBMASTER_EMAIL);
+				if ($user && $user["fullname"] == '') $user["fullname"] = $user["username"];
 				if (($user)&&($SUPPORT_METHOD!="mailto")) print $pgv_lang["for_all_contact"]." <a href=\"#\" onclick=\"message('$WEBMASTER_EMAIL', '$SUPPORT_METHOD'); return false;\">".$user["fullname"]."</a><br />\n";
 				else {
 					print $pgv_lang["for_support"]." <a href=\"mailto:";
-					if ($user) print $user["email"]."\">".$user["fullname"]."</a><br />\n";
+						if ($user) {
+              if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
+					    print $user["email"]."\">".$user["fullname"]."</a><br />\n";}
 					else print $WEBMASTER_EMAIL."\">".$WEBMASTER_EMAIL."</a><br />\n";
 				}
 			}
 			//-- display two messages if the contact users are different
 			else {
 				  $user = getUser($CONTACT_EMAIL);
+					if ($user && $user["fullname"] == '') $user["fullname"] = $user["username"];
 				  if (($user)&&($CONTACT_METHOD!="mailto")) print $pgv_lang["for_contact"]." <a href=\"#\" onclick=\"message('$CONTACT_EMAIL', '$CONTACT_METHOD'); return false;\">".$user["fullname"]."</a><br /><br />\n";
 				  else {
 					   print $pgv_lang["for_contact"]." <a href=\"mailto:";
-					   if ($user) print $user["email"]."\">".$user["fullname"]."</a><br />\n";
+						if ($user) {
+              if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
+					    print $user["email"]."\">".$user["fullname"]."</a><br />\n";}
 					   else print $CONTACT_EMAIL."\">".$CONTACT_EMAIL."</a><br />\n";
 				  }
 
 				  $user = getUser($WEBMASTER_EMAIL);
+					if ($user && $user["fullname"] == '') $user["fullname"] = $user["username"];
 				  if (($user)&&($SUPPORT_METHOD!="mailto")) print $pgv_lang["for_support"]." <a href=\"#\" onclick=\"message('$WEBMASTER_EMAIL', '$SUPPORT_METHOD'); return false;\">".$user["fullname"]."</a><br />\n";
 				  else {
 					   print $pgv_lang["for_support"]." <a href=\"mailto:";
-					   if ($user) print $user["email"]."\">".$user["fullname"]."</a><br />\n";
+						if ($user) {
+              if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
+					    print $user["email"]."\">".$user["fullname"]."</a><br />\n";}
 					   else print $WEBMASTER_EMAIL."\">".$WEBMASTER_EMAIL."</a><br />\n";
 				  }
 			}
@@ -1095,6 +1111,7 @@ function print_contact_links($style=0) {
 				$submenu = array();
 				$user = getUser($WEBMASTER_EMAIL);
 				if (($user)&&($SUPPORT_METHOD!="mailto")) {
+          if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 					$submenu["label"] = $pgv_lang["support_contact"]." ".$user["fullname"];
 					$submenu["onclick"] = "message('$WEBMASTER_EMAIL', '$SUPPORT_METHOD'); return false;";
 					$submenu["link"] = "#";
@@ -1103,6 +1120,7 @@ function print_contact_links($style=0) {
 					$submenu["label"] = $pgv_lang["support_contact"]." ";
 					$submenu["link"] = "mailto:";
 					if ($user) {
+            if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 						$submenu["link"] .= $user["email"];
 						$submenu["label"] .= $user["fullname"];
 					}
@@ -1121,6 +1139,7 @@ function print_contact_links($style=0) {
 				$submenu = array();
 				$user = getUser($CONTACT_EMAIL);
 				if (($user)&&($CONTACT_METHOD!="mailto")) {
+          if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 					$submenu["label"] = $pgv_lang["genealogy_contact"]." ".$user["fullname"];
 					$submenu["onclick"] = "message('$CONTACT_EMAIL', '$CONTACT_METHOD'); return false;";
 					$submenu["link"] = "#";
@@ -1129,6 +1148,7 @@ function print_contact_links($style=0) {
 					$submenu["label"] = $pgv_lang["genealogy_contact"]." ";
 					$submenu["link"] = "mailto:";
 					if ($user) {
+            if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 						$submenu["link"] .= $user["email"];
 						$submenu["label"] .= $user["fullname"];
 					}
@@ -1145,6 +1165,7 @@ function print_contact_links($style=0) {
 	            $submenu = array();
 				$user = getUser($WEBMASTER_EMAIL);
 				if (($user)&&($SUPPORT_METHOD!="mailto")) {
+          if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 					$submenu["label"] = $pgv_lang["support_contact"]." ".$user["fullname"];
 					$submenu["onclick"] = "message('$WEBMASTER_EMAIL', '$SUPPORT_METHOD'); return false;";
 					$submenu["link"] = "#";
@@ -1153,6 +1174,7 @@ function print_contact_links($style=0) {
 					$submenu["label"] = $pgv_lang["support_contact"]." ";
 					$submenu["link"] = "mailto:";
 					if ($user) {
+            if ($user["fullname"] == '') $user["fullname"] = $user["username"]; 
 						$submenu["link"] .= $user["email"];
 						$submenu["label"] .= $user["fullname"];
 					}
@@ -1169,7 +1191,7 @@ function print_contact_links($style=0) {
             return $menuitems;
 			break;
 	}
-}
+}}
 
 //-- print user favorites
 function print_favorite_selector($option=0) {
@@ -1677,6 +1699,7 @@ function print_fact($factrec, $pid, $linenum, $indirec=false) {
 					"FAMC","FAMS","FAX","NOTE","OBJE","PHON","PLAC","RESN","SOUR","STAT","TEMP",
 					"TIME","TYPE","WWW","_EMAIL","_PGVU", "URL");
 					$ct = preg_match_all("/\n2 (\w+) (.*)/", $factrec, $match, PREG_SET_ORDER);
+					if ($ct>0) print "<br />";
 					for($i=0; $i<$ct; $i++) {
 						if (!in_array($match[$i][1], $special_facts)) {
 							print "<span class=\"label\">";
@@ -1832,11 +1855,11 @@ function print_main_sources($factrec, $level, $pid, $linenum) {
 		  $spos2 = strpos($factrec, "\n$level", $spos1);
 		  if (!$spos2) $spos2 = strlen($factrec);
 		  $srec = substr($factrec, $spos1, $spos2-$spos1);
-		  if (!showFact("SOUR", $pid)) return false;
+		  if (!showFact("SOUR", $pid) || FactViewRestricted($pid, $factrec)) return false;
 		  print "\n\t\t\t<tr><td class=\"facts_label$styleadd\">";
 		  print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["source"]["large"]."\" width=\"50\" height=\"50\" alt=\"\" /><br />";
 		  print $pgv_lang["source"];
-		  if (userCanEdit(getUserName())&&($styleadd!="red")&&($view!="preview")) {
+		  if (userCanEdit(getUserName())&&(!FactEditRestricted($pid, $factrec))&&($styleadd!="red")&&($view!="preview")) {
 			  $menu = array();
 				$menu["label"] = $pgv_lang["edit"];
 				$menu["labelpos"] = "right";
@@ -1889,6 +1912,14 @@ function print_main_sources($factrec, $level, $pid, $linenum) {
     		   $add_descriptor = get_add_source_descriptor($match[$j][1]);
     		   if ($add_descriptor) print " - ".PrintReady($add_descriptor);
 			   print "</a>";
+			   // See if RESN tag prevents display or edit/delete
+	 			$resn_tag = preg_match("/2 RESN (.*)/", $factrec, $rmatch);
+	 			if ($resn_tag > 0) $resn_value = strtolower(trim($rmatch[1]));
+			    // -- Find RESN tag
+			   if (isset($resn_value)) {
+				   print "<img src=\"images/RESN_".$resn_value.".gif\" alt=\"".$pgv_lang[$resn_value]."\" title=\"".$pgv_lang[$resn_value]."\" />\n";
+					print_help_link("RESN_help", "qm");
+			   }
 			   $source = find_source_record($match[$j][1]);
 			   if ($source) {
 
@@ -2019,9 +2050,9 @@ function print_main_notes($factrec, $level, $pid, $linenum) {
 		  $spos2 = strpos($factrec, "\n$level", $spos1);
 		  if (!$spos2) $spos2 = strlen($factrec);
 		  $nrec = substr($factrec, $spos1, $spos2-$spos1);
-		  if (!showFact("NOTE", $pid)) return false;
+		  if (!showFact("NOTE", $pid)||FactViewRestricted($pid, $factrec)) return false;
 		  print "\n\t\t<tr><td valign=\"top\" class=\"facts_label$styleadd\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["note"]["other"]."\" width=\"50\" height=\"50\" alt=\"\" /><br />".$pgv_lang["note"].":";
-		  if (userCanEdit(getUserName())&&($styleadd!="red")&&($view!="preview")) {
+		  if (userCanEdit(getUserName())&&(!FactEditRestricted($pid, $factrec))&&($styleadd!="red")&&($view!="preview")) {
 			$menu = array();
 			$menu["label"] = $pgv_lang["edit"];
 			$menu["labelpos"] = "right";
@@ -2086,6 +2117,14 @@ function print_main_notes($factrec, $level, $pid, $linenum) {
 					print PrintReady($text)."<br />\n";
 					print_fact_sources($noterec, 1);
 			   }
+			   // See if RESN tag prevents display or edit/delete
+	 			$resn_tag = preg_match("/2 RESN (.*)/", $factrec, $match);
+	 			if ($resn_tag > 0) $resn_value = strtolower(trim($match[1]));
+			    // -- Find RESN tag
+			   if (isset($resn_value)) {
+				   print "<br /><img src=\"images/RESN_".$resn_value.".gif\" alt=\"".$pgv_lang[$resn_value]."\" title=\"".$pgv_lang[$resn_value]."\" />\n";
+					print_help_link("RESN_help", "qm");
+			   }
 			   print "<br />\n";
 			   print_fact_sources($nrec, $nlevel);
 		  }
@@ -2115,7 +2154,7 @@ function print_main_media($factrec, $level, $pid, $linenum) {
 		  $thumbnail="";
 		  $filename="";
 		  $title="";
-		  if (!showFact("OBJE", $pid)) return false;
+		  if (!showFact("OBJE", $pid)||FactViewRestricted($pid, $factrec)) return false;
 		  $spos1 = strpos($factrec, "$level OBJE".$omatch[$i][1]);
 		  $spos2 = strpos($factrec, "\n$level", $spos1);
 		  if (!$spos2) $spos2 = strlen($factrec);
@@ -2163,7 +2202,8 @@ function print_main_media($factrec, $level, $pid, $linenum) {
 						    $image_type = array("bmp", "gif", "jpeg", "jpg", "pcx", "png", "tiff");
 							$path_end=substr($filename, strlen($filename)-5);
 							$type=strtolower(substr($path_end, strpos($path_end, ".")+1));
-							if ($MEDIA_EXTERNAL && in_array($type, $image_type)) $thumbnail=$filename;
+							if ($MEDIA_EXTERNAL && in_array($type, $image_type))
+								$thumbnail = $MEDIA_DIRECTORY."thumbs/".extract_filename($filename);
 							else $thumbnail=$PGV_IMAGE_DIR."/".$PGV_IMAGES["media"]["large"];
 					   }
 					   else {
@@ -2204,7 +2244,7 @@ function print_main_media($factrec, $level, $pid, $linenum) {
 
 		  if (empty($thumbnail)) $thumbnail = $PGV_IMAGE_DIR."/".$PGV_IMAGES["media"]["large"];
 		  print "\n\t\t<tr><td class=\"facts_label$styleadd\"><img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["media"]["large"]."\" width=\"50\" height=\"50\" alt=\"\" /><br />".$factarray["OBJE"].":";
-		  if (userCanEdit(getUserName())&&($styleadd!="red")&&($view!="preview")) {
+		  if (userCanEdit(getUserName())&&(!FactEditRestricted($pid, $factrec))&&($styleadd!="red")&&($view!="preview")) {
 		 	$menu = array();
 			$menu["label"] = $pgv_lang["edit"];
 			$menu["labelpos"] = "right";
@@ -2249,10 +2289,10 @@ function print_main_media($factrec, $level, $pid, $linenum) {
 		}
 		  print "</td><td class=\"facts_value$styleadd\"><span class=\"field\">";
 		  if (showFactDetails("OBJE", $pid)) {
-			   if (preg_match("'://'", $thumbnail)||(preg_match("'://'", $MEDIA_DIRECTORY)>0)||(file_exists(filename_decode($thumbnail)))) print "<a href=\"#\" onclick=\"return openImage('".urlencode($filename)."',$imgwidth, $imgheight);\"><img src=\"".$thumbnail."\" border=\"0\" align=\"" . ($TEXT_DIRECTION== "rtl"?"right": "left") . "\" class=\"thumbnail\" alt=\"\" /></a>";
+			   if (preg_match("'://'", $thumbnail)||(preg_match("'://'", $MEDIA_DIRECTORY)>0)||(file_exists(filename_decode($thumbnail)))) print "<a href=\"#\" onclick=\"return openImage('".rawurlencode($filename)."',$imgwidth, $imgheight);\"><img src=\"".$thumbnail."\" border=\"0\" align=\"" . ($TEXT_DIRECTION== "rtl"?"right": "left") . "\" class=\"thumbnail\" alt=\"\" /></a>";
 
 			   if ($MEDIA_EXTERNAL && stristr($filename, "mailto:")) print "<a href=\"".$filename."\">";
-			   else print "<a href=\"#\" onclick=\"return openImage('".urlencode($filename)."',$imgwidth, $imgheight);\">";
+			   else print "<a href=\"#\" onclick=\"return openImage('".rawurlencode($filename)."',$imgwidth, $imgheight);\">";
  			   print "<i>".PrintReady($title)."</i></a>";  //Does not work for I90 picture on Heb page
 
 			   $tt = preg_match("/$nlevel FORM (.*)/", $orec, $match);
@@ -2326,7 +2366,8 @@ function print_media_links($factrec, $level) {
 				    $image_type = array("bmp", "gif", "jpeg", "jpg", "pcx", "png", "tiff");
 					$path_end=substr($filename, strlen($filename)-5);
 					$type=strtolower(substr($path_end, strpos($path_end, ".")+1));
-					if ($MEDIA_EXTERNAL && in_array($type, $image_type)) $thumbnail=$filename;
+					if ($MEDIA_EXTERNAL && in_array($type, $image_type))
+						$thumbnail = $MEDIA_DIRECTORY."thumbs/".extract_filename($filename);
 					else $thumbnail=$PGV_IMAGE_DIR."/".$PGV_IMAGES["media"]["large"];
 			   }
 			   else {
@@ -2353,7 +2394,8 @@ function print_media_links($factrec, $level) {
 						    $image_type = array("bmp", "gif", "jpeg", "jpg", "pcx", "png", "tiff");
 							$path_end=substr($filename, strlen($filename)-5);
 							$type=strtolower(substr($path_end, strpos($path_end, ".")+1));
-							if ($MEDIA_EXTERNAL && in_array($type, $image_type)) $thumbnail=$filename;
+							if ($MEDIA_EXTERNAL && in_array($type, $image_type))
+								$thumbnail = $MEDIA_DIRECTORY."thumbs/".extract_filename($filename);
 							else $thumbnail=$PGV_IMAGE_DIR."/".$PGV_IMAGES["media"]["large"];
 					   }
 					   else {
@@ -2396,7 +2438,7 @@ function print_media_links($factrec, $level) {
         	if (stristr($filename, "mailto:")){
 				if ($MEDIA_EXTERNAL) print "<a href=\"".$filename."\">";
 			}
-			else print "<a href=\"#\" onclick=\"return openImage('".urlencode($filename)."',$imgwidth, $imgheight);\">";
+			else print "<a href=\"#\" onclick=\"return openImage('".rawurlencode($filename)."',$imgwidth, $imgheight);\">";
 			print "<img src=\"".$thumbnail."\" border=\"0\" align=\"left\" class=\"thumbnail\" alt=\"\" width=\"50\"/>";
             if (!($MEDIA_EXTERNAL) && stristr($filename, "mailto:"));
 			else print "</a>";
@@ -2407,7 +2449,7 @@ function print_media_links($factrec, $level) {
           if (stristr($filename, "mailto:")){
 			if ($MEDIA_EXTERNAL) print "<a href=\"".$filename."\">";
 		  }
-		  else print "<a href=\"#\" onclick=\"return openImage('".urlencode($filename)."',$imgwidth, $imgheight);\">";
+		  else print "<a href=\"#\" onclick=\"return openImage('".rawurlencode($filename)."',$imgwidth, $imgheight);\">";
 		  print "<i>".PrintReady($title)."</i>";
           if (!($MEDIA_EXTERNAL) && stristr($filename, "mailto:"));
 		  else print "</a>";
@@ -3021,7 +3063,7 @@ function print_theme_dropdown($style=0) {
 		  switch ($style) {
 			   case 0:
 			   print "<form action=\"themechange.php\" name=\"themeform$themeformcount\" method=\"post\">";
-			   print "<input type=\"hidden\" name=\"frompage\" value=\"".urlencode($frompage)."\" />";
+			   print "<input type=\"hidden\" name=\"frompage\" value=\"".rawurlencode($frompage)."\" />";
 			   print "<select name=\"mytheme\" class=\"header_select\" onchange=\"document.themeform$themeformcount.submit();\">";
 			   print "<option value=\"\">".$pgv_lang["change_theme"]."</option>\n";
 			   foreach($themes as $indexval => $themedir) {
@@ -3050,7 +3092,7 @@ function print_theme_dropdown($style=0) {
 						 $submenu = array();
 						 $submenu["label"] = $themedir["name"];
 						 $submenu["labelpos"] = "right";
-						 $submenu["link"] = "themechange.php?frompage=".urlencode($frompage)."&amp;mytheme=".$themedir["dir"];
+						 $submenu["link"] = "themechange.php?frompage=".rawurlencode($frompage)."&amp;mytheme=".$themedir["dir"];
 						 $submenu["class"] = "favsubmenuitem";
 						 $submenu["hoverclass"] = "favsubmenuitem_hover";
 						 $menu["items"][] = $submenu;
@@ -3074,8 +3116,7 @@ function print_theme_dropdown($style=0) {
  * @param int $linenum		the line number from the original INDI gedcom record where this name record started, used for editing
  */
 function print_name_record($factrec, $linenum) {
-   global $pgv_lang, $pid, $factarray, $NAME_COUNT, $view, $disp, $TOTAL_NAMES;
-
+   global $pgv_lang, $pid, $factarray, $NAME_COUNT, $view, $disp, $TOTAL_NAMES, $NAME_REVERSE;
    if ((!showFact("NAME", $pid))||(!showFactDetails("NAME", $pid))) return false;
    $lines = split("\n", $factrec);
    $NAME_COUNT++;
@@ -3090,6 +3131,7 @@ function print_name_record($factrec, $linenum) {
 		if ($nt>0){
 			print "\n\t\t<span class=\"label\">".$pgv_lang["name"].": </span><br />";
 			$name = trim($nmatch[1]);
+			if ($NAME_REVERSE) reverse_name($name);
 			$name = preg_replace("'/,'", ",", $name);
    			$name = preg_replace("'/'", " ", $name);
 			// handle PAF extra NPFX [ 961860 ]

@@ -5,10 +5,52 @@
 	This and other information can be found online at
 	http://www.phpgedview.net
 
-	# $Id: changelog.txt,v 1.1 2005/10/07 18:08:01 skenow Exp $
+	# $Id: changelog.txt,v 1.711 2005/12/29 17:12:42 canajun2eh Exp $
 =====================================================================
 
-Version 3.3.5
+Version 3.3.8
+ - Fixed [ 1390162 ] Family names incorrectly formatted (canajun2eh)
+ - Fixed [ 1390522 ] Merging records doesn't work properly (yalnifj)
+ - Added maps for England, Scotland, Wales, and Ireland (cozensweb)
+ - Fixed [ 1369502 ] Washington DC not selectable on USA map (opus27)
+ - Fixed [ 1381759 ] PGV tries to generate thumbnails for PDF files (yalnifj)
+ - Fixed [ 1376653 ] 3.3.7 unmatched parentheses in indilist.php (yalnifj)
+
+Version 3.3.7 2005-12-05
+ - Fixed [ 1372518 ] 3.3.6 findID never finds anyone (yalnifj)
+ - Fixed [ 1372305 ] V3.3.6 - search.php does not work (yalnifj)
+ - Fixed [ 1371683 ] 3.3.6 source.php ... no links (yalnifj)
+
+Version 3.3.6 2005-11-29
+ - Fixed missing quote in RSS calendar link (kosherjava)
+ - Fixed gedcom admin's not highlighted red (yalnifj)
+ - Fixed [ 1348875 ] media thumbs not used? (yalnifj)
+ - Added Patch [ 1349910 ] Patch to work with PostgreSQL (yalnifj)
+ - Fixed [ 1154323 ] Print Preview Footer Problem in Pedigree (yalnifj)
+ - Fixed No option to change Family ID prefix in GEDCOM config (canajun2eh)
+ - Fixed [ 1306925 ] Hourglass view shows D.O.B twice (opus27)
+ - Fixed [ 1252307 ] Ancestry Chart Booklet -- birth info duplicated (opus27)
+ - Fixed birth list report error in index mode (yalnifj)
+ - Fixed upload media forces login (yalnifj)
+ - Fixed [ 1288038 ] R3.5.5 - Missing line-break after inserting LATI/LONG (yalnifj)
+ - Fixed [ 1282436 ] Hit counter - not displayed correctly on RTL languages (yalnifj)
+ - Fixed [ 1291851 ] Find ID does not work with User and GEDCOM Favorites blocks (yalnifj)
+ - Fixed [ 1290436 ] media - typo bug (yalnifj)
+ - Fixed [ 1286682 ] some variables should be unrestricted (yalnifj)
+ - Changed error reporting level in session.php to stop pass by reference notices in PHP 4.4 (yalnifj)
+ - Fixed [ 1283530 ] Zoom Should Unzoom others and Than Zoom (yalnifj)
+ - Fixed [ 1284813 ] Unclosed font tag (yalnifj)
+ - Fixed [ 1282576 ] Zoomed Favorites - Reverse Order of Events (yalnifj)
+ - Fixed [ 1282578 ] Residence events should not display in Trees (yalnifj)
+ - Fixed [ 1283351 ] Unknown indexes in edit_merge.php (yalnifj)
+ - Fixed [ 1267621 ] Site & User language settings ignored (canajun2eh)
+ - Fixed [ 1256301 ] Photos are printet in the same position in Individual Report (yalnifj)
+ - Fixed [ 1206387 ] "Surname First" option in language config doesn't work (yalnifj)
+ - Fixed [ 1254472 ] Incorrect GEDCOM export when PGV not set to English (canajun2eh)
+ - Fixed [ 1257008 ] Incorrect handling of unknown sex on various pages (canajun2eh)
+ - Added Lithuanian language translation (yalnifj on behalf of Arturas Sleinius)
+
+Version 3.3.5 2005-07-29
  - Fixed [ 1211435 ] Patriarchlist Undefined index error (yalnifj)
  - Fixed find_record_in_file bug where a block landing in 0 @XREF@ line resulted in the record not being found (yalnifj)
  - Fixed RESN privacy error for NOTEs and SOURces on the notes and sources tabs (yalnifj)
@@ -38,7 +80,7 @@ Version 3.3.5
  - Added Patch [ 1200173 ] Patch to repair US style (November 11, 1998) dates (yalnifj)
  - Fixed [ 1199683 ] Privacy not respected in blocks (sjouke)
 
-Version 3.3.4
+Version 3.3.4 2005-05-11
  - Fixed [ 1199508 ] 3.3.3final ... undefined index in initial setup screen (yalnifj)
  - Fixed [ 1199511 ] 3.3.3final ... editconfig_gedcom form field labels (yalnifj)
 
@@ -67,7 +109,7 @@ Version 3.3.3
  - Fixed [ 1192120 ] 3.3.2final alive in year (yalnifj)
  - Fixed [ 1192128 ] 3.3.2final ? appears in the Most Common Surnames (yalnifj)
 
-Version 3.3.2
+Version 3.3.2 2005-04-28
  - Fixed [ 1188965 ] 3.3.1f: PNG thumbnail generation errors (yalnifj)
  - Fixed [ 1187775 ] Special Character table broken (canajun2eh)
  - Fixed [ 1188065 ] space in filename breaks default_gedcom (yalnifj)

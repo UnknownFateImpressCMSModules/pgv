@@ -117,7 +117,10 @@ if ($action!="choose") {
 								$skip1[] = $i;
 								$skip2[] = $j;
 								$equal_count++;
-								print "<tr><td>".$factarray[$fact1["fact"]]."<input type=\"hidden\" name=\"keep1[]\" value=\"$i\" /></td>\n<td>".nl2br($fact1["subrec"])."</td></tr>\n";
+								print "<tr><td>";
+								if (isset($factarray[$fact1["fact"]])) print $factarray[$fact1["fact"]];
+								else print $fact1["fact"];
+								print "<input type=\"hidden\" name=\"keep1[]\" value=\"$i\" /></td>\n<td>".nl2br($fact1["subrec"])."</td></tr>\n";
 							}
 						}
 					}
@@ -199,17 +202,17 @@ if ($action=="choose") {
 	var pasteto;
 	function iopen_find(textbox, gedselect) {
 		pasteto = textbox;
-		ged = gedselect.options[gedselect.selectedIndex].value;
+		<?php if ($PGV_DATABASE!='index') print "ged = gedselect.options[gedselect.selectedIndex].value;\n"; else print "ged = '".$GEDCOM."';\n"; ?>
 		findwin = window.open('findid.php?ged='+ged, '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
 	}
 	function fopen_find(textbox, gedselect) {
 		pasteto = textbox;
-		ged = gedselect.options[gedselect.selectedIndex].value;
+		<?php if ($PGV_DATABASE!='index') print "ged = gedselect.options[gedselect.selectedIndex].value;\n"; else print "ged = '".$GEDCOM."';\n"; ?>
 		findwin = window.open('findfamily.php?ged='+ged, '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
 	}
 	function sopen_find(textbox, gedselect) {
 		pasteto = textbox;
-		ged = gedselect.options[gedselect.selectedIndex].value;
+		<?php if ($PGV_DATABASE!='index') print "ged = gedselect.options[gedselect.selectedIndex].value;\n"; else print "ged = '".$GEDCOM."';\n"; ?>
 		findwin = window.open('findsource.php?ged='+ged, '', 'left=50,top=50,width=450,height=450,resizable=1,scrollbars=1');
 	}
 	function paste_id(value) {

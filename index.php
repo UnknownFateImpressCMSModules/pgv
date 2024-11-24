@@ -79,7 +79,8 @@ $uname = getUserName();
 if (empty($uname)) {
 	if (!empty($command)) {
 		if ($command=="user") {
-			header("Location: login.php?help_message=mygedview_login_help&url=".urlencode("index.php?command=user"));
+			//header("Location: login.php?help_message=mygedview_login_help&url=".urlencode("index.php?command=user"));
+			redirect_header(XOOPS_URL."/user.php",3,"You need to log in to view this page");
 			exit;
 		}
 	}
@@ -96,8 +97,13 @@ if (!empty($uname)) {
 		$indirec = find_person_record($gid);
 		if ($indirec) {
 			$favorite = array();
-			if ($command=="user") $favorite["username"] = $uname;
-			else $favorite["username"] = $GEDCOM;
+			if (!isset($favtype)) {
+				if ($command=="user") $favtype = "user";
+				else $favtype = "gedcom";
+			}
+			if ($favtype=="gedcom") $favtype = $GEDCOM;
+			else $favtype=$uname;
+			$favorite["username"] = $favtype;
 			$favorite["gid"] = $gid;
 			$favorite["type"] = "INDI";
 			$favorite["file"] = $GEDCOM;
@@ -183,10 +189,10 @@ else {
 		window.location = 'index.php?command=<?php print $command; ?>';
 	}
 	function addnews(uname) {
-		window.open('editnews.php?uname='+uname, '', 'top=50,left=50,width=500,height=400,resizable=1,scrollbars=1');
+		window.open('editnews.php?uname='+uname, '', 'top=50,left=50,width=800,height=500,resizable=1,scrollbars=1');
 	}
 	function editnews(news_id) {
-		window.open('editnews.php?news_id='+news_id, '', 'top=50,left=50,width=500,height=400,resizable=1,scrollbars=1');
+		window.open('editnews.php?news_id='+news_id, '', 'top=50,left=50,width=800,height=500,resizable=1,scrollbars=1');
 	}
 //-->
 </script>
@@ -205,7 +211,7 @@ if (count($ublocks["main"])!=0) {
 	} else {
 		print "\t<div id=\"index_full_blocks\">\n";
 	}
-	
+
 	foreach($ublocks["main"] as $bindex=>$block) {
 		if (isset($DEBUG)&&($DEBUG==true)) print_execution_stats();
 		if (function_exists($block[0])) eval($block[0]."(false, \$block[1], \"main\", $bindex);");
@@ -221,7 +227,7 @@ if (count($ublocks["right"])!=0) {
 	} else {
 		print "\t<div id=\"index_full_blocks\">\n";
 	}
-	
+
 	foreach($ublocks["right"] as $bindex=>$block) {
 		if (isset($DEBUG)&&($DEBUG==true)) print_execution_stats();
 		if (function_exists($block[0])) eval($block[0]."(true, \$block[1], \"right\", $bindex);");

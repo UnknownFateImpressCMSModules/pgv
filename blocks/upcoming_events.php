@@ -177,7 +177,7 @@ function print_upcoming_events($block=true, $config="", $side, $index) {
 							else  if (preg_match("/1 SEX F/", $indirec)>0) print $PGV_IMAGES["sexf"]["small"]."\" title=\"".$pgv_lang["female"]."\" alt=\"".$pgv_lang["female"];
 							else print $PGV_IMAGES["sexn"]["small"]."\" title=\"".$pgv_lang["sex"]." ".$pgv_lang["unknown"]."\" alt=\"".$pgv_lang["sex"]." ".$pgv_lang["unknown"];
 							print "\" class=\"sex_image\" />";
-							$name = check_NN(get_sortable_name($gid));
+							$name = check_NN(get_person_name($gid));
 							print "<a href=\"individual.php?pid=$gid&amp;ged=".$GEDCOM."\"><b>".PrintReady($name)."</b>";
 							if ($SHOW_ID_NUMBERS) {
 							   if ($TEXT_DIRECTION=="ltr") 

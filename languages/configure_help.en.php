@@ -8,7 +8,7 @@
    Change Log:	5/1/03 - File Created
    2005.02.19 "PhpGedView" and "GEDCOM" made consistent across all language files  G.Kroll (canajun2eh)
 ===================================================*/
-# $Id: configure_help.en.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+# $Id: configure_help.en.php,v 1.177 2005/10/22 11:34:38 canajun2eh Exp $
 if (preg_match("/configure_help\...\.php$/", $_SERVER["PHP_SELF"])>0) {
 	print "You cannot access a language file directly.";
 	exit;
@@ -181,6 +181,8 @@ $pgv_lang["PEDIGREE_ROOT_ID"]		= "Default person for Pedigree and Descendancy ch
 $pgv_lang["PEDIGREE_ROOT_ID_help"]	= "Set the ID of the default person to display on Pedigree and Descendancy charts.";
 $pgv_lang["GEDCOM_ID_PREFIX"]		= "GEDCOM&nbsp;ID prefix";
 $pgv_lang["GEDCOM_ID_PREFIX_help"]	= "Add this prefix to unprefixed IDs entered by users in response to ID prompts on Pedigree, Descendancy, Relationship, and other charts.";
+$pgv_lang["FAM_ID_PREFIX"]		= "Family&nbsp;ID prefix";
+$pgv_lang["FAM_ID_PREFIX_help"]	= "When a new family record is added online in PhpGedView, a new ID for that family will be generated automatically.  The family ID will have this prefix.";
 $pgv_lang["SOURCE_ID_PREFIX"]		= "Source&nbsp;ID prefix";
 $pgv_lang["SOURCE_ID_PREFIX_help"]	= "When a new source record is added online in PhpGedView, a new ID for that source will be generated automatically.  The source ID will have this prefix.";
 $pgv_lang["REPO_ID_PREFIX"]		= "Repository&nbsp;ID prefix";
@@ -490,6 +492,7 @@ $pgv_lang["lang_name_swedish"]		= "Swedish";
 $pgv_lang["lang_name_turkish"]		= "Turkish";
 $pgv_lang["lang_name_greek"]		= "Greek";
 $pgv_lang["lang_name_arabic"]		= "Arabic";
+$pgv_lang["lang_name_lithuanian"]	= "Lithuanian";
 $pgv_lang["lang_new_language"]		= "New Language";
 $pgv_lang["original_lang_name"]		= "Original name of language in #D_LANGNAME#";
 $pgv_lang["original_lang_name_help"]	= "How is this language named in this language?<br /><br />English calls itself <b>English</b>;  German calls itself <b>Deutsch</b>;  Dutch calls itself <b>Nederlands</b>;  Czech calls itself <b>Ceština</b>, etc.";

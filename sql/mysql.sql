@@ -6,7 +6,7 @@ CREATE TABLE pgv_blocks (
   b_name varchar(255) default NULL,
   b_config text,
   PRIMARY KEY  (b_id)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_dates (
   d_day int(11) UNSIGNED default NULL,
@@ -21,7 +21,7 @@ CREATE TABLE pgv_dates (
   KEY date_fact (d_fact),
   KEY date_gid (d_gid),
   KEY date_file (d_file)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_families (
   f_id varchar(30) default NULL,
@@ -32,7 +32,7 @@ CREATE TABLE pgv_families (
   f_gedcom text,
   KEY fam_id (f_id),
   KEY fam_file (f_file)
-) TYPE=MyISAM;
+);
 
 
 CREATE TABLE pgv_favorites (
@@ -42,7 +42,7 @@ CREATE TABLE pgv_favorites (
   fv_type varchar(10) default NULL,
   fv_file varchar(100) default NULL,
   PRIMARY KEY  (fv_id)
-) TYPE=MyISAM;
+);
 
 
 CREATE TABLE pgv_individuals (
@@ -59,7 +59,7 @@ CREATE TABLE pgv_individuals (
   KEY indi_letter (i_letter),
   KEY indi_file (i_file),
   KEY indi_surn (i_surname)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_messages (
   m_id int(11) NOT NULL default '0',
@@ -69,7 +69,7 @@ CREATE TABLE pgv_messages (
   m_body text,
   m_created varchar(255) default NULL,
   PRIMARY KEY  (m_id)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_names (
   n_gid varchar(30) default NULL,
@@ -83,7 +83,7 @@ CREATE TABLE pgv_names (
   KEY name_letter (n_letter),
   KEY name_type (n_type),
   KEY name_surn (n_surname)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_news (
   n_id int(11) NOT NULL default '0',
@@ -92,7 +92,7 @@ CREATE TABLE pgv_news (
   n_title varchar(255) default NULL,
   n_text text,
   PRIMARY KEY  (n_id)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_other (
   o_id varchar(30) default NULL,
@@ -101,7 +101,7 @@ CREATE TABLE pgv_other (
   o_gedcom text,
   KEY other_id (o_id),
   KEY other_file (o_file)
-) TYPE=MyISAM;
+);
 
 
 CREATE TABLE pgv_placelinks (
@@ -111,7 +111,7 @@ CREATE TABLE pgv_placelinks (
   KEY plindex_place (pl_p_id),
   KEY plindex_gid (pl_gid),
   KEY plindex_file (pl_file)
-) TYPE=MyISAM;
+);
 
 
 CREATE TABLE pgv_places (
@@ -125,7 +125,7 @@ CREATE TABLE pgv_places (
   KEY place_level (p_level),
   KEY place_parent (p_parent_id),
   KEY place_file (p_file)
-) TYPE=MyISAM;
+);
 
 
 CREATE TABLE pgv_sources (
@@ -136,12 +136,12 @@ CREATE TABLE pgv_sources (
   KEY sour_id (s_id),
   KEY sour_name (s_name),
   KEY sour_file (s_file)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_tblver (
   t_table varchar(255) NOT NULL default '',
   t_version int(10) unsigned NOT NULL default '0'
-) TYPE=MyISAM;
+);
 
 INSERT INTO pgv_tblver (t_table, t_version) VALUES ('pgv_blocks', 1);
 INSERT INTO pgv_tblver (t_table, t_version) VALUES ('pgv_dates', 1);
@@ -164,7 +164,7 @@ CREATE TABLE pgv_users (
   u_canedit text,
   u_contactmethod varchar(255),
   u_defaulttab int unsigned
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_media (
   m_id int(11) NOT NULL auto_increment,
@@ -176,7 +176,7 @@ CREATE TABLE pgv_media (
   m_gedrec text,
   PRIMARY KEY(m_id),
   KEY m_media (m_media)
-) TYPE=MyISAM;
+);
 
 CREATE TABLE pgv_media_mapping (
   m_id int(11) NOT NULL auto_increment,
@@ -187,4 +187,4 @@ CREATE TABLE pgv_media_mapping (
   m_gedrec text,
   PRIMARY KEY(m_id),
   KEY m_media (m_media)
-) TYPE=MyISAM;
+);

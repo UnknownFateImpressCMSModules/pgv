@@ -539,10 +539,10 @@ function get_changed_date($datestr) {
 			// already in english !
 			if ($LANGUAGE!="english") {
 				foreach (array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December") as $indexval => $item) {
-					// February => Février
+					// February => Fï¿½vrier
 					$translated = $pgv_lang[substr(strtolower($item),0,3)];
 					$adate = str_replace($item, $translated, $adate);
-					// Feb => Fév
+					// Feb => Fï¿½v
 					$item = substr($item, 0, 3);
 					$translated = substr($translated, 0, 3);
 					$adate = str_replace($item, $translated, $adate);
@@ -562,11 +562,13 @@ function get_changed_date($datestr) {
 			// french calendar from 22 SEP 1792 to 31 DEC 1805
 			if ($LANGUAGE=="french" and !empty($day)) {
 				if ( (1792<$year and $year<1806) or ($year==1792 and ($mon>9 or ($mon==9 and $day>21)))) {
-					$jd = gregoriantojd($mon, $day, $year);
-					$frenchDate = jdtofrench($jd);
-					list ($fMonth, $fDay, $fYear) = split ('/', $frenchDate);
-					$fMonthName = jdmonthname ($jd, 5);
-					$adate .= " <nobr>&nbsp;<u>$fDay $fMonthName An $fYear</u>&nbsp;</nobr>";
+					if (function_exists("gregoriantojd")) {
+						$jd = gregoriantojd($mon, $day, $year);
+						$frenchDate = jdtofrench($jd);
+						list ($fMonth, $fDay, $fYear) = split ('/', $frenchDate);
+						$fMonthName = jdmonthname ($jd, 5);
+						$adate .= " <nobr>&nbsp;<u>$fDay $fMonthName An $fYear</u>&nbsp;</nobr>";
+					}
 				}
 			}
 			if (isset($pdate[$i]["ext"])) {
@@ -855,9 +857,9 @@ function parse_date($datestr) {
 	global $monthtonum;
 
 	$dates = array();
-	$dates[0]["day"] = ""; //1;
+	$dates[0]["day"] = 0; //1;
 	$dates[0]["month"] = ""; //"JAN";
-	$dates[0]["mon"] = ""; //1;
+	$dates[0]["mon"] = 0; //1;
 	$dates[0]["year"] = 0;
 	$dates[0]["ext"] = "";
 	$strs = preg_split("/[\s\.,\-\\/\(\)\[\]]+/", $datestr);

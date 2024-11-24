@@ -6,3 +6,8 @@
 	margin: 0px 0px 5px 30px;
 	padding: 0px 0px 0px 0px;
 }
+
+#descendancy_chart li {
+	margin: 0px 0px 2px -15px;
+	padding: 0px 0px 0px 0px;
+}

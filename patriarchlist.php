@@ -276,7 +276,7 @@ if (($surname_sublist=="yes")&&($show_all=="yes")) {
 	print "<td class=\"list_label\" colspan=\"$col\">";
 	print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["indis"]["large"]."\" border=\"0\" width=\"25\" title=\"".$pgv_lang["individuals"]."\" alt=\"".$pgv_lang["individuals"]."\" />&nbsp;&nbsp;";
 	print $pgv_lang["surnames"]."</td></tr><tr>\n";
-	print "<td class=\"list_value\" style=\"padding: 14px;\">\n";
+	print "<td class=\"list_value_wrap\" style=\"padding: 14px;\">\n";
 
 	foreach($surnames as $surname=>$namecount) {
 		if (begRTLText($namecount["name"])) {
@@ -290,7 +290,7 @@ if (($surname_sublist=="yes")&&($show_all=="yes")) {
 		$count_indi += $namecount["match"];
 		$i++;
 		if ($i==$newcol && $i<$count) {
-			print "</td><td class=\"list_value\" style=\"padding: 14px;\">\n";
+			print "</td><td class=\"list_value_wrap\" style=\"padding: 14px;\">\n";
 			$newcol=$i+ceil($count/$col);
 		}
 	}
@@ -331,7 +331,7 @@ else if (($surname_sublist=="yes")&&(empty($surname))&&($show_all=="no")) {
 	print "<td class=\"list_label\" colspan=\"$col\">";
 	print "<img src=\"".$PGV_IMAGE_DIR."/".$PGV_IMAGES["indis"]["large"]."\" border=\"0\" width=\"25\" title=\"".$pgv_lang["individuals"]."\" alt=\"".$pgv_lang["individuals"]."\" />&nbsp;&nbsp;";
 	print $pgv_lang["surnames"]."</td></tr><tr>\n";
-	print "<td class=\"list_value\" style=\"padding: 14px;\">\n";
+	print "<td class=\"list_value_wrap\" style=\"padding: 14px;\">\n";
 
 	foreach($surnames as $surname=>$namecount) {
 		if (begRTLText($namecount["name"])) {
@@ -342,7 +342,7 @@ else if (($surname_sublist=="yes")&&(empty($surname))&&($show_all=="no")) {
 		$count_indi += $namecount["match"];
 		$i++;
 		if ($i==$newcol && $i<$count) {
-			print "</td><td class=\"list_value\" style=\"padding: 14px;\">\n";
+			print "</td><td class=\"list_value_wrap\" style=\"padding: 14px;\">\n";
 			$newcol=$i+ceil($count/$col);
 		}	
 	}
@@ -398,11 +398,11 @@ else {
 		if (!empty($surname) && $surname_sublist=="yes") print PrintReady(str_replace("#surname#", check_NN($surname), $pgv_lang["indis_with_surname"]));
 		else print $pgv_lang["individuals"];
 		print "</td></tr><tr>\n";
-		print "<td class=\"list_value\"><ul>\n";
+		print "<td class=\"list_value_wrap\"><ul>\n";
 		foreach($surnames as $k => $surname) {
 			print_list_person($surname["gid"], array($surname["name"], $surname["file"]));
 			$i++;
-			if ($i==floor($count/2)) print "</ul></td><td class=\"list_value\"><ul>\n";
+			if ($i==floor($count/2)) print "</ul></td><td class=\"list_value_wrap\"><ul>\n";
 		}
 		print "</ul></td>\n";
 

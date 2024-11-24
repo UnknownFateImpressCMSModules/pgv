@@ -401,6 +401,10 @@ var oldthumbdisp = 0;
 var repositioned = 0;
 var oldiconsdislpay = 0;
 function expandbox(boxid, bstyle) {
+	if (big==1) {
+		restorebox(oldboxid, bstyle);
+		if (boxid==oldboxid) return true;
+	}
 	url = window.location.toString();
 	divbox = document.getElementById("out-"+boxid);
 	inbox = document.getElementById("inout-"+boxid);
@@ -414,9 +418,7 @@ function expandbox(boxid, bstyle) {
 	thumb1 = document.getElementById("box-"+boxid+"-thumb");
 	famlinks = document.getElementById("I"+boxid+"links");
 	icons = document.getElementById("icons-"+boxid);
-	if (big==1) {
-		return restorebox(oldboxid, bstyle);
-	}
+	
 	if (divbox) {
 		if (icons) {
 		oldiconsdislpay = icons.style.display;
@@ -619,18 +621,8 @@ function show_submenu(elementid, parentid, dir) {
 
 		currentmenu = elementid;
 	}
-	/* added lines for iframe fix for select box z-index problem
-	myIframe = document.getElementById('ieSelectFix');
-	myIframe.style.width = element.style.width;
-	myIframe.style.height = element.style.height +"px";
-	myIframe.style.top = element.style.top +"px";
-	myIframe.style.left = element.style.left +"px";
-	myIframe.style.visibility = 'visible';*/
-	
 	clearTimeout(menutimeouts[elementid]);
 	menutimeouts[elementid] = null;
-	
-
 }
 
 /**
@@ -644,14 +636,9 @@ function hide_submenu(elementid) {
 	if (element && element.style) {
 		element.style.visibility='hidden';
 	}
-	/* added to hide the iframe fix
-	myIframe = document.getElementById('ieSelectFix');
-	myIframe.style.visibility = 'hidden';*/
-
-    clearTimeout(menutimeouts[elementid]);
+	clearTimeout(menutimeouts[elementid]);
 	menutimeouts[elementid] = null;
-	
-
+ 
 }
 
 /**

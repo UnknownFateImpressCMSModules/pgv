@@ -1,13 +1,13 @@
 =======================================================
 	PhpGedView
 
-	Version 3.3.4
+	Version 3.3.8
 	Copyright 2004 John Finlay and others
 
 	This and other information can be found online at
 	http://www.PhpGedView.net
 
-	# $Id: readme.txt,v 1.1 2005/10/07 18:12:20 skenow Exp $
+	# $Id: readme.txt,v 1.122 2005/12/05 17:00:22 yalnifj Exp $
 =======================================================
 
 CONTENTS

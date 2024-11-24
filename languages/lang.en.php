@@ -8,7 +8,7 @@
    Change Log:		  See LANG_CHANGELOG.txt
    2005.02.19 "PhpGedView" and "GEDCOM" made consistent across all language files  G.Kroll (canajun2eh)
 ===================================================*/
-# $Id: lang.en.php,v 1.1 2005/10/07 18:08:36 skenow Exp $
+# $Id: lang.en.php,v 1.357 2005/12/28 14:17:08 dick_kaas Exp $
 if (preg_match("/lang\...\.php$/", $_SERVER["PHP_SELF"])>0) {
 		print "You cannot access a language file directly.";
 		exit;
@@ -50,6 +50,7 @@ $pgv_lang["mothers_family_with"]	= "Mother's Family with ";
 $pgv_lang["fathers_family_with"]	= "Father's Family with ";
 $pgv_lang["halfbrother"]			= "Half-Brother";
 $pgv_lang["halfsister"]				= "Half-Sister";
+$pgv_lang["halfsibling"]			= "Half-Sibling";
 $pgv_lang["family_timeline"]		= "Show family on timeline chart";
 $pgv_lang["children_timeline"]		= "Show children on timeline chart";
 $pgv_lang["other"]					= "Other";
@@ -257,6 +258,7 @@ $pgv_lang["parents"]				= "Parents:";
 $pgv_lang["siblings"]				= "Sibling";
 $pgv_lang["father"] 				= "Father";
 $pgv_lang["mother"] 				= "Mother";
+$pgv_lang["parent"] 				= "Parent";
 $pgv_lang["relatives"]				= "Close Relatives";
 $pgv_lang["child"]					= "Child";
 $pgv_lang["spouse"] 				= "Spouse";
@@ -868,6 +870,12 @@ $pgv_lang["block_top10_descr"]		= "This block shows a table of the 10 most frequ
 
 $pgv_lang["gedcom_news_block"]		= "GEDCOM News Block";
 $pgv_lang["gedcom_news_descr"]		= "The GEDCOM News block shows the visitor news releases or articles posted by an admin user.<br /><br />The News block is a good place to announce a significant database update, a family reunion, or the birth of a child.";
+$pgv_lang["gedcom_news_limit"]		= "Limit display by:";
+$pgv_lang["gedcom_news_limit_nolimit"]	= "No limit";
+$pgv_lang["gedcom_news_limit_date"]		= "Age of item";
+$pgv_lang["gedcom_news_limit_count"]	= "Number of items";
+$pgv_lang["gedcom_news_flag"]		= "Limit:";
+$pgv_lang["gedcom_news_archive"] 	= "View archive";
 $pgv_lang["user_news_block"]		= "User Journal Block";
 $pgv_lang["user_news_descr"]		= "The User Journal block lets the user keep notes or a journal online.";
 $pgv_lang["my_journal"] 			= "My Journal";
@@ -1165,59 +1173,69 @@ $pgv_lang["twin_sister"] = "Twin sister";
 $pgv_lang["witness"] = "Witness";
 
 //-- statistics utility
-$pgv_lang["statutci"]			= "unable to create index";
-$pgv_lang["statnnames"]                = "number of names    =";
-$pgv_lang["statnfam"]                  = "number of families =";
-$pgv_lang["statnmale"]                 = "number of males    =";
-$pgv_lang["statnfemale"]               = "number of females  =";
-$pgv_lang["statvars"]			 = "Fill in the following variables for the plot";
-$pgv_lang["statlxa"]			 = "along x-axis:";
-$pgv_lang["statlya"]			 = "along y-axis:";
-$pgv_lang["statlza"]			 = "along z-axis";
-$pgv_lang["stat_10_none"]		 = "none";
-$pgv_lang["stat_11_mb"]			 = "Month of birth";
-$pgv_lang["stat_12_md"]			 = "Month of death";
-$pgv_lang["stat_13_mm"]			 = "Month of marriage";
-$pgv_lang["stat_14_mb1"]		= "Month of birth of first child in a relation";
+$pgv_lang["statutci"]			= "Unable to create index";
+$pgv_lang["statnnames"]         	= "Number of Individuals = ";
+$pgv_lang["statnfam"]           	= "Number of Families    = ";
+$pgv_lang["statnmale"]          	= "Number of Males       = ";
+$pgv_lang["statnfemale"]        	= "Number of Females     = ";
+$pgv_lang["statvars"]			= "Select the following variables for the chart";
+$pgv_lang["statlxa"]			= "Along x-axis (horizontal):";
+$pgv_lang["statlya"]			= "Along y-axis (vertical):";
+$pgv_lang["statlza"]			= "Along z-axis";
+$pgv_lang["stat_10_none"]		= "None";
+$pgv_lang["stat_11_mb"]			= "Month of birth";
+$pgv_lang["stat_12_md"]			= "Month of death";
+$pgv_lang["stat_13_mm"]			= "Month of marriage";
+$pgv_lang["stat_14_mb1"]		= "Month of birth of first child in a relationship";
 $pgv_lang["stat_15_mm1"]		= "Month of first marriage";
-$pgv_lang["stat_16_mmb"]		= "Month between marriage and first child.";
-$pgv_lang["stat_17_arb"]			 = "age related to birth year.";
-$pgv_lang["stat_18_ard"]			 = "age related to death year.";
-$pgv_lang["stat_19_arm"]			 = "age in year of marriage.";
-$pgv_lang["stat_20_arm1"]			 = "age in year of first marriage.";
-$pgv_lang["stat_21_nok"]			 = "number of children.";
-$pgv_lang["stat_gmx"]			= " check tickvalues for month";
-$pgv_lang["stat_gax"]			= " check tickvalues for ages";
-$pgv_lang["stat_gnx"]			= " check tickvalues for numbers";
-$pgv_lang["stat_200_none"]			 = "all (or blank)";
-$pgv_lang["stat_201_num"]			 = "numbers";
-$pgv_lang["stat_202_perc"]			 = "percentage";
-$pgv_lang["stat_300_none"]		= "none";
-$pgv_lang["stat_301_mf"]			 = "male/female";
-$pgv_lang["stat_302_cgp"]			 = "periods. Check tickvalues for periods z-axis";
-$pgv_lang["statmess1"]			 = "<b>Just fill in next rows related to earlier settings on x-axis or z-axis</b>";
-$pgv_lang["statar_xgp"]			 = "tickvalues for periods (x-axis):";
-$pgv_lang["statar_xgl"]			 = "tickvalues for ages    (x-axis):";
-$pgv_lang["statar_xgm"]			 = "tickvalues for month   (x-axis):";
-$pgv_lang["statar_xga"]			 = "tickvalues for numbers (x-axis):";
-$pgv_lang["statar_zgp"]			 = "tickvalues for periods (z-axis):";
-$pgv_lang["statreset"]			 = "reset";
-$pgv_lang["statsubmit"]			 = "show the plot";
-
+$pgv_lang["stat_16_mmb"]		= "Months between marriage and first child.";
+$pgv_lang["stat_17_arb"]		= "Age related to birth year.";
+$pgv_lang["stat_18_ard"]		= "Age related to death year.";
+$pgv_lang["stat_19_arm"]		= "Age in year of marriage.";
+$pgv_lang["stat_20_arm1"]		= "Age in year of first marriage.";
+$pgv_lang["stat_21_nok"]		= "Number of children per family.";
+//--$pgv_lang["stat_gmx"]			= " Check Tickvalues for Month";
+//--$pgv_lang["stat_gax"]			= " Check Tickvalues for Ages";
+//--$pgv_lang["stat_gnx"]			= " Check Tickvalues for Numbers";
+$pgv_lang["stat_200_none"]		= "All (or blank)";
+$pgv_lang["stat_201_num"]		= "Count";
+$pgv_lang["stat_202_perc"]		= "Percentage";
+$pgv_lang["stat_300_none"]		= "None";
+$pgv_lang["stat_301_mf"]		= "Male/Female";
+$pgv_lang["stat_302_cgp"]		= "Periods. Check Tickvalues for periods z-axis";
+$pgv_lang["statmess1"]			= "<b>Alter these next rows related to the settings above for x-axis or z-axis</b>";
+$pgv_lang["statar_xg"]			= "Tickvalues (x-axis):";
+//--$pgv_lang["statar_xgp"]			= "Tickvalues for periods (x-axis):";
+//--$pgv_lang["statar_xgl"]			= "Tickvalues for ages    (x-axis):";
+//--$pgv_lang["statar_xgm"]			= "Tickvalues for month   (x-axis):";
+//--$pgv_lang["statar_xga"]			= "Tickvalues for numbers (x-axis):";
+$pgv_lang["statar_zg"]			= "Tickvalues (z-axis):";
+//--$pgv_lang["statar_zgp"]			= "Tickvalues for periods (z-axis):";
+$pgv_lang["statreset"]			= "Reset";
+$pgv_lang["statsubmit"]			= "Show the Chart";
 //-- statisticsplot utility
 $pgv_lang["stpl"]			 	= "...";
-$pgv_lang["stplGDno"]			 = "Graphics Display Library is not available in PHP 4. Please contact your system administrator";
-$pgv_lang["stpljpgraphno"]		= "JPgraph modules are not available in directory <i>phpgedview/jpgraph/</i> . Please get them from http://www.aditus.nu/jpgraph/jpdownload.php<br> <h3>First install JPgraph in directory <i>phpgedview/jpgraph/</i></h3><br>";
-$pgv_lang["stplinfo"]			 = "plotting information:";
-$pgv_lang["stpltype"]			 = "type:";
-$pgv_lang["stplnoim"]			 = " not implemented:";
-$pgv_lang["stplmf"]			 = " / man-woman";
-$pgv_lang["stplipot"]			 = " / per timeperiod";
-$pgv_lang["stplgzas"]			 = "borders z-axis:";
-$pgv_lang["stplmonth"]			 = "month";
-$pgv_lang["stplnumbers"]		 = "numbers for a family";
-$pgv_lang["stplage"]			 = "age";
-$pgv_lang["stplperc"]			 = "percentage";
+$pgv_lang["stplGDno"]			= "Graphics Display Library is not available in PHP 4. Ask your system administrator";
+$pgv_lang["stpljpgraphno"]		= "JPgraph modules are not available in directory <i>phpgedview/jpgraph/</i> . Please get them from http://www.aditus.nu/jpgraph/jpdownload.php<br> <h3>First install JPgraph in directory <i>PhpGedview/jpgraph/</i></h3><br>";
+$pgv_lang["stplinfo"]			= "variables for the plot:";
+$pgv_lang["stpltype"]			= "Type:";
+$pgv_lang["stplnoim"]			= " Not implemented:";
+$pgv_lang["stplmf"]			= " / Male-Female";
+$pgv_lang["stplipot"]			= " / per Time Period";
+$pgv_lang["stplgzas"]			= "borders z-axis:";
+$pgv_lang["stplmonth"]			= "Month";
+$pgv_lang["stplnumbers"]		= "Number";
+$pgv_lang["stplage"]			= "Age";
+$pgv_lang["stplperc"]			= "Percentage";
+
+//-- slklist utility
+$pgv_lang["slklist_header"]		= "Make an (EXCEL) SYLK file";
+$pgv_lang["slklist_lezen"]		= "Checking on individuals";
+$pgv_lang["slklist_progress1"]	= "Progress on check";
+$pgv_lang["slklist_maken"]		= "All names are on the file";
+$pgv_lang["slklist_progress2"]	= "Progress in making the file";
+$pgv_lang["slklist_tab"]		= "EXCEL worksheet:";
+$pgv_lang["slklist_create"]		= " will be created in file: ";
 
 //-- alive in year
 $pgv_lang["alive_in_year"]			= "Alive in Year";

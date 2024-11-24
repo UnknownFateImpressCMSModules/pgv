@@ -4,10 +4,10 @@
 	Versjon 3.2
 	Copyright 2004 John Finlay og andre
 
-	Denne og annen informasjon kan du finne online på
+	Denne og annen informasjon kan du finne online pï¿½
 	http://www.PhpGedView.net
 
-	# $Id: readme-norsk.txt,v 1.1 2005/10/07 18:12:20 skenow Exp $
+	# $Id: readme-norsk.txt,v 1.1 2004/12/03 14:00:28 eikland Exp $
 =======================================================
 
 INNHOLD
@@ -23,10 +23,10 @@ INNHOLD
 	10. DATABASE TABELL LAYOUT (se i filen readme.txt)
 	11. MANUELL KONFIGURASJON (se i filen readme.txt)
 	12. SIKKERHET / PERSONVERN
-	13. SPRÅK (se i filen readme.txt)
+	13. SPRï¿½K (se i filen readme.txt)
 	14. IKKE-STANDARD GEDCOM KODER (se i filen readme.txt)
-	15. EKSTRA SPRÅKFILER (se i filen readme.txt)
-	16. OVERFØRING FRA SQL TIL INDEX MODUS OG MOTSATT (se i filen readme.txt)
+	15. EKSTRA SPRï¿½KFILER (se i filen readme.txt)
+	16. OVERFï¿½RING FRA SQL TIL INDEX MODUS OG MOTSATT (se i filen readme.txt)
 
 -------------------------------------------------------
 1. LISENS
@@ -38,8 +38,8 @@ Dette programmet er gratis; du kan gi det bort til andre og/eller endre
 det i henhold til betingelsen i GNU General Public License som er utgitt
 av Free Software Foundation; enten versjon 2 eller senere.
 
-Dette programmet er distribuert i håp om at det kan være til nytte,
-men UTEN NOEN FORM FOR GARANTI; dvs. brukes på eget ansvar.
+Dette programmet er distribuert i hï¿½p om at det kan vï¿½re til nytte,
+men UTEN NOEN FORM FOR GARANTI; dvs. brukes pï¿½ eget ansvar.
 
 Se i filen GPL.txt for mer detaljert lisensinformasjon.
 
@@ -47,150 +47,150 @@ Se i filen GPL.txt for mer detaljert lisensinformasjon.
 2. INTRODUKSJON
 
 Programmet PhpGedView viser slektsinformasjon dynamisk fra en GEDCOM 5.5 fil
-i HTML form.  Alt du trenger å gjøre er å legge til en GEDCOM fil og så vil
-PhpGedView gjøre resten.  Da vil du kunne "lage" slekts- og etterslekttre,
-undersøke slektskap, se på slektskalender, se på lister og søke i slektsdataene.
-Fordi alt er online, så kan du lett dele familiehistorien din med resten av
-familien din uansett hvor de måtte befinne seg i verden.
-For mer informasjon og for å se nettsider som bruker phpGedView, besøk
+i HTML form.  Alt du trenger ï¿½ gjï¿½re er ï¿½ legge til en GEDCOM fil og sï¿½ vil
+PhpGedView gjï¿½re resten.  Da vil du kunne "lage" slekts- og etterslekttre,
+undersï¿½ke slektskap, se pï¿½ slektskalender, se pï¿½ lister og sï¿½ke i slektsdataene.
+Fordi alt er online, sï¿½ kan du lett dele familiehistorien din med resten av
+familien din uansett hvor de mï¿½tte befinne seg i verden.
+For mer informasjon og for ï¿½ se nettsider som bruker phpGedView, besï¿½k
 http://www.PhpGedView.net/
 
-PhpGedView er testet på installasjoner av PHP 4.1.0 og høyere, men for best
-mulig sikkerhet bør du bruke PhpGedView med PHP versjon 4.3.x eller høyere.
+PhpGedView er testet pï¿½ installasjoner av PHP 4.1.0 og hï¿½yere, men for best
+mulig sikkerhet bï¿½r du bruke PhpGedView med PHP versjon 4.3.x eller hï¿½yere.
 
 Under konfigureringen vil du bli spurt om du vil bruke Database eller Indeks
-for lagring av dataene.  Du kan bytte fra Indeks eller Database modus på et
-hvilket som helst tidspunkt. Du må imidlertid importere Gedcomen(e) på nytt.
+for lagring av dataene.  Du kan bytte fra Indeks eller Database modus pï¿½ et
+hvilket som helst tidspunkt. Du mï¿½ imidlertid importere Gedcomen(e) pï¿½ nytt.
 
-PhpGedView er et Åpen Kilde program som har blitt lagd av personer fra mange land
-og som frivillig har gitt av sin tid og kompetanse.  All vedlikehold, brukerstøtte
+PhpGedView er et ï¿½pen Kilde program som har blitt lagd av personer fra mange land
+og som frivillig har gitt av sin tid og kompetanse.  All vedlikehold, brukerstï¿½tte
 og videreutvikling er avhengig av den tid utviklere og oversettere er villig til
-å bruke (ofte på bekostning av arbeid, fritid/avkobling og familie).  
-Utenom bidrag som vi mottar fra brukere, så mottar utviklerne og oversetterene
-ingen kompensasjon for den tiden de bruker med å jobbe med programmet.
-Det er for tiden heller ingen fond eller sponsorere som støtter prosjektet.
+ï¿½ bruke (ofte pï¿½ bekostning av arbeid, fritid/avkobling og familie).  
+Utenom bidrag som vi mottar fra brukere, sï¿½ mottar utviklerne og oversetterene
+ingen kompensasjon for den tiden de bruker med ï¿½ jobbe med programmet.
+Det er for tiden heller ingen fond eller sponsorere som stï¿½tter prosjektet.
 
 -------------------------------------------------------
 3. HURTIG INSTALLASJON
 
-Følg instruksjonene i denne delen for å installere PhpGedView dersom du er kjent
+Fï¿½lg instruksjonene i denne delen for ï¿½ installere PhpGedView dersom du er kjent
 med programmet eller er kjent med installing av andre PHP nettprogram.
 
 1. Last opp (upload) filene til nettjeneren (webserver) din
 2. Sett skrive-rettigheter til filen config.php og katalogen "index". (chmod 777)
-   (For optimal sikkerhet, bør du flytte katalogen "index" til en plassering
-   "utenfor" nettområdet ditt.)
+   (For optimal sikkerhet, bï¿½r du flytte katalogen "index" til en plassering
+   "utenfor" nettomrï¿½det ditt.)
 3. Start nettleseren din og angi internett-adressen til katalogen du lastet opp
    PhpGedView-filene dine (http://www.dintjener.no/PhpGedView/)
 4. Fyll ut konfigurasjon-innstillingene dine.  Dersom du flyttet katalogen index,
-   husk da på å spesifisere den riktige plasseringen til denne her.
+   husk da pï¿½ ï¿½ spesifisere den riktige plasseringen til denne her.
    Deretter lagrer du konfigurasjon-valgene dine.
-5. Oppgi så standard administrative bruker (deg)
+5. Oppgi sï¿½ standard administrative bruker (deg)
 6. Logg deg inn som denne brukeren og last opp gedcom filen(e) dine
 7. Lagre gedcom konfigurasjons-valgene
 8. Importer gedcom-filen
 
 Tilleggs-muligheter
-9.  Dersom du ønsker å bruke muligheten for å endre språkfilene, må du gi
+9.  Dersom du ï¿½nsker ï¿½ bruke muligheten for ï¿½ endre sprï¿½kfilene, mï¿½ du gi
     skrive-rettigheter til alle filene i katalogen ./languages
-10. Dersom du ønsker å laste opp media-filer (bilder) ved å bruke delen
-    Last opp media-filer i admin-menyen, så må du gi skrive-rettigheter til
+10. Dersom du ï¿½nsker ï¿½ laste opp media-filer (bilder) ved ï¿½ bruke delen
+    Last opp media-filer i admin-menyen, sï¿½ mï¿½ du gi skrive-rettigheter til
 	katalogene ./media og ./media/thumbs
-11. Dersom du ønsker å redigere gedcom filen(e) dine online, så må gi bruker(e)
-	rettigheter til å gjøre endringer i gedcom-filen. (I brukermeny)
-12. Dersom du ønsker å bruke sikkerhetskopi-funksjonen i oppgraderings-delen
-    i PhpGedView, må du enten sette skrive-rettigheter på hoved-katalogen til
+11. Dersom du ï¿½nsker ï¿½ redigere gedcom filen(e) dine online, sï¿½ mï¿½ gi bruker(e)
+	rettigheter til ï¿½ gjï¿½re endringer i gedcom-filen. (I brukermeny)
+12. Dersom du ï¿½nsker ï¿½ bruke sikkerhetskopi-funksjonen i oppgraderings-delen
+    i PhpGedView, mï¿½ du enten sette skrive-rettigheter pï¿½ hoved-katalogen til
 	PhpGedView eller lage en sikkethetskopi-katalog med skrive-rettigheter.
-	Skrive-rettighetene for hoved-katalogen til PhpGedView bør endres med en
+	Skrive-rettighetene for hoved-katalogen til PhpGedView bï¿½r endres med en
 	gang du har opprettet en egen katalog for sikkerhetskopi med skrive-rettighet.
-13. På grunn av hensyn til sikkerhet bør du sette rettighetene tilbake til Kun-lese
-    (read-only) når du er ferdig med å endre eller oppdatere filer.
+13. Pï¿½ grunn av hensyn til sikkerhet bï¿½r du sette rettighetene tilbake til Kun-lese
+    (read-only) nï¿½r du er ferdig med ï¿½ endre eller oppdatere filer.
 
 -------------------------------------------------------
 4. INSTALLASJON
 
-Følg disse instruksjonene dersom du ikke er kjent med PhpGedView eller
+Fï¿½lg disse instruksjonene dersom du ikke er kjent med PhpGedView eller
 installering av PHP program.
 
-*A. Laste opp (overføre) filer:
-For å installere PhpGedView må du overføre filene til en katalog på hjemmesiden
-(internett-adressen) din ved hjelp av et FTP-program (finnes gratis på internett).
-Dersom du har begrenset plass på hjemmesiden din, kan du spare plass på
-følgende måter:
+*A. Laste opp (overfï¿½re) filer:
+For ï¿½ installere PhpGedView mï¿½ du overfï¿½re filene til en katalog pï¿½ hjemmesiden
+(internett-adressen) din ved hjelp av et FTP-program (finnes gratis pï¿½ internett).
+Dersom du har begrenset plass pï¿½ hjemmesiden din, kan du spare plass pï¿½
+fï¿½lgende mï¿½ter:
 1. Slett de Stilen (themes) i katalogen ./themes som du ikke vil bruke
-3. Slett noen av språkfilene i katalogen ./languages som du ikke ønsker
+3. Slett noen av sprï¿½kfilene i katalogen ./languages som du ikke ï¿½nsker
 
-*B. Nødvendige rettigheter for filene:
+*B. Nï¿½dvendige rettigheter for filene:
 PhpGedView krever at lese (Read) rettigheter er satt for alle filer i rot-
-katalogen til PhpGedView (standard).  Noen nettverter krever også at rettigheten
+katalogen til PhpGedView (standard).  Noen nettverter krever ogsï¿½ at rettigheten
 Execute (chmod 755).  PhpGedView krever full skrive-rettigheter til katalogen
-index (chmod 777 i de fleste verts-konfigurasjonene).  PhpGedView krever også
+index (chmod 777 i de fleste verts-konfigurasjonene).  PhpGedView krever ogsï¿½
 at skrive-rettigheter (chmod 777) er midlertidig satt for filen config.php
-(denne kan endres etter at du er ferdig med å konfigurere phpGedView).
+(denne kan endres etter at du er ferdig med ï¿½ konfigurere phpGedView).
 
-Som en hjelp for å angi riktige rettigheter, så er det en fil som heter
+Som en hjelp for ï¿½ angi riktige rettigheter, sï¿½ er det en fil som heter
 setpermissions.php og som ligger i rot-katalogen til phpGedView. Denne filen
-vil prøve å sette rettigheten 777 til filen config.php, katalogen ./index,
+vil prï¿½ve ï¿½ sette rettigheten 777 til filen config.php, katalogen ./index,
 og alle filene i katalogen ./index.
-Fordi innstillingene hos ulike verter varierer med hensyn til å få lov til å
-la PHP program få sette rettigheter til filer og kataloger, må denne filen
-kjøres manuelt før du starter konfigurasjonen av phpGedView.
-Start nettleseren din og angi adressen til der du lastet opp phpGedView og så
+Fordi innstillingene hos ulike verter varierer med hensyn til ï¿½ fï¿½ lov til ï¿½
+la PHP program fï¿½ sette rettigheter til filer og kataloger, mï¿½ denne filen
+kjï¿½res manuelt fï¿½r du starter konfigurasjonen av phpGedView.
+Start nettleseren din og angi adressen til der du lastet opp phpGedView og sï¿½
 setpermissions.php (http://www.dintjener.no/PhpGedView/setpermissions.php)
-Hvis du under installasjonen skulle få problemer, sjekk rettighetene dine på nytt.
+Hvis du under installasjonen skulle fï¿½ problemer, sjekk rettighetene dine pï¿½ nytt.
 
 Det er noen avanserte valg som krever at flere skrive-rettigheter blir satt.
 Se punktene 9-13 i Hurtig installasjon over.
 
 *C. Konfigurasjon av phpGedView
 Start nettleseren din og angi adressen til katalogen til PhpGedView
-(http://www.dintjener.no/PhpGedView/) for automatisk å begynne online
+(http://www.dintjener.no/PhpGedView/) for automatisk ï¿½ begynne online
 konfigurasjon-prosedyren.  Informasjon om hvert valg i konfigureringen kan
-du få ved å klikke på spørsmålstegnet (?) bak hver ledetekst.
+du fï¿½ ved ï¿½ klikke pï¿½ spï¿½rsmï¿½lstegnet (?) bak hver ledetekst.
 
-Det første valget i konfigureringen er å bestemme om du ønsker å bruke
-Index filer eller en Database for å lagre slektsdataene dine når du skal
+Det fï¿½rste valget i konfigureringen er ï¿½ bestemme om du ï¿½nsker ï¿½ bruke
+Index filer eller en Database for ï¿½ lagre slektsdataene dine nï¿½r du skal
 importere Gedcom-filen(e) din(e).
 Velger du Index filer, vil gedcom-postene dine bli importert til en tekstfil
 der dataene blir lagret i serier, og som vil bli plassert i katalogen
 "index".
-Velger du Database, vil gedcom-postene bli importert til en PEAR:DB støttet
+Velger du Database, vil gedcom-postene bli importert til en PEAR:DB stï¿½ttet
 database som for eksempel MySQL eller PostgreSQL.
 
-Velger du en Database, må dette nettjeneren di tilby dette. Database krever
+Velger du en Database, mï¿½ dette nettjeneren di tilby dette. Database krever
 at du er registert  i databasen med brukernavn og passord.
-Du kan finne mer informasjon om du bør velge index filer eller database i 
-FAQs (OfteStilteSpørsmål)
+Du kan finne mer informasjon om du bï¿½r velge index filer eller database i 
+FAQs (OfteStilteSpï¿½rsmï¿½l)
 (http://www.PhpGedView.net/faq.php)
 
-Velger du Index filer trenger du ikke noe brukernavn eller passord for å
+Velger du Index filer trenger du ikke noe brukernavn eller passord for ï¿½
 lagre dataene.
 
-Du kan endre konfigurasjonen av PhpGedView når som helst ved å logge deg inn
-som administrator og gå til admin-menyen og klikke på valget "Konfigurasjon".
+Du kan endre konfigurasjonen av PhpGedView nï¿½r som helst ved ï¿½ logge deg inn
+som administrator og gï¿½ til admin-menyen og klikke pï¿½ valget "Konfigurasjon".
 
 *D. Opprette Admin bruker
-Etter at du har lagre konfigurasjons-valgene, vil du få en ny side der du blir
-bedt om å legge inn opplysninger om en administrativ bruker (administrator).
-Når du er ferdig med dette og lagret opplysningene, vil du få opp en ny side
+Etter at du har lagre konfigurasjons-valgene, vil du fï¿½ en ny side der du blir
+bedt om ï¿½ legge inn opplysninger om en administrativ bruker (administrator).
+Nï¿½r du er ferdig med dette og lagret opplysningene, vil du fï¿½ opp en ny side
 for "Sleksfiler og personvern".  Her kan du legge til gedcom-filer, endre
 opplysninger om hver gedcom fil og importere en gedcom fil.
 
 *E. Legge til Gedcom fil
-For å legge til GEDCOM filer, kan du laste opp GEDCOM filen din ved å bruke
+For ï¿½ legge til GEDCOM filer, kan du laste opp GEDCOM filen din ved ï¿½ bruke
 valget "Last opp Gedcom".  Alle filer som blir lastet opp ved hjelp av dette
-valget, blir automatisk lagret i katalogen ./index.  Du kan også laste opp
-gedcom filen din manuelt ved å bruke et FTP-program.  De fleste nettverter
+valget, blir automatisk lagret i katalogen ./index.  Du kan ogsï¿½ laste opp
+gedcom filen din manuelt ved ï¿½ bruke et FTP-program.  De fleste nettverter
 har satt en grense for hvor store filer som kan lastes opp fra et PHP-program
-ut fra hensyn til sikkerhet. Derfor kan du bli tvunget til å bruke den
+ut fra hensyn til sikkerhet. Derfor kan du bli tvunget til ï¿½ bruke den
 manuelle metoden.
 
 *F. Konfigurasjon av Gedcom-filen
-Etter at du har lastet opp gedcom filen din, vil du få opp en side med ulike
+Etter at du har lastet opp gedcom filen din, vil du fï¿½ opp en side med ulike
 valg for slektsfilen.  Her har du mange valgmuligheter i tillegg til at de er
-delt opp som Standard/Avanserte/Meta-valg.  På samme måte som overalt ellers
-i phpGedView, finner du også her informasjon om hvert valg i konfigureringen
-ved å klikke på spørsmålstegnet (?) bak hver ledetekst.
+delt opp som Standard/Avanserte/Meta-valg.  Pï¿½ samme mï¿½te som overalt ellers
+i phpGedView, finner du ogsï¿½ her informasjon om hvert valg i konfigureringen
+ved ï¿½ klikke pï¿½ spï¿½rsmï¿½lstegnet (?) bak hver ledetekst.
 
 *G. Sjekke dataene i Gedcom filen
 Etter at du har lagret konfigurasjons-innstillengen til gedcom filen, vil
@@ -199,76 +199,76 @@ det blir funnet feil i filen som ikke kan rettes automatisk, vil du bli spurt
 om hvordan du vil fortsette. Igjen, bruk hjelpetegnet ? for mer informasjon.
 
 *H. Importere Gedcom
-Nå er du nesten ferdig.  Dette er siste skritt før du kan begynne å se på
+Nï¿½ er du nesten ferdig.  Dette er siste skritt fï¿½r du kan begynne ï¿½ se pï¿½
 dataene dine.  Etter sjekken av Gedcom og eventuelle rettinger av feil, kan du
 starte importeringen av gedcom-filen.  Under importen vil du se en linje som
-forteller deg progresjonen og etterpå vil du se en tabell med hvilke type
+forteller deg progresjonen og etterpï¿½ vil du se en tabell med hvilke type
 poster som ble importert.  Da er du ferdig med installeringen og kan begynne
-å bruk phpGedView!
+ï¿½ bruk phpGedView!
 
 *I. Slette en Gedcom
-Fra siden "Slektsfiler og Personvern" kan du også slette importerte Gedcom-data.
-Slettingen vil bare gjøres i datalageret til phpGedView , men den originale
+Fra siden "Slektsfiler og Personvern" kan du ogsï¿½ slette importerte Gedcom-data.
+Slettingen vil bare gjï¿½res i datalageret til phpGedView , men den originale
 gedcom-filen som du lastet opp, vil ikke bli slettet (du kan med andre ord
-importere den på nytt.
+importere den pï¿½ nytt.
 
 *J. Forandre rettighetene til filen config.php
-Av hensyn til sikkerhet bør du sette rettighetene til filen config.php tilbake til
-kun lesbar (read-only)(chmod 755) når du er ferdig med konfigureringen av
-phpGedView. Skrivetilgang er bare nødvendig dersom du ønsker å gjøre endringer
+Av hensyn til sikkerhet bï¿½r du sette rettighetene til filen config.php tilbake til
+kun lesbar (read-only)(chmod 755) nï¿½r du er ferdig med konfigureringen av
+phpGedView. Skrivetilgang er bare nï¿½dvendig dersom du ï¿½nsker ï¿½ gjï¿½re endringer
 under valget Konfigurering av phpGedView i Admin-menyen.  Alle andre innstillinger
 vil bli lagret i katalogen ./index.
 
 *K. Forandre en stil (Theme)
-Du kan forandre utseende og annen layout av PhpGedView ved å redigere en av de
+Du kan forandre utseende og annen layout av PhpGedView ved ï¿½ redigere en av de
 vedlagte stilartene (dette krever imidlertid litt kunnskaper om CSS).
 Se egen omtale av THEMES i readme.txt for mer informasjon.
 
 *L. HTTP komprimering
-Sider som blir lagd av PhpGedView kan bli store og bruke lang tid å bli vist på
-skjermen (avhengig av brukeres hastighet på internettoppkoblingen / båndbredde).
-Dette kan bedres ved å komprimere sidene før de blir sendt over til deg som
-bruker ved hjelp av "gzip-kompresjon". Det kan føre til at data som sendes
+Sider som blir lagd av PhpGedView kan bli store og bruke lang tid ï¿½ bli vist pï¿½
+skjermen (avhengig av brukeres hastighet pï¿½ internettoppkoblingen / bï¿½ndbredde).
+Dette kan bedres ved ï¿½ komprimere sidene fï¿½r de blir sendt over til deg som
+bruker ved hjelp av "gzip-kompresjon". Det kan fï¿½re til at data som sendes
 fra hjemmesiden kan bli redustert opptil 90% (testet til mellom 80% - 90%).
 Dersom nettjeneren du bruker er drevet av Apache, kan dette settes opp veldig
-enkelt ved å legge til følgende 2 linjer i php.ini filen:
+enkelt ved ï¿½ legge til fï¿½lgende 2 linjer i php.ini filen:
 
 php_flag zlib.output_compression On
 php_value zlib.output_compression_level 5
 
 Dersom du ikke har tilgang til filen php.ini, kan du lage en tekstfil med navnet
 .htaccess (husk punktum) og skrive inn de 2 linjene der (eller legge dem til i
-en eksisterende .htaccess fil) og så laste filen opp til rot-katalogen til
+en eksisterende .htaccess fil) og sï¿½ laste filen opp til rot-katalogen til
 PhpGedView.
-PS: Dersom nettverten din bruker mod_gzip eller en annen metode for å komprimere,
+PS: Dersom nettverten din bruker mod_gzip eller en annen metode for ï¿½ komprimere,
 kan opplasting av filen .htaccess skape problemer for siden din. Kompresjon vil
-ikke ha noen effekt for nettlesere som ikke støtter dette. Du kan teste om
-komprimeringen virker ved å gå til nettstedet http://leknor.com/code/gziped.php
+ikke ha noen effekt for nettlesere som ikke stï¿½tter dette. Du kan teste om
+komprimeringen virker ved ï¿½ gï¿½ til nettstedet http://leknor.com/code/gziped.php
 
 
-Dersom du trenger hjelp eller annen støtte, besøk nettstedet:
+Dersom du trenger hjelp eller annen stï¿½tte, besï¿½k nettstedet:
 http://www.PhpGedView.net/support.php
 
 -------------------------------------------------------
 5. OPPDATERING
 
-Gjør følgende for å oppgradere fra v3.x.  De følgende punktene krever
-at du er kjent med PhpGedView og at nåværende installasjon virker.
+Gjï¿½r fï¿½lgende for ï¿½ oppgradere fra v3.x.  De fï¿½lgende punktene krever
+at du er kjent med PhpGedView og at nï¿½vï¿½rende installasjon virker.
 
 1. Lag en sikkerhetskopi av filen config.php og katalogen ./index.
-   Dersom du har endret en stil eller språkfil, bør også disse tas kopi av.
+   Dersom du har endret en stil eller sprï¿½kfil, bï¿½r ogsï¿½ disse tas kopi av.
 2. Last opp (upload) alle nye filer i den nye versjonen med UNNTAK av filen
    config.php og katalogene ./index og ./media.  Dersom disse blir overskrevet,
    vil du miste alle innstillinger og registerte brukere.
 3. Sett skrive-rettigheter for filen config.php og katalogen ./index.
-4. Importer på nytt Gedcom filene dine ved å gå til Admin->Slektsfiler og
+4. Importer pï¿½ nytt Gedcom filene dine ved ï¿½ gï¿½ til Admin->Slektsfiler og
    personvern->Importer
-5. Åpne (og eventuelt endre) og lagre filene konfigurasjon og personvern til
-   gedcom filen(e) dine for å legge til de siste endringer.
-6. Dersom du bruker en endret stil (theme), må du oppdatere stilen din med de
+5. ï¿½pne (og eventuelt endre) og lagre filene konfigurasjon og personvern til
+   gedcom filen(e) dine for ï¿½ legge til de siste endringer.
+6. Dersom du bruker en endret stil (theme), mï¿½ du oppdatere stilen din med de
    nye style-oppsett og variabler.
    
-   PS1. Et utmerket verktøy som kan hjelpe deg å oppdatere stiler er WinMerge
+   PS1. Et utmerket verktï¿½y som kan hjelpe deg ï¿½ oppdatere stiler er WinMerge
         (http://winmerge.sourceforge.net/).
    
    PS2. Endringer i stilartene kan du finne i Style Guide dokumentasjonen
@@ -279,30 +279,30 @@ For oppgradering fra tidligere versjoner, les om dette i readme.txt.
 -------------------------------------------------------
 6. OPPDATERING AV GEDCOM
 
-Når du har gjort endringer i slektsdataene på din lokale PC, er det ikke nødvendig
-å slette slektsdataene dine i PhpGedView og begynne på nytt.  Følg disse punktene
-for å oppgradere en Gedcom som allerede er importert:
+Nï¿½r du har gjort endringer i slektsdataene pï¿½ din lokale PC, er det ikke nï¿½dvendig
+ï¿½ slette slektsdataene dine i PhpGedView og begynne pï¿½ nytt.  Fï¿½lg disse punktene
+for ï¿½ oppgradere en Gedcom som allerede er importert:
 
-1. Bruk FTP eller en annen metode for å laste opp filen til hjemmesiden/nettstedet
+1. Bruk FTP eller en annen metode for ï¿½ laste opp filen til hjemmesiden/nettstedet
    ditt og erstatt den gamle gedcom filen din med den nye.  Dersom du bruker valget
    i phpGedView for laste opp en gedcomfil, vil den gamle filen ikke ble slettet,
-   men få et nytt navn.
-2. Importer Gedcom-filen på nytt ved å velge Importer på siden for Slektsfiler og
-   personvern. Den nye Gedcom filen vil bli sjekket for feil før den blir importert.
+   men fï¿½ et nytt navn.
+2. Importer Gedcom-filen pï¿½ nytt ved ï¿½ velge Importer pï¿½ siden for Slektsfiler og
+   personvern. Den nye Gedcom filen vil bli sjekket for feil fï¿½r den blir importert.
 3. phpGedView vil si i fra at en gedcomfil med det samme navnet allerede er
-   importert og om du ønsker å erstatte de gamle dataene.  Klikk da på knappen "Ja".
-4. Når importen er ferdig, vil de nye dataene være lagret og vil bli vist.
+   importert og om du ï¿½nsker ï¿½ erstatte de gamle dataene.  Klikk da pï¿½ knappen "Ja".
+4. Nï¿½r importen er ferdig, vil de nye dataene vï¿½re lagret og vil bli vist.
    
-PS1. Dersom du eller andre registerte brukere har gjort endringer online, bør du
-     eksportere gedcomfilen fra phpGedView til slektsprogrammet ditt før du gjør
-	 de nye endringene. På denne måten mister du ikke endringer som er gjort
+PS1. Dersom du eller andre registerte brukere har gjort endringer online, bï¿½r du
+     eksportere gedcomfilen fra phpGedView til slektsprogrammet ditt fï¿½r du gjï¿½r
+	 de nye endringene. Pï¿½ denne mï¿½ten mister du ikke endringer som er gjort
 	 online.
-PS2. Dersom du bruker en database for å lagre dataene i phpGedView kan du bruke
-	 Brother Keepers klonen GDBI for å vedlikeholde slektsopplysningene online.
+PS2. Dersom du bruker en database for ï¿½ lagre dataene i phpGedView kan du bruke
+	 Brother Keepers klonen GDBI for ï¿½ vedlikeholde slektsopplysningene online.
 	 (http://gdbi..sourceforge.net/).
-	 På denne måten vil phpGedView alltid være oppdatert og du kan hente ned
+	 Pï¿½ denne mï¿½ten vil phpGedView alltid vï¿½re oppdatert og du kan hente ned
 	 (eksportere) siste oppdaterte versjon til en hver tid til din lokale PC
-	 om du skulle ønske dette.
+	 om du skulle ï¿½nske dette.
 
 -------------------------------------------------------
 7. STILER (THEMES) 
@@ -312,53 +312,53 @@ Se i filen readme.txt
 -------------------------------------------------------
 8. MULTIMEDIA OBJEKT
 
-GEDCOM 5.5 standarden støtter multimedia filer av alle typer.  For øyeblikket
-støtter PhpGedView bare multimedia objekt som eksterne filer.  Multimedia
-flettet inn i GEDCOM filen vil bli ignorert.  For å bruke multimedia i
-PhpGedView, må du ha en ekstern link til multimedia filene i GEDCOM filen din
+GEDCOM 5.5 standarden stï¿½tter multimedia filer av alle typer.  For ï¿½yeblikket
+stï¿½tter PhpGedView bare multimedia objekt som eksterne filer.  Multimedia
+flettet inn i GEDCOM filen vil bli ignorert.  For ï¿½ bruke multimedia i
+PhpGedView, mï¿½ du ha en ekstern link til multimedia filene i GEDCOM filen din
 til katalogen ./media.
 (./media/bilde_meg.jpg  eller  ./media/thumb/passfoto_meg.jpg)
 
-For å velge hvilket bilde som skal brukes i diagram, vil PhpGedView velge det
-første med _PRIM Y merket.  Dersom det ikke er noe _PRIM merke i media objekt
-posten din, så vil det første objektet som blir funnet, brukt.  Du kan velge å
-ikke vise et bilde i diagram for en bestemt person ved å sette _PRIM N på dette
-eller alle media objekt. De fleste slektsprogram vil gjøre dette automatisk
+For ï¿½ velge hvilket bilde som skal brukes i diagram, vil PhpGedView velge det
+fï¿½rste med _PRIM Y merket.  Dersom det ikke er noe _PRIM merke i media objekt
+posten din, sï¿½ vil det fï¿½rste objektet som blir funnet, brukt.  Du kan velge ï¿½
+ikke vise et bilde i diagram for en bestemt person ved ï¿½ sette _PRIM N pï¿½ dette
+eller alle media objekt. De fleste slektsprogram vil gjï¿½re dette automatisk
 for deg.
 
-Du kan finne alle referanser til bilder i filen din ved å åpne gedcom filen i
+Du kan finne alle referanser til bilder i filen din ved ï¿½ ï¿½pne gedcom filen i
 et tekstredigeringsprogram (f.eks. Notepad) og se etter ordene OBJE eller FILE.
 
-PhpGedView har også katalogen "media/thumbs" hvor du kan legge "passfoto" av
+PhpGedView har ogsï¿½ katalogen "media/thumbs" hvor du kan legge "passfoto" av
 bildene dine for visning i lister og andre sider.  PhpGedView tillater at du
 kan lage dine egne passfoto slik at du kan ha kunstnerisk kontroll over bildene
-og å unngå installering av andre bildeprogram på netter.
-Lag en kopi av bildene og forminske dem til en passende passfoto-størrelse på 
+og ï¿½ unngï¿½ installering av andre bildeprogram pï¿½ netter.
+Lag en kopi av bildene og forminske dem til en passende passfoto-stï¿½rrelse pï¿½ 
 rundt 100px bred og last dem opp i katalogen "media/thumbs". Gi kopien det samme
 navnet som originalen.
-Passfoto kan lages for ikke-bilde media filer også.  For å gjøre dette, så lager
+Passfoto kan lages for ikke-bilde media filer ogsï¿½.  For ï¿½ gjï¿½re dette, sï¿½ lager
 du et passfoto-bilde i enten gif, jpeg, png eller bmp format og gir dem det
 samme navnet som media filen og med det samme fil-etternavnet (selv om filen er
-et ikke-bilde slik som en PDF eller en AVI fil, så gi passfotoet navn med PDF
+et ikke-bilde slik som en PDF eller en AVI fil, sï¿½ gi passfotoet navn med PDF
 eller AVI som fil-etternavn).
 
 Det finnes en BildeModul (ImageModule) som er integreres helt med PGV og som
-automatisk vil lage passfoto for deg hvis du bruker den for å laste opp filene
+automatisk vil lage passfoto for deg hvis du bruker den for ï¿½ laste opp filene
 dine.  Den er ikke inkludert sammen med PGV filene fordi den krever at det
-finnes visse bibliotek på nettjeneren som ikke all verter har installert.
-Men du burde få den til å virke ved å følge de instruksjonene som følger med.
+finnes visse bibliotek pï¿½ nettjeneren som ikke all verter har installert.
+Men du burde fï¿½ den til ï¿½ virke ved ï¿½ fï¿½lge de instruksjonene som fï¿½lger med.
 Du kan hente (download) ImageModule fra:
 http://sourceforge.net/project/showfiles.php?group_id=55456&package_id=88140
 
-Du kan konfigurere PhpGedView til å finne underkataloger i media katalogen din.
-Underkatalogene må ha samme navn som underkatalogene i mediafil-stiene peker til
+Du kan konfigurere PhpGedView til ï¿½ finne underkataloger i media katalogen din.
+Underkatalogene mï¿½ ha samme navn som underkatalogene i mediafil-stiene peker til
 i GEDCOM filen din.
-For eksempel dersom du har følgende media-referanser i GEDCOM filen din:
+For eksempel dersom du har fï¿½lgende media-referanser i GEDCOM filen din:
 C:\Bilder\Slekt\foto.jpg
 C:\Bilder\Scan\scan1.jpg
 scan2.jpg
 
-Med mappenivåer for media satt til 1, må du lage følgende struktur på katalogene:
+Med mappenivï¿½er for media satt til 1, mï¿½ du lage fï¿½lgende struktur pï¿½ katalogene:
 media/Slekt/foto.jpg
 media/Scan/scan1.jpg
 media/scan2.jpg
@@ -366,7 +366,7 @@ media/thumbs/Slekt/foto.jpg
 media/thumbs/Scan/scan1.jpg
 media/thumbs/scan2.jpg
 
-Med mappenivåer for media satt til 2, må du lage følgende struktur på katalogene:
+Med mappenivï¿½er for media satt til 2, mï¿½ du lage fï¿½lgende struktur pï¿½ katalogene:
 media/Bilder/Slekt/foto.jpg
 media/Bilder/Scan/scan1.jpg
 media/scan2.jpg
@@ -392,46 +392,46 @@ Se i filen readme.txt
 -------------------------------------------------------
 12. SIKKERHET / PERSONVERN
 
-Selv om PhpGedView gir deg mulighet for å skjule detaljer om levende personer,
-bør du først innhente tillatelse fra HVER levende person du ønsker å inkludere.
-Det er mange mennesker som ikke ønsker at navnet deres skal knyttes en familie
-på et offentlig sted som internett er og deres ønsker bør respekteres og holdes.
+Selv om PhpGedView gir deg mulighet for ï¿½ skjule detaljer om levende personer,
+bï¿½r du fï¿½rst innhente tillatelse fra HVER levende person du ï¿½nsker ï¿½ inkludere.
+Det er mange mennesker som ikke ï¿½nsker at navnet deres skal knyttes en familie
+pï¿½ et offentlig sted som internett er og deres ï¿½nsker bï¿½r respekteres og holdes.
 De fleste slektsprogram (familie-historie-program) gir deg valg for hvem som
 skal bli inkludert i gedcom-filen din ved eksport.  Det aller sikreste valget
-er å ikke inkludere levende personer i det hele tatt når du eksporterer slekts-
+er ï¿½ ikke inkludere levende personer i det hele tatt nï¿½r du eksporterer slekts-
 dataene til en GEDCOM fil.
 
-Dersom du ønsker å sikre deg mot at GEDCOM filen din kan bli lastet ned fra
-internett, bør du plassere den et helt annet sted enn i en katalog på nettjeneren
+Dersom du ï¿½nsker ï¿½ sikre deg mot at GEDCOM filen din kan bli lastet ned fra
+internett, bï¿½r du plassere den et helt annet sted enn i en katalog pï¿½ nettjeneren
 (hjemmesiden din) eller en virtuell vert og angi denne verdien i $GEDCOM
 variabelen, slik at denne peker til den nye plasseringen.
 For eksempel:
 Dersom hjemme-katalogen din er noe lignende "/home/brukernavn" og rot-katalogen
 til nettstedet ditt er "/home/brukernavn/public_html" og du har installert
 PhpGedView i katalogen "public_html/PhpGedView", da kan du plassere GEDCOM filen
-din på rot-katalogen (på samme nivå som katalogen "public_html").  Du kan da angi
-stien til filen til "/home/brukernavn/gedcom.ged" ved å endre gedcom
+din pï¿½ rot-katalogen (pï¿½ samme nivï¿½ som katalogen "public_html").  Du kan da angi
+stien til filen til "/home/brukernavn/gedcom.ged" ved ï¿½ endre gedcom
 konfigurasjons-filen.
 
-Du kan også manuelt angi plasseringen ved å endre "path" linjen i index/gedcoms.php:
+Du kan ogsï¿½ manuelt angi plasseringen ved ï¿½ endre "path" linjen i index/gedcoms.php:
 	$gedarray["path"] = "../../gedcom.ged";
 eller
 	$gedarray["path"] = "/home/brukernavn/gedcom.ged";
 
-Siden GEDCOM filen er plassert i en katalog på utsiden av rot-katalogen til nett-
-tjeneren din, vil nettjeneren din ikke kunne fullføre ønsker om å nedlasting
+Siden GEDCOM filen er plassert i en katalog pï¿½ utsiden av rot-katalogen til nett-
+tjeneren din, vil nettjeneren din ikke kunne fullfï¿½re ï¿½nsker om ï¿½ nedlasting
 (download).  Men, PhpGedView vil fremdeles kunne lese den og vise data fra den.
 
 NB !!!
-Til syvende og sist er DU ansvarlig for å garantere at opplysningene du har vist
+Til syvende og sist er DU ansvarlig for ï¿½ garantere at opplysningene du har vist
 ikke har brutt noen av reglene for personvern og DU kan bli holdt ansvarlig dersom
-privat informasjon blir offentliggjort på nettstedet du administrerer.
+privat informasjon blir offentliggjort pï¿½ nettstedet du administrerer.
 
-For flere valg om personvern, besøk:
+For flere valg om personvern, besï¿½k:
 http://www.PhpGedView.net/privacy.php
 
 -------------------------------------------------------
-13. SPRÅK
+13. SPRï¿½K
 
 Se i filen readme.txt
 
@@ -441,12 +441,12 @@ Se i filen readme.txt
 Se i filen readme.txt
 
 -------------------------------------------------------
-15. EKSTRA SPRÅKFILER
+15. EKSTRA SPRï¿½KFILER
 
 Se i filen readme.txt
 
 -------------------------------------------------------
-16. OVERFØRING FRA SQL TIL INDEX MODUS OG MOTSATT
+16. OVERFï¿½RING FRA SQL TIL INDEX MODUS OG MOTSATT
 
 Se i filen readme.txt
 

@@ -20,13 +20,13 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * @package PhpGedView
- * @version $Id: functions_name.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: functions_name.php,v 1.13 2005/12/29 17:12:42 canajun2eh Exp $
  */
 
 /**
  * security check to prevent hackers from directly accessing this file
  */
-if (strstr($_SERVER["PHP_SELF"],"functions_name.php")) {
+if (strstr($_SERVER["SCRIPT_NAME"],"functions_name.php")) {
 	print "Why do you want to do that?";
 	exit;
 }
@@ -78,7 +78,7 @@ function get_common_surnames($min) {
 				&& stristr($surname["name"], $ANN.",")===false
 				&& stristr($COMMON_NAMES_REMOVE, $surname["name"])===false ) {
 			if ($surname["match"]>=$min) {
-				$topsurns[$surname["name"]] = $surname;
+				$topsurns[str2upper($surname["name"])] = $surname;
 			}
 			$i++;
 		}
@@ -86,7 +86,7 @@ function get_common_surnames($min) {
 	$addnames = preg_split("/[,;] /", $COMMON_NAMES_ADD);
 	if ((count($addnames)==0) && (!empty($COMMON_NAMES_ADD))) $addnames[] = $COMMON_NAMES_ADD;
 	foreach($addnames as $indexval => $name) {
-		if (!empty($name) && !isset($topsurns[str2upper($name)])) {
+		if (!empty($name)) {
 			$topsurns[$name]["name"] = $name;
 			$topsurns[$name]["match"] = $min;
 		}
@@ -184,16 +184,25 @@ function get_name_in_record($indirec) {
  * @param string $pid the gedcom xref id for the person
  * @param string $alpha	only get the name that starts with a certain letter
  * @param string $surname only get the name that has this surname
+ * @param boolean $allnames true returns all names in an array
  * @return string the sortable name
  */
-function get_sortable_name($pid, $alpha="", $surname="") {
+function get_sortable_name($pid, $alpha="", $surname="", $allnames=false) {
 	global $TBLPREFIX, $SHOW_LIVING_NAMES, $PRIV_PUBLIC;
-	global $GEDCOM, $indilist, $pgv_lang;
+	global $GEDCOM, $GEDCOMS, $indilist, $pgv_lang;
 
-	if (empty($pid)) return "@N.N., @P.N.";
+	$mynames = array();
+
+	if (empty($pid)) {
+		if ($allnames == false) return "@N.N., @P.N.";
+		else {
+			$mynames[] = "@N.N., @P.N.";
+			return $mynames;
+		}
+	}
 
 	//-- first check if the person is in the cache
-	if ((isset($indilist[$pid]["names"]))&&($indilist[$pid]["file"]==$GEDCOM)) {
+	if ((isset($indilist[$pid]["names"]))&&($indilist[$pid]["gedfile"]==$GEDCOMS[$GEDCOM]['id'])) {
 		$names = $indilist[$pid]["names"];
 	}
 	else {
@@ -204,7 +213,20 @@ function get_sortable_name($pid, $alpha="", $surname="") {
 		if (!empty($gedrec)) {
 			$names = $indilist[$pid]["names"];
 		}
-		else return "@N.N., @P.N.";
+		else {
+			if ($allnames == true) {
+				$mynames[] = "@N.N., @P.N.";
+				return $mynames;
+			}
+			else return "@N.N., @P.N.";
+		}
+	}
+	if ($allnames == true) {
+		$mynames = array();
+		foreach ($names as $key => $name) {
+			$mynames[] = sortable_name_from_name($name[0]);
+		}
+		return $mynames;
 	}
 	foreach($names as $indexval => $name) {
 		if ($surname!="" && $name[2]==$surname) return sortable_name_from_name($name[0]);
@@ -253,7 +275,7 @@ function get_person_name($pid) {
 	global $NAME_REVERSE;
 	global $NAME_FROM_GEDCOM;
 	global $indilist;
-	global $GEDCOM;
+	global $GEDCOM, $GEDCOMS;
 
 	$name = "";
 
@@ -265,8 +287,8 @@ function get_person_name($pid) {
 	}
 	else {
 		//-- first check if the person is in the cache
-		if ((isset($indilist[$pid]["name"][0][0]))&&($indilist[$pid]["file"]==$GEDCOM)) {
-			$name = $indilist[$pid]["name"][0][0];
+		if ((isset($indilist[$pid]["names"][0][0]))&&($indilist[$pid]["gedfile"]==$GEDCOMS[$GEDCOM]["id"])) {
+			$name = $indilist[$pid]["names"][0][0];
 		}
 		else {
 			//-- cache missed, so load the person into the cache with the find_person_record function
@@ -283,7 +305,36 @@ function get_person_name($pid) {
 		}
 	}
 
+	if ($NAME_REVERSE) $name = reverse_name($name);
+	
 	$name = check_NN($name);
+	return $name;
+}
+
+/**
+ * reverse a name
+ * this function will reverse a name for languages that
+ * prefer last name first such as hungarian and chinese
+ * @param string $name	the name to reverse, must be gedcom encoded as if from the 1 NAME line
+ * @return string		the reversed name
+ */
+function reverse_name($name) {
+	$ct = preg_match("~(.*)/(.*)/(.*)~", $name, $match);
+	if ($ct>0) {
+		$surname = trim($match[2]);
+		if (empty($surname)) $surname = "@N.N.";
+		$givenname = trim($match[1]);
+		$othername = trim($match[3]);
+		if (empty($givenname)&&!empty($othername)) {
+			$givenname = $othername;
+			$othername = "";
+		}
+		if (empty($givenname)) $givenname = "@P.N.";
+		$name = $surname;
+		$name .= " ".$givenname;
+		if (!empty($othername)) $name .= " ".$othername;
+	}
+	
 	return $name;
 }
 
@@ -354,18 +405,43 @@ function get_add_source_descriptor($sid) {
 	return false;
 }
 
+/**
+ * get the additional descriptive title of the repository
+ *
+ * @param string $rid the gedcom xref id for the repository to find
+ * @return string the additional title of the repository
+ */
+function get_add_repo_descriptor($rid) {
+	global $TBLPREFIX, $WORD_WRAPPED_NOTES;
+	global $GEDCOM, $repolist;
+	$title = "";
+	if ($rid=="") return false;
+
+	$gedrec = find_repo_record($rid);
+	if (!empty($gedrec)) {
+		$ct = preg_match("/\d ROMN (.*)/", $gedrec, $match);
+ 		if ($ct>0) return($match[1]);
+		$ct = preg_match("/\d _HEB (.*)/", $gedrec, $match);
+ 		if ($ct>0) return($match[1]);
+ 	}
+	return false;
+}
+
+
 function get_family_descriptor($fid) {
 	global $pgv_lang;
 	$parents = find_parents($fid);
 	if ($parents["HUSB"]) {
 		if (displayDetailsById($parents["HUSB"]) || showLivingNameById($parents["HUSB"]))
-			$hname = get_sortable_name($parents["HUSB"]);
+//			$hname = get_sortable_name($parents["HUSB"]);
+			$hname = get_person_name($parents["HUSB"]);
 		else $hname = $pgv_lang["private"];
 	}
 	else $hname = "@N.N., @P.N.";
 	if ($parents["WIFE"]) {
 		if (displayDetailsById($parents["WIFE"]) || showLivingNameById($parents["WIFE"]))
-			$wname = get_sortable_name($parents["WIFE"]);
+//			$wname = get_sortable_name($parents["WIFE"]);
+			$wname = get_person_name($parents["WIFE"]);
 		else $wname = $pgv_lang["private"];
 	}
 	else $wname = "@N.N., @P.N.";
@@ -379,13 +455,15 @@ function get_family_add_descriptor($fid) {
 	$parents = find_parents($fid);
 	if ($parents["HUSB"]) {
 		if (displayDetailsById($parents["HUSB"]) || showLivingNameById($parents["HUSB"]))
-			$hname = get_sortable_add_name($parents["HUSB"]);
+//			$hname = get_sortable_add_name($parents["HUSB"]);
+			$hname = get_add_person_name($parents["HUSB"]);
 		else $hname = $pgv_lang["private"];
 	}
 	else $hname = "@N.N., @P.N.";
 	if ($parents["WIFE"]) {
 		if (displayDetailsById($parents["WIFE"]) || showLivingNameById($parents["WIFE"]))
-			$wname = get_sortable_add_name($parents["WIFE"]);
+//			$wname = get_sortable_add_name($parents["WIFE"]);
+			$wname = get_add_person_name($parents["WIFE"]);
 		else $wname = $pgv_lang["private"];
 	}
 	else $wname = "@N.N., @P.N.";
@@ -396,13 +474,13 @@ function get_family_add_descriptor($fid) {
 
 // -- find and return a given individual's second name in format: firstname lastname
 function get_add_person_name($pid) {
-	global $NAME_REVERSE;
 	global $NAME_FROM_GEDCOM;
 
 	//-- get the name from the indexes
 	$record = find_person_record($pid);
 	$name_record = get_sub_record(1, "1 NAME", $record);
-	return get_add_person_name_in_record($name_record);
+	$name = get_add_person_name_in_record($name_record);
+	return $name;
 }
 
 function get_add_person_name_in_record($name_record, $keep_slash=false) {
@@ -425,6 +503,8 @@ function get_add_person_name_in_record($name_record, $keep_slash=false) {
 	    else $name = trim($names[0]);
 	}
 	else $name = "";
+	
+	if ($NAME_REVERSE) $name = reverse_name($name);
 	return $name;
 }
 
@@ -819,7 +899,7 @@ function get_indi_names($indirec, $import=false) {
 	$names = array();
 	//-- get all names
 	$namerec = get_sub_record(1, "1 NAME", $indirec, 1);
-	if (empty($namerec)) $names[] = array("@P.N /@N.N./", "@", "@N.N.");
+	if (empty($namerec)) $names[] = array("@P.N /@N.N./", "@", "@N.N.", "A");
 	else {
 		$j = 1;
 		while(!empty($namerec)) {
@@ -880,4 +960,181 @@ function get_indi_names($indirec, $import=false) {
 	}
 	return $names;
 }
+
+/**
+ * determine the Daitch-Mokotoff Soundex code for a name
+ * @param string $name	The name
+ * @return array		The array of codes
+ */
+
+function DMSoundex($name, $option = "") {
+	global $PGV_BASEDIRECTORY, $dmsoundexlist, $dmcoding, $maxchar, $INDEX_DIRECTORY, $cachecount, $cachename;
+	
+	// If the code tables are not loaded, reload! Keep them global!
+	if (!isset($dmcoding)) {
+		$fname = $PGV_BASEDIRECTORY."includes/dmarray.full.utf-8.php";
+		require($fname);
+	}
+	
+	// Load the previously saved cachefile and return. Keep the cache global!
+	if ($option == "opencache") {
+		$cachename = $INDEX_DIRECTORY."DM".date("mdHis", filemtime($fname)).".dat";
+		if (file_exists($cachename)) {
+			$fp = fopen($cachename, "r");
+			$fcontents = fread($fp, filesize($cachename));
+			fclose($fp);
+			$dmsoundexlist = unserialize($fcontents);
+			unset($fcontents);
+			$cachecount = count($dmsoundexlist);
+			return;
+		}
+		else {
+			$dmsoundexlist = array();
+			// clean up old cache
+			$handle = opendir($INDEX_DIRECTORY);
+			while (($file = readdir ($handle)) != false) {
+				if ((substr($file, 0, 2) == "DM") && (substr($file, -4) == ".dat")) unlink($INDEX_DIRECTORY.$file);
+			}
+			closedir($handle);
+			return;
+		}
+	}
+	
+	// Write the cache to disk after use. If nothing is added, just return.
+	if ($option == "closecache") {
+		if (count($dmsoundexlist) == $cachecount) return;
+		$fp = @fopen($cachename, "w");
+		if ($fp) {
+			@fwrite($fp, serialize($dmsoundexlist));
+			@fclose($fp);
+			return;
+		}
+	}
+
+	// Check if in cache
+	$name = str2upper($name);
+	$name = trim($name);
+	if (isset($dmsoundexlist[$name])) return $dmsoundexlist[$name];
+
+	// Define the result array and set the first (empty) result
+	$result = array();
+	$result[0][0] = "";
+	$rescount = 1;
+	$nlen = strlen($name);
+	$npos = 0;
+	
+	
+	// Loop here through the characters of the name
+	while($npos < $nlen) { 
+		// Check, per length of characterstring, if it exists in the array.
+		// Start from max to length of 1 character
+		$code = array();
+		for ($i=$maxchar; $i>=0; $i--) {
+			// Only check if not read past the last character in the name
+			if (($npos + $i) <= $nlen) {
+				// See if the substring exists in the coding array
+				$element = substr($name,$npos,$i);
+				// If found, add the sets of results to the code array for the letterstring
+				if (isset($dmcoding[$element])) {
+					$dmcount = count($dmcoding[$element]);
+					// Loop here through the codesets
+					// first letter? Then store the first digit.
+					if ($npos == 0) {
+						// Loop through the sets of 3
+						for ($k=0; $k<$dmcount/3; $k++) {
+							$c = $dmcoding[$element][$k*3];
+							// store all results, cleanup later
+							$code[] = $c;
+						}
+						break;
+					}
+					// before a vowel? Then store the second digit
+					// Check if the code for the next letter exists
+					if ((isset($dmcoding[substr($name, $npos + $i + 1)]))) {
+						// See if it's a vowel
+						if ($dmcoding[substr($name, $npos + $i + 1)] == 0) {
+							// Loop through the sets of 3
+							for ($k=0; $k<$dmcount/3; $k++) {
+								$c = $dmcoding[$element][$k*3+1];
+								// store all results, cleanup later
+								$code[] = $c;
+							}
+							break;
+						}
+					}
+					// Do this in all other situations
+					for ($k=0; $k<$dmcount/3; $k++) {
+						$c = $dmcoding[$element][$k*3+2];
+						// store all results, cleanup later
+						$code[] = $c;
+					}
+					break;
+				}
+			}
+		}
+		// Store the results and multiply if more found
+		if (isset($dmcoding[$element])) {
+			// Add code to existing results
+
+			// Extend the results array if more than one code is found
+			for ($j=1; $j<count($code); $j++) {
+				$rcnt = count($result);
+				// Duplicate the array
+				for ($k=0; $k<$rcnt; $k++) {
+					$result[] = $result[$k];
+				}
+			}
+
+			// Add the code to the existing strings
+			// Repeat for every code...
+			for ($j=0; $j<count($code); $j++) {
+				// and add it to the appropriate block of array elements
+				for ($k=0; $k<$rescount; $k++) {
+					$result[$j * $rescount + $k][] = $code[$j];
+				}
+			}
+			$rescount=count($result);
+			$npos = $npos + strlen($element);
+		}
+		else {
+			// The code was not found. Ignore it and continue.
+			$npos = $npos + 1;
+		}
+	}
+
+	// Kill the doubles and zero's in each result
+	// Do this for every result
+	for ($i=0, $max=count($result); $i<$max; $i++) {
+		$j=1;
+		$res = $result[$i][0];
+		// and check every code in the result.
+		// codes are stored separately in array elements, to keep
+		// distinction between 6 and 66.
+		while($j<count($result[$i])) {
+			if (($result[$i][$j-1] != $result[$i][$j]) && ($result[$i][$j] != -1)) {
+				$res .= $result[$i][$j];
+			}
+			$j++;
+		}
+		// Fill up to 6 digits and store back in the array
+		$result[$i] = substr($res."000000", 0, 6);
+	}
+			
+	// Kill the double results in the array
+	if (count($result)>1) {
+		sort($result);
+		for ($i=0; $i<count($result)-1; $i++) {
+			while ((isset($result[$i+1])) && ($result[$i] == $result[$i+1])) {
+				unset($result[$i+1]);
+				sort($result);
+			}
+		}
+			
+	}
+
+	// Store in cache and return
+	$dmsoundexlist[$name] = $result;
+	return $result;			
+}
+
 ?>

@@ -69,6 +69,7 @@ $PEDIGREE_ROOT_ID = "I1";				// -- use this line to change the default person wh
 $GEDCOM_ID_PREFIX = "I";				// -- This is the prefix to prepend to ID numbers typed in the ID boxes on charts
 $SOURCE_ID_PREFIX = "S";				// -- This is the prefix prepend to newly generated source records
 $REPO_ID_PREFIX = "R";					// -- This is the prefix prepend to newly generated repository records
+$FAM_ID_PREFIX = "F";					// -- This is the prefix prepend to newly generated family records
 $PEDIGREE_FULL_DETAILS = true;			// -- Show the birth and death details of an individual on the pedigree tree
 $PEDIGREE_LAYOUT = true;					// -- Set to true for Landscape mode, false for portrait mode
 $SHOW_EMPTY_BOXES = true;				// -- Show empty boxes on charts if the person is unknown

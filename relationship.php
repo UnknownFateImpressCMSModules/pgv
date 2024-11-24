@@ -21,7 +21,7 @@
  *
  * @package PhpGedView
  * @subpackage Charts
- * @version $Id: relationship.php,v 1.2 2006/01/09 00:46:23 skenow Exp $
+ * @version $Id: relationship.php,v 1.80 2005/08/15 20:37:52 canajun2eh Exp $
  */
 
 // -- include config file
@@ -270,6 +270,10 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 				$indirec = find_person_record($pid);
 				$ct = preg_match("/1 SEX F/", $indirec, $smatch);
 				if ($ct>0) $mfstyle="F";
+				else {
+					$ct = preg_match("/1 SEX M/", $indirec, $smatch);
+					if ($ct>0) $mfstyle="M";
+				}
 				$arrow_img = $PGV_IMAGE_DIR."/".$PGV_IMAGES["darrow"]["other"];
 				if (($node["relations"][$index]=="father")||($node["relations"][$index]=="mother")) {
 					$line = $PGV_IMAGES["vline"]["other"];
@@ -308,7 +312,7 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 				if ($node["relations"][$index]=="sibling") {
 					$arrow_img = $PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"];
 					if ($mfstyle=="F") $node["relations"][$index]="sister";
-					else $node["relations"][$index]="brother";
+					if ($mfstyle=="M") $node["relations"][$index]="brother";
 					$xoffset += $Dbwidth+$Dbxspacing+70;
 					$line = $PGV_IMAGES["hline"]["other"];
 					$linex += $Dbwidth;
@@ -327,7 +331,7 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 				if ($node["relations"][$index]=="spouse") {
 					$arrow_img = $PGV_IMAGE_DIR."/".$PGV_IMAGES["rarrow"]["other"];
 					if ($mfstyle=="F") $node["relations"][$index]="wife";
-					else $node["relations"][$index]="husband";
+					if ($mfstyle=="M") $node["relations"][$index]="husband";
 					$xoffset += $Dbwidth+$Dbxspacing+70;
 					$line = $PGV_IMAGES["hline"]["other"];
 					$linex += $Dbwidth;
@@ -345,7 +349,7 @@ if ((!empty($pid1))&&(!empty($pid2))) {
 				}
 				if ($node["relations"][$index]=="child") {
 					if ($mfstyle=="F") $node["relations"][$index]="daughter";
-					else $node["relations"][$index]="son";
+					if ($mfstyle=="M") $node["relations"][$index]="son";
 					$line = $PGV_IMAGES["vline"]["other"];
 					$liney += $Dbheight;
 					$linex += $Dbwidth/2;

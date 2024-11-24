@@ -64,7 +64,7 @@ if ($action=="year") {
 		else $year = preg_replace(array("/$abbr[0]/","/$abbr[1]/","/$abbr[2]/","/$abbr[3]/","/$abbr[4]/","/$abbr[5]/","/$abbr[6]/","/$abbr[7]/","/$abbr[8]/","/$abbr[9]/"), array("abt","aft","bef","bet","cal","est","from","int","cir","apx"), $year);
 	}
 	if (strlen($year)>1 && preg_match("/\?/", $year)) $year = preg_replace("/\?/", "[0-9]", $year);
-	$year = preg_replace(array("/&lt;/", "/&gt;/", "/[?*+|&.,:'%_<>!#¤{}=^]/", "/\\$/", "/\\\/",  "/\"/"), "", $year);
+	$year = preg_replace(array("/&lt;/", "/&gt;/", "/[?*+|&.,:'%_<>!#ï¿½{}=^]/", "/\\$/", "/\\\/",  "/\"/"), "", $year);
 	if (preg_match("/[\D]{1,2}/", $year) && strlen($year)<=2) $year="";
 	if (empty($year)) $year = adodb_date("Y");
 	$year=trim($year);

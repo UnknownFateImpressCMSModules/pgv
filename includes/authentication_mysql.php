@@ -497,14 +497,14 @@ function deleteUser($username, $msg = "deleted") {
  * @return array the user array to return
  */
 function getUser($username) {
-	global $TBLPREFIX, $users, $REGEXP_DB;
+	global $TBLPREFIX, $users, $DBTYPE;
 
 	if (empty($username)) return false;
 	if (isset($users[$username])) return $users[$username];
 
 	$username = db_prep($username);
 	$sql = "SELECT * FROM ".$TBLPREFIX."users WHERE ";
-	if ($REGEXP_DB) $sql .= "BINARY ";
+	if($DBTYPE == "mysql") $sql .= "BINARY ";
 	$sql .= "u_username='".$username."'";
 	$res =& dbquery($sql, false);
 	if (DB::isError($res)) return false;
@@ -557,6 +557,9 @@ function AddToLog($LogString) {
 	global $INDEX_DIRECTORY, $LOGFILE_CREATE;
 
 	if ($LOGFILE_CREATE=="none") return;
+	
+	//-- do not allow code to be written to the log file
+	$LogString = preg_replace("/<\?.*\?>/", "*** CODE DETECTED ***", $LogString);
 
 	$REMOTE_ADDR = $_SERVER['REMOTE_ADDR'];
 	if (empty($LOGFILE_CREATE)) $LOGFILE_CREATE="daily";
@@ -579,6 +582,9 @@ function AddToLog($LogString) {
 function AddToSearchLog($LogString, $allgeds) {
 	global $INDEX_DIRECTORY, $SEARCHLOG_CREATE, $GEDCOM, $GEDCOMS, $username;
 
+	//-- do not allow code to be written to the log file
+	$LogString = preg_replace("/<\?.*\?>/", "*** CODE DETECTED ***", $LogString);
+	
 	$oldged = $GEDCOM;
 	if ($allgeds) $geds = $GEDCOMS;
 	else $geds[$GEDCOM]["gedcom"] = $GEDCOM;

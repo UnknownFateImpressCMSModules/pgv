@@ -10,7 +10,7 @@
 		5/1/03 - File Created
 
 ===================================================*/
-# $Id: editconfig_help.php,v 1.1 2005/10/07 18:08:01 skenow Exp $
+# $Id: editconfig_help.php,v 1.12 2005/04/12 17:54:44 yalnifj Exp $
 
 require "config.php";
 require $PGV_BASE_DIRECTORY.$confighelpfile["english"];

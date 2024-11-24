@@ -1,0 +1,13 @@
+<!-- @version $Id: AUS_South-Australia.txt,v 1.2 2005/11/23 19:54:06 opus27 Exp $ -->
+Adelaide
+Adelaide Hills
+Barossa
+Clare Valley
+Eyre Peninsula
+Fleurieu Peninsula
+Flinders Ranges and Outback
+Kangaroo Island
+Limestone Coast
+Murraylands
+Riverland
+Yorke Peninsula
