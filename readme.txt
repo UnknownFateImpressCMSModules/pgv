@@ -1,3 +1,5 @@
+This is a integration of PhpGedView for ImpressCMS. This ImpressCMS module enables you to update, maintain, and share family tree information on your website, leveraging the power of PGV. 
+
 =======================================================
 	PhpGedView
 
@@ -6,8 +8,6 @@
 
 	This and other information can be found online at
 	http://www.PhpGedView.net
-
-	# $Id: readme.txt,v 1.122 2005/12/05 17:00:22 yalnifj Exp $
 =======================================================
 
 CONTENTS

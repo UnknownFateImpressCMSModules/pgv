@@ -27,7 +27,7 @@ header("Content-Type: text/html; charset=$CHARACTER_SET");
 if (!isset($pid)) $pid = "";
 $pid = clean_input($pid);
 
-$username = GetUserName();
+$username = getUserName();
 
 if ((!$SHOW_GEDCOM_RECORD) && (!UserCanAccept($username))) {
 	print "<span class=\"error\">This page has been disabled by the site administrator.</span>\n";

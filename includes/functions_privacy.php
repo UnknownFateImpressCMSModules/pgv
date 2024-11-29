@@ -413,7 +413,7 @@ function displayDetailsByID($pid, $type = "INDI") {
 		else {
             if (empty($username)) return false;
 //            print "(show living names constant - ".$SHOW_LIVING_NAMES.", user access level - ".getUserAccessLevel($username).") ";
-			if ($SHOW_LIVING_NAMES>getUserAccessLevel($username)) return true;
+			if ($SHOW_LIVING_NAMES>=getUserAccessLevel($username)) return true;
 			else return false;
 		}
 	}

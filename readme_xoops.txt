@@ -1,7 +1,7 @@
 Module Name: 		PGVXoops
-Version Number:		1.0
+Version Number:		1.0.2
 
-Based on PhpGedView 3.3.5 and original Xoops patch by Patrick Kellum
+Based on PhpGedView 3.3.8 and original Xoops patch by Patrick Kellum
 
 License
 ======================
@@ -56,8 +56,8 @@ Installation
 
 -----------------------------------------------------------------------------------------------------------------
 *You will see a database connect error message and popup - close it and complete the general configuration - DB username, DB password, DB name, DB table prefix (be sure it is correct! XoopsPrefix_pgv_)
-*Go on to Administer GEDCOMs
-*Step 1 of 4: upload GEDCOM (browse to location). This is limited to a 2MB upload. If it is larger than 2MB, FTP it to your site, then select Add Gedcom and provide the path and name for the GEDCOM file.
+*Go on to Manage GEDCOMs and edit Privacy
+*Step 1 of 4: upload GEDCOM (browse to location). This is limited to a 2MB upload. If it is larger than 2MB, FTP it to your site, place it in the index/ folder, then select Add Gedcom and provide the path and name for the GEDCOM file.
 *Step 2 of 4: Configure PhpGedView + GEDCOM file. In GEDCOM Basics, set the default person for pedigree and descendancy charts (often times your first dead ancestor). In Web Site & META Tag Settings, set your Main WebSite URL and text. Save Configuration
 *Step 3 of 4: Validate Gedcom. Click Cleanup
 *Step 4 of 4: Importing records into database. If you get a warning about maximum execution time being exceeded, refresh your browser (resubmit warning may appear -  click Retry), it will continue. Once the first set of data is imported (Import progress should show 100%), click on 'Continue importing places'. If the execution times out, refresh your browser. Once the import is complete, you will see a box on the page indicating it has completed.. If you would like to search and list females by their married names, click on the 'Import Married Names' button. You can skip this and follow the links to the Pedigree tree, the Welcome Page, or the GEDCOM management page.

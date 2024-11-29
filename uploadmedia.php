@@ -50,7 +50,7 @@ $upload_errors = array($pgv_lang["file_success"], $pgv_lang["file_too_big"], $pg
 		for($i=1; $i<6; $i++) {
 			$error="";
 			if (!empty($_FILES['mediafile'.$i]["name"])) {
-				AddToLog("Media file ".$MEDIA_DIRECTORY.basename($_FILES['mediafile'.$i]['name'])." uploaded by >".getUserName()."<");
+				AddToLog("Media file ".$MEDIA_DIRECTORY.basename($_FILES['mediafile'.$i]['name'])." uploaded by >".pgv_getUserName()."<");
 				$thumbgenned = false;
 				if (!move_uploaded_file($_FILES['mediafile'.$i]['tmp_name'], $MEDIA_DIRECTORY.basename($_FILES['mediafile'.$i]['name']))) {
 					$error .= $pgv_lang["upload_error"]."<br />".$upload_errors[$_FILES['mediafile'.$i]['error']]."<br />";
