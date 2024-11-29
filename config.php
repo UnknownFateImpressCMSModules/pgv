@@ -68,5 +68,4 @@ $CONFIG_VERSION = "3.2";						//-- the PGV version that corresponds to this conf
 
 $CONFIGURED = false;
 require 'xoops_headfoot.php';
-require_once($PGV_BASE_DIRECTORY."includes/session.php");
-?>
+require_once($PGV_BASE_DIRECTORY . "includes/session.php");
